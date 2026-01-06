@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network | Corporate Governance Series</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><img src="logo.png" alt="Corporate Governance Series CGS Logo"></a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About CGS</a></li>
+                <li class="dropdown">
+                    <a href="events.html">Events</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="webinar-diary.html">Webinar Diary</a></li>
+                        <li><a href="series-diary.html">Series Diary</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="resources.html">Resources</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="governance-codes.html">Governance Codes in Africa</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="media.html">Media</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="videos.html">Videos</a></li>
+                        <li><a href="pictures.html">Pictures</a></li>
+                    </ul>
+                </li>
+                <li><a href="training.html">Training</a></li>
+                <li><a href="network.html" class="active">Network</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-utility">
+                <button class="search-btn" id="searchBtn">Search</button>
+                <a href="network.html" class="login-btn">Login</a>
+                <a href="network.html" class="join-btn">Join the Network</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Connect with Africa's Governance Elite</h1>
+                <p class="page-subtitle">A curated network of directors, lawyers, bankers, regulators, scholars, and governance professionals.</p>
+            </div>
+        </section>
+
+        <section class="section content-section" id="loginSection">
+            <div class="container">
+                <div style="max-width: 500px; margin: 0 auto;">
+                    <div class="card" style="padding: 3rem;">
+                        <div style="text-align: center; margin-bottom: 2rem;">
+                            <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Sign In</h2>
+                            <p style="color: var(--text-charcoal);">Access your member dashboard</p>
+                        </div>
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="loginEmail">Email Address</label>
+                                <input type="email" id="loginEmail" name="email" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="loginPassword">Password</label>
+                                <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required>
+                            </div>
+                            <div style="margin-bottom: 1.5rem;">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="remember">
+                                    <span>Remember me</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+                            <div style="text-align: center; margin-top: 1.5rem;">
+                                <a href="#" id="showRegister" style="color: var(--primary-navy); text-decoration: none; font-weight: 600;">Don't have an account? Create one →</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section content-section-alt" id="registerSection" style="display: none;">
+            <div class="container">
+                <div style="max-width: 700px; margin: 0 auto;">
+                    <div class="card" style="padding: 3rem;">
+                        <div style="text-align: center; margin-bottom: 2rem;">
+                            <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Create Account</h2>
+                            <p style="color: var(--text-charcoal);">Join the CGS Network</p>
+                        </div>
+                        <form id="registerForm">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div class="form-group">
+                                    <label for="registerFirstName">First Name</label>
+                                    <input type="text" id="registerFirstName" name="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="registerLastName">Last Name</label>
+                                    <input type="text" id="registerLastName" name="lastName" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="registerEmail">Email Address</label>
+                                <input type="email" id="registerEmail" name="email" required>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div class="form-group">
+                                    <label for="registerCountry">Country</label>
+                                    <input type="text" id="registerCountry" name="country" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="registerCity">City</label>
+                                    <input type="text" id="registerCity" name="city" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="registerOrganization">Organization / Institution</label>
+                                <input type="text" id="registerOrganization" name="organization">
+                            </div>
+                            <div class="form-group">
+                                <label for="registerRole">Role</label>
+                                <select id="registerRole" name="role" required>
+                                    <option value="">Select your role</option>
+                                    <option value="lawyer">Lawyer</option>
+                                    <option value="banker">Banker</option>
+                                    <option value="board">Board Member/Director</option>
+                                    <option value="student">Student</option>
+                                    <option value="regulator">Regulator</option>
+                                    <option value="consultant">Consultant</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Areas of Interest (select all that apply)</label>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem; margin-top: 0.5rem;">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="interests" value="board-effectiveness">
+                                        <span>Board Effectiveness</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="interests" value="compliance">
+                                        <span>Compliance</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="interests" value="esg">
+                                        <span>ESG</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="interests" value="risk">
+                                        <span>Risk Governance</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="interests" value="digital">
+                                        <span>Digital Governance</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="interests" value="soes">
+                                        <span>State-Owned Entities</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="registerBio">Short Bio</label>
+                                <textarea id="registerBio" name="bio" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="registerLinkedIn">LinkedIn URL (optional)</label>
+                                <input type="url" id="registerLinkedIn" name="linkedin">
+                            </div>
+                            <div class="form-group">
+                                <label for="registerPassword">Password</label>
+                                <input type="password" id="registerPassword" name="password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="registerPasswordConfirm">Confirm Password</label>
+                                <input type="password" id="registerPasswordConfirm" name="passwordConfirm" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                            <div style="text-align: center; margin-top: 1.5rem;">
+                                <a href="#" id="showLogin" style="color: var(--primary-navy); text-decoration: none; font-weight: 600;">Already have an account? Sign in →</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section content-section" id="benefitsSection">
+            <div class="container">
+                <h2 class="section-title">Member Benefits</h2>
+                <div class="delivers-grid">
+                    <div class="deliver-card">
+                        <h3>Member Directory</h3>
+                        <p>Connect with governance professionals across Africa. Search by country, sector, and expertise to build your network.</p>
+                    </div>
+                    <div class="deliver-card">
+                        <h3>Exclusive Resources</h3>
+                        <p>Access members-only whitepapers, briefs, and in-depth analysis unavailable to the general public.</p>
+                    </div>
+                    <div class="deliver-card">
+                        <h3>First-to-Know Invitations</h3>
+                        <p>Receive priority registration and early access to CGS events, webinars, and flagship sessions.</p>
+                    </div>
+                    <div class="deliver-card">
+                        <h3>Private Discussions</h3>
+                        <p>Participate in exclusive roundtables, member-only forums, and private networking events.</p>
+                    </div>
+                    <div class="deliver-card">
+                        <h3>Profile Credibility</h3>
+                        <p>Build your professional profile with badges, participation history, and publication credits.</p>
+                    </div>
+                    <div class="deliver-card">
+                        <h3>Thought Leadership</h3>
+                        <p>Opportunities to contribute to the CGS blog, speak at events, and shape governance discourse in Africa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CGS</h3>
+                    <p>Corporate Governance Series<br>Transforming governance standards across Africa</p>
+                    <div class="social-links">
+                        <a href="#" title="LinkedIn">in</a>
+                        <a href="#" title="Twitter">t</a>
+                        <a href="#" title="YouTube">yt</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About CGS</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="training.html">Training</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="governance-codes.html">Governance Codes</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="media.html">Media</a></li>
+                        <li><a href="network.html">Network</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Stay Informed</h4>
+                    <p>Subscribe to our newsletter for updates on events, resources, and governance insights.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Corporate Governance Series (CGS) by CSTS Ghana. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Toggle between login and register forms
+        document.getElementById('showRegister')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('registerSection').style.display = 'block';
+        });
+
+        document.getElementById('showLogin')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('registerSection').style.display = 'none';
+            document.getElementById('loginSection').style.display = 'block';
+        });
+
+        // Form handlers
+        document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login functionality would be connected to backend authentication.');
+        });
+
+        document.getElementById('registerForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('registerPassword').value;
+            const passwordConfirm = document.getElementById('registerPasswordConfirm').value;
+            
+            if (password !== passwordConfirm) {
+                alert('Passwords do not match.');
+                return;
+            }
+            
+            alert('Registration functionality would be connected to backend user management.');
+        });
+    </script>
+</body>
+</html>
