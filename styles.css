@@ -1521,4 +1521,14 @@ h1, h2, h3, h4, h5, h6 {
     .search-modal-header {
         padding: 1rem;
     }
+    
+    /* Responsive grid for moderator and panel members */
+    div[style*="grid-template-columns: repeat(4"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    div[style*="grid-template-columns: repeat(4"] img {
+        width: 120px !important;
+        height: 120px !important;
+    }
 }
