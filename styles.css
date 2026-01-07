@@ -508,6 +508,7 @@ h1, h2, h3, h4, h5, h6 {
     width: auto;
     height: auto;
     object-fit: contain;
+    display: block;
 }
 
 .strategic-partner-logo .partner-name {
@@ -515,9 +516,11 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.85rem;
     color: var(--text-charcoal);
     margin-top: 0.25rem;
+    text-align: center;
 }
 
-.strategic-partner-logo img[style*="display: none"] ~ .partner-name {
+.strategic-partner-logo img[style*="display: none"] ~ .partner-name,
+.strategic-partner-logo img:not([src]) ~ .partner-name {
     display: block;
 }
 

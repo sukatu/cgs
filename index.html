@@ -79,7 +79,7 @@
             <div class="container">
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1400px; margin: 0 auto;">
                     <!-- Left Card: About CGS -->
-                    <div class="featured-card" style="background-color: var(--white); padding: 3rem; border-radius: 8px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div class="featured-card" style="background-color: var(--white); padding: 3rem; border-radius: 8px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: flex-start; align-self: flex-start;">
                         <div>
                             <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--primary-navy);">About CGS</h2>
                             <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-charcoal); margin-bottom: 2rem;">
@@ -95,29 +95,35 @@
                     </div>
                     
                     <!-- Right Card: Featured Event Banner -->
-                    <div id="featuredEventCard" class="featured-card" style="background: linear-gradient(135deg, var(--primary-navy) 0%, #0d2f7a 100%); padding: 3rem; border-radius: 8px; box-shadow: var(--shadow); position: relative; overflow: hidden; min-height: 400px; display: flex; flex-direction: column; justify-content: space-between; color: white;">
-                        <!-- Background pattern overlay -->
-                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.03) 10px, rgba(255,255,255,0.03) 20px); opacity: 0.5; z-index: 0;"></div>
-                        
-                        <div style="position: relative; z-index: 1;">
-                            <div style="background-color: rgba(255, 255, 255, 0.2); color: white; padding: 0.5rem 1rem; border-radius: 4px; display: inline-block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600;">
-                                Featured Conference
-                            </div>
-                            <h2 id="featuredEventTitle" style="font-size: 2.25rem; margin-bottom: 1.5rem; color: white; line-height: 1.2; font-weight: 700;">
-                                Loading upcoming event...
-                            </h2>
-                            <div id="featuredEventMeta" style="margin-bottom: 1.5rem; font-size: 1rem; opacity: 0.95; display: flex; flex-direction: column; gap: 0.75rem;">
-                                <!-- Event date and details will be inserted here -->
-                            </div>
+                    <div id="featuredEventCard" class="featured-card" style="background-color: var(--white); padding: 0; border-radius: 8px; box-shadow: var(--shadow); position: relative; overflow: hidden; min-height: 400px; display: flex; flex-direction: column; color: var(--text-charcoal);">
+                        <!-- Event Flyer Image -->
+                        <div style="width: 100%; height: auto; overflow: hidden; border-radius: 8px 8px 0 0;">
+                            <img src="images/upcoming event.jpeg" alt="Upcoming Event" style="width: 100%; height: auto; display: block; object-fit: cover;">
                         </div>
                         
-                        <div style="position: relative; z-index: 1; display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-                            <a id="featuredEventButton" href="#" class="btn" style="background-color: var(--accent-gold); color: var(--primary-navy); padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
-                                <span>Book now</span> <span>→</span>
-                            </a>
-                            <a href="events.html" class="btn" style="background-color: rgba(255, 255, 255, 0.1); color: white; padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; border: 2px solid rgba(255, 255, 255, 0.3); transition: all 0.3s ease;">
-                                All events
-                            </a>
+                        <!-- Event Content -->
+                        <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div style="background-color: var(--primary-navy); color: white; padding: 0.5rem 1rem; border-radius: 4px; display: inline-block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600;">
+                                    Upcoming Event
+                                </div>
+                                <h2 id="featuredEventTitle" style="font-size: 1.75rem; margin-bottom: 1rem; color: var(--primary-navy); line-height: 1.3; font-weight: 700;">
+                                    Directors' Duties and Corporate Misconduct: Comparative Insights on Liability Regimes
+                                </h2>
+                                <div id="featuredEventMeta" style="margin-bottom: 1.5rem; font-size: 1rem; color: var(--text-charcoal); display: flex; flex-direction: column; gap: 0.75rem;">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.2rem;">📅</span> <span><strong>Date:</strong> 15th January 2026</span></div>
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.2rem;">🕐</span> <span><strong>Time:</strong> 3pm GMT</span></div>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                                <a id="featuredEventButton" href="#" class="btn" style="background-color: var(--accent-gold); color: var(--primary-navy); padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+                                    <span>Register Now</span> <span>→</span>
+                                </a>
+                                <a href="events.html" class="btn" style="background-color: var(--primary-navy); color: white; padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; border: 2px solid var(--primary-navy); transition: all 0.3s ease;">
+                                    All events
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -134,16 +140,16 @@
                     <strong>Strategic Partners</strong>
                     <div class="strategic-partners-logos">
                         <div class="strategic-partner-logo">
-                            <img src="images/logo_GIMPS2.png" alt="GIMPA Law School" onerror="this.style.display='none';">
-                            <span class="partner-name">GIMPA Law School</span>
+                            <img src="images/logo_GIMPS2.png" alt="GIMPA Law School" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <span class="partner-name" style="display: none;">GIMPA Law School</span>
                         </div>
                         <div class="strategic-partner-logo">
-                            <img src="images/siga_logo-01.png" alt="SIGA" onerror="this.style.display='none';">
-                            <span class="partner-name">SIGA</span>
+                            <img src="images/siga_logo-01.png" alt="SIGA" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <span class="partner-name" style="display: none;">SIGA</span>
                         </div>
                         <div class="strategic-partner-logo">
-                            <img src="images/iodghana-logo-white.png" alt="IOD" onerror="this.style.display='none';">
-                            <span class="partner-name">IOD</span>
+                            <img src="images/iodghana-logo-white.png" alt="IOD" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <span class="partner-name" style="display: none;">IOD</span>
                         </div>
                     </div>
                 </div>
@@ -402,7 +408,11 @@
                     const eventDate = formatDate(event.event_date);
                     const eventTime = formatTime(event.event_date);
                     
-                    document.getElementById('featuredEventTitle').textContent = event.title;
+                    // Only update title if it's different, otherwise keep the default topic
+                    const titleElement = document.getElementById('featuredEventTitle');
+                    if (titleElement && event.title && event.title.trim() !== '') {
+                        titleElement.textContent = event.title;
+                    }
                     
                     let metaHTML = '';
                     if (eventDate) {
@@ -414,40 +424,22 @@
                     if (event.format) {
                         metaHTML += `<div style="display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.2rem;">💻</span> <span>${escapeHtml(event.format)}</span></div>`;
                     }
-                    document.getElementById('featuredEventMeta').innerHTML = metaHTML;
-                    
-                    if (event.description) {
-                        document.getElementById('featuredEventDescription').textContent = 
-                            event.description.length > 200 ? event.description.substring(0, 200) + '...' : event.description;
+                    const metaElement = document.getElementById('featuredEventMeta');
+                    if (metaElement) {
+                        metaElement.innerHTML = metaHTML;
                     }
                     
                     const button = document.getElementById('featuredEventButton');
-                    if (event.registration_link) {
-                        button.href = event.registration_link;
-                    } else {
-                        button.href = 'events.html';
+                    if (button) {
+                        if (event.registration_link) {
+                            button.href = event.registration_link;
+                        } else {
+                            button.href = 'events.html';
+                        }
                     }
                 } else {
-                    // Show placeholder if no upcoming events
-                    const featuredCard = document.getElementById('featuredEventCard');
-                    if (featuredCard) {
-                        featuredCard.innerHTML = `
-                            <div style="position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem;">
-                                <div style="background-color: rgba(255, 255, 255, 0.2); color: white; padding: 0.5rem 1rem; border-radius: 4px; display: inline-block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600;">
-                                    Featured Conference
-                                </div>
-                                <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: white; line-height: 1.2; font-weight: 700;">
-                                    No Upcoming Events
-                                </h2>
-                                <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); margin-bottom: 2rem;">
-                                    Check back soon for our next event!
-                                </p>
-                                <a href="events.html" class="btn" style="background-color: rgba(255, 255, 255, 0.1); color: white; padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; border: 2px solid rgba(255, 255, 255, 0.3); transition: all 0.3s ease;">
-                                    All events
-                                </a>
-                            </div>
-                        `;
-                    }
+                    // If no events from database, the static flyer and topic will remain visible
+                    // This is fine - the flyer is already displayed
                 }
             } catch (error) {
                 console.error('Error loading featured event:', error);
