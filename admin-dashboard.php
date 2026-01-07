@@ -58,11 +58,49 @@ if ($result) {
     $events = $result->fetch_all(MYSQLI_ASSOC);
 }
 
-// Fetch images
+// Fetch uploaded images from database
 $imagesResult = $conn->query("SELECT * FROM gallery_images ORDER BY display_order ASC, upload_date DESC");
 if ($imagesResult) {
     $images = $imagesResult->fetch_all(MYSQLI_ASSOC);
 }
+
+// Get static gallery images from images/gallery/New folder
+$staticImages = [];
+$galleryPath = 'images/gallery/New/';
+if (is_dir($galleryPath)) {
+    $files = scandir($galleryPath);
+    foreach ($files as $file) {
+        if ($file !== '.' && $file !== '..') {
+            $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+            if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
+                $staticImages[] = [
+                    'id' => 'static_' . $file,
+                    'filename' => $file,
+                    'original_filename' => $file,
+                    'alt_text' => 'CGS Event Photo',
+                    'category' => 'Static Gallery',
+                    'upload_date' => date('Y-m-d H:i:s', filemtime($galleryPath . $file)),
+                    'display_order' => 9999,
+                    'is_active' => 1,
+                    'is_static' => true
+                ];
+            }
+        }
+    }
+    // Sort static images by filename number if they follow the pattern
+    usort($staticImages, function($a, $b) {
+        preg_match('/Fredan-(\d+)/i', $a['filename'], $matchesA);
+        preg_match('/Fredan-(\d+)/i', $b['filename'], $matchesB);
+        if (isset($matchesA[1]) && isset($matchesB[1])) {
+            return intval($matchesA[1]) - intval($matchesB[1]);
+        }
+        return strcmp($a['filename'], $b['filename']);
+    });
+}
+
+// Combine uploaded and static images (static images first to show them together)
+$allImages = array_merge($staticImages, $images);
+$totalImageCount = count($allImages);
 
 if (isset($_GET['success'])) {
     $alert = '<div class="alert alert-success">Event saved successfully!</div>';
@@ -260,7 +298,7 @@ if (isset($_GET['success'])) {
             <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
                 <button class="btn btn-primary" onclick="showSection('events')" id="btnEvents">Events</button>
                 <button class="btn btn-secondary" onclick="showSection('users')" id="btnUsers">Users</button>
-                <button class="btn btn-secondary" onclick="showSection('images')" id="btnImages">Images (<?php echo count($images); ?>)</button>
+                <button class="btn btn-secondary" onclick="showSection('images')" id="btnImages">Images (<?php echo $totalImageCount; ?>)</button>
             </div>
             <div style="display: flex; gap: 1rem;">
                 <a href="admin-upload-image.php" class="btn btn-primary">+ Upload Image</a>
@@ -591,30 +629,41 @@ if (isset($_GET['success'])) {
         <div id="imagesSection" style="display: none;">
             <div style="margin-bottom: 2rem;">
                 <h2 style="margin-bottom: 0.5rem;">Image Management</h2>
-                <p style="color: var(--text-light); margin: 0;">
-                    Total Images: <strong><?php echo count($images); ?></strong>
-                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <p style="color: var(--text-light); margin: 0;">
+                        Total Images: <strong><?php echo $totalImageCount; ?></strong>
+                        (<?php echo count($staticImages); ?> Static + <?php echo count($images); ?> Uploaded)
+                    </p>
+                    <a href="admin-upload-image.php" class="btn btn-primary">+ Upload New Image</a>
+                </div>
             </div>
             
-            <?php if (empty($images)): ?>
+            <?php if (empty($allImages)): ?>
                 <div style="text-align: center; padding: 3rem; background: white; border-radius: 8px; box-shadow: var(--shadow);">
-                    <p style="color: var(--text-light); margin-bottom: 1.5rem;">No images uploaded yet.</p>
+                    <p style="color: var(--text-light); margin-bottom: 1.5rem;">No images found.</p>
                     <a href="admin-upload-image.php" class="btn btn-primary">Upload Your First Image</a>
                 </div>
             <?php else: ?>
                 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem;">
-                    <?php foreach ($images as $image): ?>
-                        <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow);">
-                            <div style="width: 100%; height: 200px; overflow: hidden; background: var(--bg-offwhite);">
-                                <img src="<?php echo htmlspecialchars('images/uploads/' . $image['filename']); ?>" 
+                    <?php foreach ($allImages as $image): 
+                        $isStatic = isset($image['is_static']) && $image['is_static'];
+                        $imagePath = $isStatic ? 'images/gallery/New/' . $image['filename'] : 'images/uploads/' . $image['filename'];
+                    ?>
+                        <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); <?php echo $isStatic ? 'border: 2px solid var(--accent-gold);' : ''; ?>">
+                            <div style="width: 100%; height: 200px; overflow: hidden; background: var(--bg-offwhite); position: relative;">
+                                <img src="<?php echo htmlspecialchars($imagePath); ?>" 
                                      alt="<?php echo htmlspecialchars($image['alt_text'] ?: $image['original_filename']); ?>"
-                                     style="width: 100%; height: 100%; object-fit: cover;">
+                                     style="width: 100%; height: 100%; object-fit: cover;"
+                                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'250\' height=\'200\'%3E%3Crect fill=\'%23ddd\' width=\'250\' height=\'200\'/%3E%3Ctext fill=\'%23999\' font-family=\'sans-serif\' font-size=\'14\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EImage%3C/text%3E%3C/svg%3E';">
+                                <?php if ($isStatic): ?>
+                                    <span style="position: absolute; top: 0.5rem; right: 0.5rem; background: var(--accent-gold); color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">STATIC</span>
+                                <?php endif; ?>
                             </div>
                             <div style="padding: 1rem;">
                                 <h4 style="margin: 0 0 0.5rem 0; font-size: 0.95rem; color: var(--text-charcoal); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                                     <?php echo htmlspecialchars($image['original_filename']); ?>
                                 </h4>
-                                <?php if ($image['alt_text']): ?>
+                                <?php if ($image['alt_text'] && !$isStatic): ?>
                                     <p style="margin: 0.25rem 0; font-size: 0.85rem; color: var(--text-light); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                                         <?php echo htmlspecialchars($image['alt_text']); ?>
                                     </p>
@@ -625,18 +674,27 @@ if (isset($_GET['success'])) {
                                     </p>
                                 <?php endif; ?>
                                 <p style="margin: 0.25rem 0; font-size: 0.8rem; color: var(--text-light);">
-                                    <strong>Order:</strong> <?php echo $image['display_order']; ?> | 
-                                    <strong>Uploaded:</strong> <?php echo date('M d, Y', strtotime($image['upload_date'])); ?>
+                                    <?php if (!$isStatic): ?>
+                                        <strong>Order:</strong> <?php echo $image['display_order']; ?> | 
+                                    <?php endif; ?>
+                                    <strong><?php echo $isStatic ? 'Modified' : 'Uploaded'; ?>:</strong> <?php echo date('M d, Y', strtotime($image['upload_date'])); ?>
                                 </p>
                             </div>
                             <div style="padding: 0.75rem; border-top: 1px solid var(--divider-grey); display: flex; gap: 0.5rem;">
-                                <a href="?delete=<?php echo $image['id']; ?>&type=image" 
-                                   class="btn btn-danger" 
-                                   style="padding: 0.5rem 1rem; font-size: 0.85rem; flex: 1; text-align: center;"
-                                   onclick="return confirm('Are you sure you want to delete this image?');">Delete</a>
-                                <a href="admin-upload-image.php" 
+                                <?php if (!$isStatic): ?>
+                                    <a href="?delete=<?php echo $image['id']; ?>&type=image" 
+                                       class="btn btn-danger" 
+                                       style="padding: 0.5rem 1rem; font-size: 0.85rem; flex: 1; text-align: center;"
+                                       onclick="return confirm('Are you sure you want to delete this image?');">Delete</a>
+                                <?php else: ?>
+                                    <span style="padding: 0.5rem 1rem; font-size: 0.85rem; flex: 1; text-align: center; color: var(--text-light); font-style: italic;">
+                                        Static (read-only)
+                                    </span>
+                                <?php endif; ?>
+                                <a href="<?php echo htmlspecialchars($imagePath); ?>" 
+                                   target="_blank"
                                    class="btn btn-secondary" 
-                                   style="padding: 0.5rem 1rem; font-size: 0.85rem; flex: 1; text-align: center;">View Full</a>
+                                   style="padding: 0.5rem 1rem; font-size: 0.85rem; flex: 1; text-align: center;">View</a>
                             </div>
                         </div>
                     <?php endforeach; ?>
