@@ -1299,34 +1299,80 @@ h1, h2, h3, h4, h5, h6 {
 /* Image Gallery Styles */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    padding: 0;
+    max-width: 100%;
 }
 
 .gallery-item {
     position: relative;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 12px;
     aspect-ratio: 4/3;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px rgba(10, 36, 99, 0.1);
+    background: var(--white);
+    will-change: transform;
 }
 
 .gallery-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(10, 36, 99, 0.2);
 }
 
 .gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    display: block;
 }
 
 .gallery-item:hover img {
-    transform: scale(1.1);
+    transform: scale(1.08);
+}
+
+/* Gallery overlay effect */
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(10, 36, 99, 0.3) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.gallery-item:hover::after {
+    opacity: 1;
+}
+
+/* Gallery section header */
+#gallery {
+    max-width: 1400px;
+    margin: 4rem auto 0;
+    padding: 0 20px;
+}
+
+#gallery .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-navy);
+}
+
+#gallery .section-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 0 auto 3rem;
 }
 
 .gallery-thumbnail {
@@ -1842,5 +1888,21 @@ h1, h2, h3, h4, h5, h6 {
     
     .nav-menu {
         padding: 1rem 0 !important;
+    }
+    
+    /* Gallery grid mobile */
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
+        gap: 1rem !important;
+    }
+    
+    #gallery .section-title {
+        font-size: 1.75rem !important;
+        text-align: center !important;
+    }
+    
+    #gallery .section-subtitle {
+        font-size: 1rem !important;
+        text-align: center !important;
     }
 }
