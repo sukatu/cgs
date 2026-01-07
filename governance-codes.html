@@ -105,6 +105,27 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- PDF Viewer Modal -->
+                <div id="pdfViewerModal" class="pdf-viewer-modal" onclick="closePdfViewer(event)">
+                    <div class="pdf-viewer-content" onclick="event.stopPropagation()">
+                        <div class="pdf-viewer-header">
+                            <h3 id="pdfViewerTitle">Document Preview</h3>
+                            <div class="pdf-viewer-actions">
+                                <a id="pdfDownloadLink" href="#" class="btn btn-primary btn-small" download target="_blank">
+                                    <span class="download-icon">📥</span> Download
+                                </a>
+                                <a id="pdfExternalLink" href="#" class="btn btn-outline btn-small" target="_blank">
+                                    Open in New Tab
+                                </a>
+                                <span class="pdf-viewer-close" onclick="closePdfViewer(event)">&times;</span>
+                            </div>
+                        </div>
+                        <div class="pdf-viewer-body">
+                            <iframe id="pdfViewerFrame" src="" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -406,9 +427,9 @@
                                         <p class="code-issuer">${code.issuingBody}</p>
                                     </div>
                                     <div class="code-action">
-                                        <a href="${pdfPath}" class="btn btn-primary btn-small" download="${fileName}" target="_blank">
-                                            <span class="download-icon">📥</span> Download PDF
-                                        </a>
+                                        <button class="btn btn-primary btn-small" onclick="openPdfViewer('${pdfPath}', '${code.title.replace(/'/g, "\\'")}')">
+                                            <span class="download-icon">👁️</span> View PDF
+                                        </button>
                                     </div>
                                 </div>
                             `;
@@ -444,6 +465,44 @@
             const modal = document.getElementById('countryModal');
             modal.style.display = 'none';
             document.body.style.overflow = '';
+        }
+
+        // Open PDF viewer
+        function openPdfViewer(pdfUrl, title) {
+            const modal = document.getElementById('pdfViewerModal');
+            const frame = document.getElementById('pdfViewerFrame');
+            const titleEl = document.getElementById('pdfViewerTitle');
+            const downloadLink = document.getElementById('pdfDownloadLink');
+            const externalLink = document.getElementById('pdfExternalLink');
+            
+            // Set the title
+            titleEl.textContent = title || 'Document Preview';
+            
+            // Set download and external links
+            downloadLink.href = pdfUrl;
+            downloadLink.download = title ? title.replace(/[^a-z0-9]/gi, '_') + '.pdf' : 'document.pdf';
+            externalLink.href = pdfUrl;
+            
+            // Use Google Docs viewer for external PDFs (ECGI links)
+            if (pdfUrl.startsWith('http')) {
+                frame.src = `https://docs.google.com/viewer?url=${encodeURIComponent(pdfUrl)}&embedded=true`;
+            } else {
+                // For local PDFs, embed directly
+                frame.src = pdfUrl;
+            }
+            
+            modal.style.display = 'flex';
+        }
+
+        // Close PDF viewer
+        function closePdfViewer(event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            const modal = document.getElementById('pdfViewerModal');
+            const frame = document.getElementById('pdfViewerFrame');
+            modal.style.display = 'none';
+            frame.src = ''; // Clear the iframe
         }
 
         // Initialize on page load
