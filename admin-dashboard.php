@@ -126,6 +126,28 @@ if (isset($_GET['success'])) {
             max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .images-grid-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        @media (max-width: 768px) {
+            .images-grid-container {
+                padding: 0 15px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .images-grid-container {
+                padding: 0 10px;
+            }
         }
         .dashboard-header {
             display: flex;
@@ -627,9 +649,9 @@ if (isset($_GET['success'])) {
         
         <!-- Images Section -->
         <div id="imagesSection" style="display: none;">
-            <div style="margin-bottom: 2rem;">
-                <h2 style="margin-bottom: 0.5rem;">Image Management</h2>
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div style="margin-bottom: 2rem; max-width: 1400px; margin-left: auto; margin-right: auto;">
+                <h2 style="margin-bottom: 0.5rem; text-align: center; color: var(--primary-navy);">Image Management</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
                     <p style="color: var(--text-light); margin: 0;">
                         Total Images: <strong><?php echo $totalImageCount; ?></strong>
                         (<?php echo count($staticImages); ?> Static + <?php echo count($images); ?> Uploaded)
@@ -639,12 +661,12 @@ if (isset($_GET['success'])) {
             </div>
             
             <?php if (empty($allImages)): ?>
-                <div style="text-align: center; padding: 3rem; background: white; border-radius: 8px; box-shadow: var(--shadow);">
+                <div style="text-align: center; padding: 3rem; background: white; border-radius: 8px; box-shadow: var(--shadow); max-width: 600px; margin: 0 auto;">
                     <p style="color: var(--text-light); margin-bottom: 1.5rem;">No images found.</p>
                     <a href="admin-upload-image.php" class="btn btn-primary">Upload Your First Image</a>
                 </div>
             <?php else: ?>
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div class="images-grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; justify-content: center;">
                     <?php foreach ($allImages as $image): 
                         $isStatic = isset($image['is_static']) && $image['is_static'];
                         $imagePath = $isStatic ? 'images/gallery/New/' . $image['filename'] : 'images/uploads/' . $image['filename'];

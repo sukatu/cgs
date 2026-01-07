@@ -68,10 +68,49 @@
         </section>
 
         <section class="section content-section">
-            <div class="container">
-                <div id="seriesEvents">
-                    <!-- Series events will be loaded here dynamically -->
-                    <p style="text-align: center; color: var(--text-light); padding: 2rem;">Loading series events...</p>
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <!-- Upcoming Events Section -->
+                <div>
+                    <div style="text-align: center; margin-bottom: 3rem;">
+                        <h2 style="font-size: 2.5rem; color: var(--primary-navy); margin-bottom: 1rem; font-weight: 700;">Upcoming Events</h2>
+                        <p style="text-align: center; color: var(--text-light); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+                            Future series sessions and flagship discussions
+                        </p>
+                    </div>
+                    <div id="upcomingSeriesEvents">
+                        <!-- Upcoming events will be loaded here dynamically -->
+                        <p style="text-align: center; color: var(--text-light); padding: 2rem;">Loading upcoming events...</p>
+                    </div>
+                </div>
+                
+                <!-- Past Events Section -->
+                <div>
+                    <div style="text-align: center; margin-bottom: 3rem;">
+                        <h2 style="font-size: 2.5rem; color: var(--primary-navy); margin-bottom: 1rem; font-weight: 700;">Past Events</h2>
+                        <p style="text-align: center; color: var(--text-light); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+                            Previous series sessions and flagship discussions
+                        </p>
+                    </div>
+                    <div id="pastEventsList" class="events-list-container">
+                        <div class="event-list-item" data-event-id="past-0">
+                            <div class="event-list-image-thumbnail-top">
+                                <img src="images/gallery/New/Fredan-76.JPG" alt="Strengthening Corporate Governance of State-Owned Entities in Ghana" class="event-list-thumbnail-img">
+                            </div>
+                            <div class="event-list-header" onclick="openPastEventDetails()">
+                                <div class="event-list-header-content">
+                                    <h3 class="event-list-title">Strengthening Corporate Governance of State-Owned Entities in Ghana: Opportunities and Challenges</h3>
+                                    <div class="event-list-meta">
+                                        <span class="event-list-meta-item">13 Nov 2025</span>
+                                        <span class="event-list-meta-item">GIMPA Law School, Dr. Daniel McKarley Moot Court Room</span>
+                                    </div>
+                                </div>
+                                <div class="event-list-actions">
+                                    <button class="event-list-toggle" aria-label="View event details">▶</button>
+                                </div>
+                                <span class="event-list-type-badge series">Series</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Static fallback -->
@@ -233,13 +272,465 @@
         </div>
     </footer>
 
+    <!-- Event Details Modal -->
+    <div id="eventDetailsModal" class="event-modal">
+        <div class="event-modal-content">
+            <span class="event-modal-close" onclick="closeEventModal()">&times;</span>
+            <div id="eventModalContent">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <script src="events-loader.js"></script>
     <script>
-        // Load series events when page loads
+        // Load current and upcoming series events when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            loadEventsAsTimeline('series', null, 'seriesEvents');
+            loadCurrentAndUpcomingEvents('series');
         });
+        
+        // Function to load current and upcoming events separately
+        async function loadCurrentAndUpcomingEvents(type = null) {
+            try {
+                let apiUrl = 'api-events.php?';
+                if (type) apiUrl += `type=${encodeURIComponent(type)}&`;
+                
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                if (data.success && data.events) {
+                    const now = new Date();
+                    now.setHours(0, 0, 0, 0);
+                    
+                    // Separate upcoming events
+                    const upcomingEvents = [];
+                    
+                    data.events.forEach(event => {
+                        if (!event.event_date) {
+                            // If no date, check status
+                            if (event.status === 'upcoming') {
+                                upcomingEvents.push(event);
+                            }
+                            return;
+                        }
+                        
+                        const eventDate = new Date(event.event_date);
+                        eventDate.setHours(0, 0, 0, 0);
+                        
+                        // Upcoming events: future dates or status is upcoming
+                        if (eventDate > now || event.status === 'upcoming') {
+                            upcomingEvents.push(event);
+                        }
+                    });
+                    
+                    // Display upcoming events
+                    const upcomingContainer = document.getElementById('upcomingSeriesEvents');
+                    if (upcomingContainer) {
+                        if (upcomingEvents.length === 0) {
+                            upcomingContainer.innerHTML = '<p style="text-align: center; color: var(--text-light); padding: 2rem;">No upcoming events scheduled.</p>';
+                        } else {
+                            upcomingContainer.innerHTML = upcomingEvents.map((event, index) => createEventListItem(event, index, 'upcoming')).join('');
+                            // Store events for modal access
+                            window.upcomingEvents = upcomingEvents;
+                            window.allEvents.upcoming = upcomingEvents;
+                        }
+                    }
+                } else {
+                    console.error('Error loading events:', data);
+                    const upcomingContainer = document.getElementById('upcomingSeriesEvents');
+                    if (upcomingContainer) {
+                        upcomingContainer.style.display = 'none';
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching events:', error);
+                const upcomingContainer = document.getElementById('upcomingSeriesEvents');
+                if (upcomingContainer) {
+                    upcomingContainer.style.display = 'none';
+                }
+            }
+        }
+        
+        // Create IBA-style event list item
+        function createEventListItem(event, index, prefix) {
+            const eventDate = event.event_date ? formatDate(event.event_date) : '';
+            const eventTime = event.event_date ? formatTime(event.event_date) : '';
+            const eventType = event.event_type || 'series';
+            const location = event.location || '';
+            const uniqueId = `${prefix}-${index}`;
+            
+            let metaItems = [];
+            if (eventDate) {
+                if (eventTime) {
+                    metaItems.push(`${eventDate} ${eventTime}`);
+                } else {
+                    metaItems.push(eventDate);
+                }
+            }
+            if (location) {
+                metaItems.push(location);
+            }
+            
+            const typeClass = eventType.toLowerCase();
+            const typeLabel = eventType.charAt(0).toUpperCase() + eventType.slice(1);
+            
+            let html = `
+                <div class="event-list-item" data-event-id="${uniqueId}">
+                    <div class="event-list-header" onclick="openEventDetails(${index}, '${prefix}')">
+                        <div class="event-list-header-content">
+                            <h3 class="event-list-title">${escapeHtml(event.title)}</h3>
+                            ${metaItems.length > 0 ? `
+                                <div class="event-list-meta">
+                                    ${metaItems.map(item => `<span class="event-list-meta-item">${escapeHtml(item)}</span>`).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="event-list-actions">
+                            ${event.registration_link ? `
+                                <a href="${escapeHtml(event.registration_link)}" target="_blank" class="btn btn-primary" onclick="event.stopPropagation();">Book now</a>
+                            ` : ''}
+                            <button class="event-list-toggle" aria-label="View event details">▶</button>
+                        </div>
+                        <span class="event-list-type-badge ${typeClass}">${typeLabel}</span>
+                    </div>
+                </div>
+            `;
+            
+            return html;
+        }
+        
+        // Store all events globally
+        window.allEvents = {
+            upcoming: [],
+            past: []
+        };
+        
+        // Open event details modal
+        function openEventDetails(index, type) {
+            let events;
+            if (type === 'upcoming') {
+                events = window.upcomingEvents || window.allEvents.upcoming;
+            }
+            
+            if (!events || !events[index]) {
+                console.error('Event not found:', index, type, events);
+                return;
+            }
+            
+            const event = events[index];
+            const modal = document.getElementById('eventDetailsModal');
+            const modalContent = document.getElementById('eventModalContent');
+            
+            const eventDate = event.event_date ? formatDateForModal(event.event_date) : '';
+            const eventTime = event.event_date ? formatTime(event.event_date) : '';
+            const eventType = event.event_type || 'series';
+            const typeLabel = eventType.charAt(0).toUpperCase() + eventType.slice(1);
+            
+            let html = `
+                <div class="event-detail-header">
+                    <h1 class="event-detail-title">${escapeHtml(event.title)}</h1>
+                    <div class="event-detail-meta-top">
+                        ${eventDate ? `<span class="event-detail-date">${eventDate}${eventTime ? `  ${eventTime} GMT` : ''}</span>` : ''}
+                        <span class="event-type-badge-large ${eventType.toLowerCase()}">${typeLabel}</span>
+                    </div>
+                </div>
+                
+                <div class="event-detail-menu">
+                    ${event.registration_link ? `
+                        <a href="${escapeHtml(event.registration_link)}" target="_blank" class="btn btn-primary event-book-btn">Book now</a>
+                    ` : ''}
+                </div>
+                
+                <div class="event-detail-content">
+                    ${event.description ? `
+                        <div class="event-detail-description">
+                            <div id="eventDescriptionShort">
+                                <p>${escapeHtml(event.description.substring(0, 200))}${event.description.length > 200 ? '...' : ''}</p>
+                                ${event.description.length > 200 ? `<button class="read-more-btn" onclick="toggleDescription()">Read more</button>` : ''}
+                            </div>
+                            ${event.description.length > 200 ? `
+                                <div id="eventDescriptionFull" style="display: none;">
+                                    <p>${escapeHtml(event.description)}</p>
+                                    <button class="read-more-btn" onclick="toggleDescription()">Read less</button>
+                                </div>
+                            ` : ''}
+                        </div>
+                    ` : ''}
+                    
+                    ${event.moderator ? `
+                        <div class="event-detail-section">
+                            <h3 class="event-detail-section-title">Moderator</h3>
+                            <div class="speaker-card">
+                                <div class="speaker-info">
+                                    <h4 class="speaker-name">${escapeHtml(event.moderator)}</h4>
+                                    ${event.moderator_role ? `<p class="speaker-role">${escapeHtml(event.moderator_role)}</p>` : ''}
+                                    ${event.moderator_bio ? `
+                                        <div class="speaker-bio-toggle">
+                                            <button class="read-bio-btn" onclick="toggleSpeakerBio('moderator')">Read biography</button>
+                                        </div>
+                                        <div id="moderator-bio" class="speaker-bio-content" style="display: none;">
+                                            <p>${escapeHtml(event.moderator_bio)}</p>
+                                            <button class="read-bio-btn" onclick="toggleSpeakerBio('moderator')">Close biography</button>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    ${event.speakers ? `
+                        <div class="event-detail-section">
+                            <h3 class="event-detail-section-title">Confirmed Speakers</h3>
+                            <div class="speakers-grid">
+                                ${event.speakers.split(',').map((speaker, idx) => {
+                                    const speakerName = speaker.trim();
+                                    return `
+                                        <div class="speaker-card">
+                                            <div class="speaker-info">
+                                                <h4 class="speaker-name">${escapeHtml(speakerName)}</h4>
+                                                ${event.speaker_roles && event.speaker_roles.split(',')[idx] ? `
+                                                    <p class="speaker-role">${escapeHtml(event.speaker_roles.split(',')[idx].trim())}</p>
+                                                ` : ''}
+                                                ${event.speaker_bios && event.speaker_bios.split('|||')[idx] ? `
+                                                    <div class="speaker-bio-toggle">
+                                                        <button class="read-bio-btn" onclick="toggleSpeakerBio('speaker-${idx}')">Read biography</button>
+                                                    </div>
+                                                    <div id="speaker-${idx}-bio" class="speaker-bio-content" style="display: none;">
+                                                        <p>${escapeHtml(event.speaker_bios.split('|||')[idx].trim())}</p>
+                                                        <button class="read-bio-btn" onclick="toggleSpeakerBio('speaker-${idx}')">Close biography</button>
+                                                    </div>
+                                                ` : ''}
+                                            </div>
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    ${event.agenda ? `
+                        <div class="event-detail-section">
+                            <h3 class="event-detail-section-title">Agenda</h3>
+                            <div class="event-agenda">
+                                <pre class="agenda-content">${escapeHtml(event.agenda)}</pre>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    ${event.location ? `
+                        <div class="event-detail-section">
+                            <h3 class="event-detail-section-title">Location</h3>
+                            <p class="event-location">${escapeHtml(event.location)}</p>
+                            ${event.format ? `<p class="event-format">Format: ${escapeHtml(event.format)}</p>` : ''}
+                        </div>
+                    ` : ''}
+                    
+                    ${event.youtube_url ? `
+                        <div class="event-detail-section">
+                            <h3 class="event-detail-section-title">Recording</h3>
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/${getYouTubeId(event.youtube_url)}" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen
+                                        title="${escapeHtml(event.title)}"></iframe>
+                            </div>
+                            <a href="${escapeHtml(event.youtube_url)}" target="_blank" class="btn btn-outline" style="margin-top: 1rem;">Watch on YouTube</a>
+                        </div>
+                    ` : ''}
+                    
+                    ${event.registration_link ? `
+                        <div class="event-detail-cta">
+                            <a href="${escapeHtml(event.registration_link)}" target="_blank" class="btn btn-primary btn-large">Register Now</a>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+            
+            modalContent.innerHTML = html;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close event modal
+        function closeEventModal() {
+            const modal = document.getElementById('eventDetailsModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        
+        // Toggle description
+        function toggleDescription() {
+            const short = document.getElementById('eventDescriptionShort');
+            const full = document.getElementById('eventDescriptionFull');
+            if (short && full) {
+                const isFullVisible = full.style.display !== 'none';
+                short.style.display = isFullVisible ? 'block' : 'none';
+                full.style.display = isFullVisible ? 'none' : 'block';
+            }
+        }
+        
+        // Toggle speaker bio
+        function toggleSpeakerBio(id) {
+            const bio = document.getElementById(`${id}-bio`);
+            if (bio) {
+                bio.style.display = bio.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('eventDetailsModal');
+            if (event.target === modal) {
+                closeEventModal();
+            }
+        }
+        
+        // Helper functions
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { day: 'numeric', month: 'short', year: 'numeric' };
+            return date.toLocaleDateString('en-GB', options);
+        }
+        
+        function formatTime(dateString) {
+            const date = new Date(dateString);
+            let hours = date.getHours();
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            return `${hours}:${minutes} ${ampm}`;
+        }
+        
+        function formatDateForModal(dateString) {
+            const date = new Date(dateString);
+            const day = date.getDate();
+            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const month = monthNames[date.getMonth()];
+            const year = date.getFullYear();
+            return `${day} ${month} ${year}`;
+        }
+        
+        function getYouTubeId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.toString().replace(/[&<>"']/g, m => map[m]);
+        }
+        
+        // Open past event details
+        function openPastEventDetails() {
+            const modal = document.getElementById('eventDetailsModal');
+            const modalContent = document.getElementById('eventModalContent');
+            
+            const html = `
+                <div class="event-detail-header">
+                    <h1 class="event-detail-title">Strengthening Corporate Governance of State-Owned Entities in Ghana: Opportunities and Challenges</h1>
+                    <div class="event-detail-meta-top">
+                        <span class="event-detail-date">13 Nov 2025</span>
+                        <span class="event-type-badge-large series">Series</span>
+                    </div>
+                </div>
+                
+                <div class="event-detail-content">
+                    <div class="event-detail-description">
+                        <p>A comprehensive discussion exploring the critical opportunities and challenges in strengthening corporate governance of State-Owned Entities (SOEs) in Ghana. This session brought together governance experts, regulators, and industry leaders to address key governance challenges and provide actionable recommendations.</p>
+                    </div>
+                    
+                    <div class="event-detail-section">
+                        <div class="event-image-container">
+                            <img src="images/gallery/New/Fredan-76.JPG" alt="Strengthening Corporate Governance of State-Owned Entities in Ghana" class="event-detail-image">
+                        </div>
+                    </div>
+                    
+                    <div class="event-detail-section">
+                        <h3 class="event-detail-section-title">Format</h3>
+                        <p class="event-location">In-Person Session</p>
+                    </div>
+                    
+                    <div class="event-detail-section">
+                        <h3 class="event-detail-section-title">Location</h3>
+                        <p class="event-location">GIMPA Law School, Dr. Daniel McKarley Moot Court Room</p>
+                    </div>
+                    
+                    <div class="event-detail-section">
+                        <h3 class="event-detail-section-title">Moderator</h3>
+                        <div class="speaker-card">
+                            <div class="speaker-image-container">
+                                <img src="images/past events/Gertrude.png" alt="Gertrude Amorkor Amarh" class="speaker-image">
+                            </div>
+                            <div class="speaker-info">
+                                <h4 class="speaker-name">Gertrude Amorkor Amarh</h4>
+                                <p class="speaker-role">Lecturer, UPSA Law School</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-detail-section">
+                        <h3 class="event-detail-section-title">Panel Members</h3>
+                        <div class="speakers-grid">
+                            <div class="speaker-card">
+                                <div class="speaker-image-container">
+                                    <img src="images/past events/Joseph.png" alt="Joseph Sarpong" class="speaker-image">
+                                </div>
+                                <div class="speaker-info">
+                                    <h4 class="speaker-name">Joseph Sarpong</h4>
+                                    <p class="speaker-role">Ag. Head of Governance, Risk and Compliance, SIGA</p>
+                                </div>
+                            </div>
+                            <div class="speaker-card">
+                                <div class="speaker-image-container">
+                                    <img src="images/past events/Alfred.png" alt="Alfred Mahamadu Braimah" class="speaker-image">
+                                </div>
+                                <div class="speaker-info">
+                                    <h4 class="speaker-name">Alfred Mahamadu Braimah, PhD. FIoD, CA</h4>
+                                    <p class="speaker-role">CEO, IoD-Ghana</p>
+                                </div>
+                            </div>
+                            <div class="speaker-card">
+                                <div class="speaker-image-container">
+                                    <img src="images/past events/Prof.png" alt="Professor Albert Puni" class="speaker-image">
+                                </div>
+                                <div class="speaker-info">
+                                    <h4 class="speaker-name">Professor Albert Puni</h4>
+                                    <p class="speaker-role">Professor of Management, UPSA</p>
+                                </div>
+                            </div>
+                            <div class="speaker-card">
+                                <div class="speaker-image-container">
+                                    <img src="images/past events/Yao.png" alt="Mr. E. Yao Klinogo" class="speaker-image">
+                                </div>
+                                <div class="speaker-info">
+                                    <h4 class="speaker-name">Mr. E. Yao Klinogo</h4>
+                                    <p class="speaker-role">Management Consultant, KNG & Associates</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-detail-cta">
+                        <a href="pictures.html" class="btn btn-outline">View Photos</a>
+                    </div>
+                </div>
+            `;
+            
+            modalContent.innerHTML = html;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
     </script>
 </body>
 </html>
