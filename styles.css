@@ -18,12 +18,19 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     color: var(--text-charcoal);
     line-height: 1.7;
     background-color: var(--bg-offwhite);
     font-size: 16px;
+    overflow-x: hidden;
+    max-width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -120,7 +127,6 @@ h1, h2, h3, h4, h5, h6 {
     object-fit: contain;
     transition: opacity 0.3s ease;
     display: block;
-    vertical-align: middle;
 }
 
 .logo img:hover {
@@ -1416,6 +1422,7 @@ h1, h2, h3, h4, h5, h6 {
     
     .nav-utility {
         gap: 0.5rem;
+        flex-wrap: wrap;
     }
     
     .join-btn {
@@ -1509,6 +1516,12 @@ h1, h2, h3, h4, h5, h6 {
         padding: 40px 20px 20px;
     }
     
+    .footer-content {
+        grid-template-columns: 1fr !important;
+        gap: 2rem;
+        text-align: center;
+    }
+    
     .search-modal.active {
         padding-top: 50px;
     }
@@ -1537,9 +1550,205 @@ h1, h2, h3, h4, h5, h6 {
         height: 120px !important;
     }
     
-    @media (max-width: 600px) {
-        div[style*="grid-template-columns: repeat(3"] {
-            grid-template-columns: 1fr !important;
-        }
+    /* Featured event section responsive - override inline styles */
+    div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+    
+    /* Featured card responsive padding */
+    .featured-card {
+        padding: 2rem !important;
+        min-height: auto !important;
+    }
+    
+    #featuredEventTitle {
+        font-size: 1.5rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    /* Header search responsive - hide on mobile */
+    .header-search {
+        display: none !important;
+    }
+    
+    /* Hero buttons responsive */
+    .hero-buttons {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 1rem !important;
+    }
+    
+    .hero-buttons .btn {
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Updates grid responsive */
+    .updates-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Deliver cards responsive */
+    .delivers-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Container responsive */
+    .container {
+        padding: 0 15px !important;
+        max-width: 100% !important;
+    }
+    
+    /* Event card responsive */
+    .event-card {
+        padding: 1.5rem !important;
+    }
+    
+    .event-actions {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    
+    .event-actions .btn {
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Logo responsive */
+    .logo img {
+        max-width: 150px !important;
+        width: 150px !important;
+        height: auto !important;
+    }
+    
+    /* Nav utility buttons responsive */
+    .nav-utility {
+        gap: 0.5rem !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .login-btn, .join-btn {
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.85rem !important;
+        white-space: nowrap !important;
+    }
+    
+    /* Trust markers responsive */
+    .trust-markers-container {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+    }
+    
+    .trust-marker {
+        text-align: center !important;
+    }
+    
+    /* Quote section responsive */
+    .quote-text {
+        font-size: 1.5rem !important;
+    }
+    
+    /* Button groups responsive */
+    div[style*="display: flex"][style*="gap"] {
+        flex-wrap: wrap !important;
+    }
+    
+    /* Video wrapper responsive */
+    .video-wrapper {
+        margin: 0;
+    }
+    
+    /* Featured event buttons responsive */
+    div[style*="display: flex"][style*="margin-top: 2rem"] {
+        flex-direction: column !important;
+    }
+    
+    div[style*="display: flex"][style*="margin-top: 2rem"] .btn {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+    
+    /* Moderator and panel members headings - mobile break */
+    div[style*="display: flex"][style*="gap: 3rem"] {
+        flex-direction: column !important;
+        gap: 1rem !important;
+        text-align: left !important;
+    }
+    
+    /* All flex containers with gap should wrap */
+    div[style*="display: flex"][style*="gap"]:not(.hero-buttons):not(.nav-utility) {
+        flex-wrap: wrap !important;
+    }
+}
+
+@media (max-width: 600px) {
+    div[style*="grid-template-columns: repeat(3"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Smaller mobile adjustments */
+    .logo img {
+        max-width: 120px !important;
+        width: 120px !important;
+    }
+    
+    .nav-utility {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .login-btn, .join-btn {
+        padding: 0.4rem 0.6rem !important;
+        font-size: 0.75rem !important;
+    }
+    
+    .featured-card {
+        padding: 1.5rem !important;
+    }
+    
+    #featuredEventTitle {
+        font-size: 1.25rem !important;
+    }
+    
+    .hero-title {
+        font-size: 1.75rem !important;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem !important;
+    }
+    
+    /* Panel members and moderator on mobile */
+    div[style*="grid-template-columns: repeat(4"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Buttons stack on mobile */
+    div[style*="display: flex"][style*="gap"]:not([style*="grid"]):not(.nav-utility):not(.hero-buttons) {
+        flex-direction: column !important;
+    }
+    
+    /* Moderator/Panel members section */
+    div[style*="grid-template-columns: 1fr 3fr"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Section padding smaller on mobile */
+    section[style*="padding: 4rem"] {
+        padding: 2rem 0 !important;
+    }
+    
+    /* Ensure all images scale properly */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    /* Container full width on small mobile */
+    .container {
+        padding: 0 10px !important;
     }
 }
