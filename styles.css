@@ -1411,11 +1411,12 @@ h1, h2, h3, h4, h5, h6 {
         padding: 1rem 1.5rem;
         text-align: left;
         width: 100%;
-        font-size: 1rem;
-        font-weight: 500;
+        font-size: 1.1rem;
+        font-weight: 700;
         color: var(--text-charcoal);
         text-decoration: none;
         transition: background-color 0.3s ease, color 0.3s ease;
+        letter-spacing: 0.02em;
     }
     
     .nav-menu > li > a:hover,
@@ -1473,10 +1474,12 @@ h1, h2, h3, h4, h5, h6 {
         padding: 0.875rem 1.5rem 0.875rem 2.5rem;
         color: var(--text-charcoal);
         text-decoration: none;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+        font-weight: 400;
         transition: background-color 0.3s ease, color 0.3s ease;
         text-align: left;
         width: 100%;
+        letter-spacing: 0;
     }
     
     .dropdown-menu a:hover {
@@ -1824,16 +1827,18 @@ h1, h2, h3, h4, h5, h6 {
         padding: 0 10px !important;
     }
     
-    /* Menu items padding on very small screens */
-    .nav-menu > li > a {
-        padding: 1rem 1.25rem !important;
-        font-size: 0.95rem !important;
-    }
-    
-    .dropdown-menu a {
-        padding: 0.875rem 1.25rem 0.875rem 2rem !important;
-        font-size: 0.9rem !important;
-    }
+        /* Menu items padding on very small screens */
+        .nav-menu > li > a {
+            padding: 1rem 1.25rem !important;
+            font-size: 1.05rem !important;
+            font-weight: 700 !important;
+        }
+        
+        .dropdown-menu a {
+            padding: 0.875rem 1.25rem 0.875rem 2rem !important;
+            font-size: 0.85rem !important;
+            font-weight: 400 !important;
+        }
     
     .nav-menu {
         padding: 1rem 0 !important;
