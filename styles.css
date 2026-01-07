@@ -465,11 +465,23 @@ h1, h2, h3, h4, h5, h6 {
 .trust-marker {
     font-size: 0.9rem;
     color: var(--text-charcoal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
 }
 
 .trust-marker strong {
     color: var(--primary-navy);
     font-weight: 600;
+}
+
+.convenor-logo {
+    max-width: 120px;
+    max-height: 50px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
 }
 
 /* Cards */
@@ -653,28 +665,97 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: 1px solid var(--divider-grey);
 }
 
+.partner-strip-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.partner-section-left,
+.partner-section-right {
+    display: flex;
+    flex-direction: column;
+}
+
 .partner-text {
-    text-align: center;
     color: var(--text-charcoal);
     font-size: 0.95rem;
     margin-bottom: 2rem;
+    text-align: left;
+}
+
+.strategic-partners-title {
+    font-size: 1.5rem;
+    color: var(--primary-navy);
+    margin-bottom: 2rem;
+    font-weight: 600;
+    text-align: left;
 }
 
 .partner-logos {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 3rem;
+    gap: 2rem;
     flex-wrap: wrap;
 }
 
 .partner-logo {
     opacity: 0.6;
     transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+    position: relative;
 }
 
 .partner-logo:hover {
     opacity: 1;
+}
+
+.partner-logo img {
+    max-width: 180px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.partner-logo:hover img {
+    filter: grayscale(0%);
+}
+
+.partner-logo .partner-name {
+    color: var(--text-charcoal);
+    font-size: 1rem;
+    font-weight: 600;
+    display: block;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--divider-grey);
+    border-radius: 4px;
+    background-color: var(--white);
+    white-space: nowrap;
+    min-width: 120px;
+}
+
+/* Show partner name by default, hide when image loads successfully */
+.partner-logo img {
+    display: none;
+}
+
+.partner-logo img:not([style*="display: none"]) {
+    display: block;
+}
+
+.partner-logo img:not([style*="display: none"]) ~ .partner-name {
+    display: none;
 }
 
 /* Page Header */
@@ -1345,6 +1426,23 @@ h1, h2, h3, h4, h5, h6 {
 
     .partner-strip {
         padding: 40px 20px;
+    }
+    
+    .partner-strip-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .partner-text {
+        text-align: center;
+    }
+    
+    .strategic-partners-title {
+        text-align: center;
+    }
+    
+    .partner-logos {
+        justify-content: center;
     }
     
     .footer {
