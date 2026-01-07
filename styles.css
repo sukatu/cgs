@@ -2569,10 +2569,38 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--accent-gold);
 }
 
+.country-flag-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
 .country-flag {
     font-size: 4rem;
-    margin-bottom: 1rem;
     line-height: 1;
+    font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "EmojiOne Color", "Android Emoji", "Twemoji Mozilla", "Segoe UI Symbol", sans-serif;
+    display: inline-block;
+    min-width: 3rem;
+    min-height: 3rem;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.flag-fallback {
+    font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: var(--primary-navy);
+    background: var(--bg-offwhite);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    text-align: center;
+    display: inline-block;
 }
 
 .country-name {
@@ -2639,10 +2667,30 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: 1px solid var(--divider-grey);
 }
 
+.country-detail-flag-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
 .country-detail-flag {
     font-size: 5rem;
-    margin-bottom: 1rem;
     line-height: 1;
+    font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "EmojiOne Color", "Android Emoji", "Twemoji Mozilla", "Segoe UI Symbol", sans-serif;
+    display: inline-block;
+    min-width: 4rem;
+    min-height: 4rem;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.country-detail-flag-container .flag-fallback {
+    font-size: 1rem;
+    margin-top: 0.75rem;
 }
 
 .country-detail-title {
