@@ -219,7 +219,8 @@ async function loadEvents(type = null, status = null, containerId = 'eventsConta
             }
             
             if (data.events.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-light); padding: 2rem;">No events found.</p>';
+                container.innerHTML = '';
+                container.style.display = 'none';
                 return;
             }
             
@@ -297,7 +298,8 @@ async function loadEventsAsTimeline(type = null, status = null, containerId = 's
             }
             
             if (data.events.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-light); padding: 2rem;">No events found.</p>';
+                container.innerHTML = '';
+                container.style.display = 'none';
                 return;
             }
             
