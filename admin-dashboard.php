@@ -220,6 +220,7 @@ if (isset($_GET['success'])) {
             <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
                 <button class="btn btn-primary" onclick="showSection('events')" id="btnEvents">Events</button>
                 <button class="btn btn-secondary" onclick="showSection('users')" id="btnUsers">Users</button>
+                <a href="admin-upload-image.php" class="btn btn-secondary">Manage Images</a>
             </div>
             <button class="btn btn-primary" onclick="openModal('eventModal')">+ Add New Event</button>
         </div>

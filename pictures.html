@@ -199,32 +199,63 @@
 
     <script src="script.js"></script>
     <script>
-        // Load gallery images from the New folder
-        function loadGalleryImages() {
+        // Load gallery images from the New folder and uploaded images
+        async function loadGalleryImages() {
             const galleryContainer = document.getElementById('imageGallery');
             if (!galleryContainer) return;
 
-            // Generate image paths (110 images from Fredan-1.JPG to Fredan-110.JPG)
-            const images = [];
+            // Generate image paths for static images (110 images from Fredan-1.JPG to Fredan-110.JPG)
+            const staticImages = [];
             for (let i = 1; i <= 110; i++) {
-                images.push(`images/gallery/New/Fredan-${i}.JPG`);
+                staticImages.push({
+                    path: `images/gallery/New/Fredan-${i}.JPG`,
+                    alt: `CGS Event Photo ${i}`,
+                    category: null
+                });
             }
 
+            // Fetch dynamically uploaded images
+            let uploadedImages = [];
+            try {
+                const response = await fetch('api-get-images.php');
+                const data = await response.json();
+                if (data.success && data.images) {
+                    uploadedImages = data.images.map(img => ({
+                        path: img.path,
+                        alt: img.alt,
+                        category: img.category
+                    }));
+                }
+            } catch (error) {
+                console.error('Error loading uploaded images:', error);
+            }
+
+            // Combine static and uploaded images (uploaded images first, then static)
+            const allImages = [...uploadedImages, ...staticImages];
+
             // Create gallery items
-            images.forEach((imagePath, index) => {
+            allImages.forEach((imageData, index) => {
                 const galleryItem = document.createElement('div');
                 galleryItem.className = 'gallery-item';
                 galleryItem.setAttribute('data-image-index', index);
                 galleryItem.innerHTML = `
-                    <img src="${imagePath}" alt="CGS Event Photo ${index + 1}" loading="lazy">
+                    <img src="${imageData.path}" alt="${imageData.alt}" loading="lazy">
                 `;
                 
                 // Add click handler for lightbox view
                 galleryItem.addEventListener('click', () => {
-                    openImageModal(imagePath, index, images);
+                    const imagePaths = allImages.map(img => img.path);
+                    openImageModal(imageData.path, index, imagePaths);
                 });
                 
                 galleryContainer.appendChild(galleryItem);
+            });
+
+            // Update photo counts in the cards
+            const totalCount = allImages.length;
+            document.querySelectorAll('[style*="Photos:"]').forEach(el => {
+                const currentText = el.innerHTML;
+                el.innerHTML = currentText.replace(/Photos:.*?\d+/, `Photos: ${totalCount} images`);
             });
         }
 
