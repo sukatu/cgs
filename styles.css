@@ -2,8 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary-navy: #b27ee6;
-    --button-blue: #0A2463;
+    --primary-navy: #0A2463;
     --accent-gold: #B8860B;
     --bg-offwhite: #F8F9FA;
     --text-charcoal: #1F2937;
@@ -320,7 +319,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .join-btn {
-    background-color: var(--button-blue);
+    background-color: var(--primary-navy);
     color: white !important;
     padding: 0.625rem 1.5rem;
     border-radius: 4px;
@@ -351,7 +350,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, var(--primary-navy) 0%, #9b5dd9 100%);
+    background: linear-gradient(135deg, var(--primary-navy) 0%, #0d2f7a 100%);
     color: white;
     padding: 60px 40px;
     text-align: center;
@@ -366,7 +365,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(178, 126, 230, 0.85);
+    background: rgba(10, 36, 99, 0.85);
     z-index: 1;
 }
 
@@ -416,12 +415,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-    background-color: var(--button-blue);
+    background-color: var(--accent-gold);
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: #0d2f7a;
+    background-color: #a0770a;
     transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
 }
@@ -434,7 +433,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-secondary:hover {
     background-color: white;
-    color: var(--button-blue);
+    color: var(--primary-navy);
 }
 
 .btn-outline {
@@ -673,7 +672,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Quote Section */
 .quote-section {
-    background: linear-gradient(135deg, var(--primary-navy) 0%, #9b5dd9 100%);
+    background: linear-gradient(135deg, var(--primary-navy) 0%, #0d2f7a 100%);
     color: white;
     padding: 80px 40px;
 }
@@ -807,7 +806,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Page Header */
 .page-header {
-    background: linear-gradient(135deg, var(--primary-navy) 0%, #9b5dd9 100%);
+    background: linear-gradient(135deg, var(--primary-navy) 0%, #0d2f7a 100%);
     color: white;
     padding: 60px 40px 40px;
     text-align: center;
@@ -1124,7 +1123,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .event-list-type-badge.webinar {
-    background-color: var(--button-blue);
+    background-color: var(--primary-navy);
 }
 
 .event-list-type-badge.series {
@@ -1293,7 +1292,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .event-type-badge-large.webinar {
-    background-color: var(--button-blue);
+    background-color: var(--primary-navy);
 }
 
 .event-type-badge-large.series {
