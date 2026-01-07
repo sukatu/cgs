@@ -46,7 +46,38 @@ h1, h2, h3, h4, h5, h6 {
     position: sticky;
     top: 0;
     z-index: 1000;
-    padding: 1rem 0;
+}
+
+.nav-top {
+    background-color: var(--white);
+    border-bottom: 1px solid var(--divider-grey);
+    padding: 0.75rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav-top-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: auto;
+}
+
+.nav-bottom {
+    background-color: var(--white);
+    padding: 0.75rem 0;
+}
+
+.nav-bottom-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-container {
@@ -71,12 +102,25 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+}
+
+.logo a {
+    display: inline-block;
+    line-height: 0;
+}
+
 .logo img {
-    height: 90px;
-    width: auto;
-    max-width: 350px;
+    height: auto;
+    width: 300px;
+    max-width: 300px;
     object-fit: contain;
     transition: opacity 0.3s ease;
+    display: block;
+    vertical-align: middle;
 }
 
 .logo img:hover {
@@ -84,9 +128,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
+    .nav-top {
+        padding: 0.5rem 0;
+    }
+    
     .logo img {
-        height: 65px;
-        max-width: 280px;
+        width: 200px;
+        max-width: 200px;
     }
 }
 
@@ -95,8 +143,8 @@ h1, h2, h3, h4, h5, h6 {
     list-style: none;
     align-items: center;
     gap: 2.5rem;
-    flex: 1;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .nav-menu > li {
@@ -1134,7 +1182,7 @@ h1, h2, h3, h4, h5, h6 {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 70px;
+        top: 150px;
         flex-direction: column;
         background-color: white;
         width: 100%;
@@ -1143,10 +1191,24 @@ h1, h2, h3, h4, h5, h6 {
         box-shadow: var(--shadow);
         padding: 2rem;
         gap: 1rem;
+        z-index: 999;
     }
 
     .nav-menu.active {
         left: 0;
+    }
+    
+    .nav-top-container,
+    .nav-bottom-container {
+        padding: 0 20px;
+    }
+    
+    .nav-top {
+        padding: 0.75rem 0;
+    }
+    
+    .nav-bottom {
+        padding: 0.5rem 0;
     }
     
     .dropdown-menu {
