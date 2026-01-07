@@ -4,10 +4,11 @@ requireAdminLogin();
 
 $conn = getDBConnection();
 $events = [];
+$images = [];
 $alert = '';
 
-// Handle delete
-if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
+// Handle delete event
+if (isset($_GET['delete']) && is_numeric($_GET['delete']) && !isset($_GET['type'])) {
     $id = intval($_GET['delete']);
     $stmt = $conn->prepare("DELETE FROM events WHERE id = ?");
     $stmt->bind_param("i", $id);
@@ -18,10 +19,49 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
     }
 }
 
+// Handle delete image
+if (isset($_GET['delete']) && is_numeric($_GET['delete']) && isset($_GET['type']) && $_GET['type'] === 'image') {
+    $id = intval($_GET['delete']);
+    
+    // Get filename before deleting
+    $stmt = $conn->prepare("SELECT filename FROM gallery_images WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $filename = $row['filename'];
+        $filePath = 'images/uploads/' . $filename;
+        
+        // Delete from database
+        $deleteStmt = $conn->prepare("DELETE FROM gallery_images WHERE id = ?");
+        $deleteStmt->bind_param("i", $id);
+        
+        if ($deleteStmt->execute()) {
+            // Delete file
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+            $alert = '<div class="alert alert-success">Image deleted successfully!</div>';
+        } else {
+            $alert = '<div class="alert alert-error">Error deleting image.</div>';
+        }
+        $deleteStmt->close();
+    }
+    $stmt->close();
+}
+
 // Fetch events
 $result = $conn->query("SELECT * FROM events ORDER BY event_date DESC, created_at DESC");
 if ($result) {
     $events = $result->fetch_all(MYSQLI_ASSOC);
+}
+
+// Fetch images
+$imagesResult = $conn->query("SELECT * FROM gallery_images ORDER BY display_order ASC, upload_date DESC");
+if ($imagesResult) {
+    $images = $imagesResult->fetch_all(MYSQLI_ASSOC);
 }
 
 if (isset($_GET['success'])) {
@@ -220,9 +260,12 @@ if (isset($_GET['success'])) {
             <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
                 <button class="btn btn-primary" onclick="showSection('events')" id="btnEvents">Events</button>
                 <button class="btn btn-secondary" onclick="showSection('users')" id="btnUsers">Users</button>
-                <a href="admin-upload-image.php" class="btn btn-secondary">Manage Images</a>
+                <button class="btn btn-secondary" onclick="showSection('images')" id="btnImages">Images (<?php echo count($images); ?>)</button>
             </div>
-            <button class="btn btn-primary" onclick="openModal('eventModal')">+ Add New Event</button>
+            <div style="display: flex; gap: 1rem;">
+                <a href="admin-upload-image.php" class="btn btn-primary">+ Upload Image</a>
+                <button class="btn btn-primary" onclick="openModal('eventModal')">+ Add New Event</button>
+            </div>
         </div>
         
         <!-- Events Section -->
@@ -542,9 +585,66 @@ if (isset($_GET['success'])) {
                 </div>
             </form>
         </div>
-    </div>
-    
-    <script>
+        </div>
+        
+        <!-- Images Section -->
+        <div id="imagesSection" style="display: none;">
+            <div style="margin-bottom: 2rem;">
+                <h2 style="margin-bottom: 0.5rem;">Image Management</h2>
+                <p style="color: var(--text-light); margin: 0;">
+                    Total Images: <strong><?php echo count($images); ?></strong>
+                </p>
+            </div>
+            
+            <?php if (empty($images)): ?>
+                <div style="text-align: center; padding: 3rem; background: white; border-radius: 8px; box-shadow: var(--shadow);">
+                    <p style="color: var(--text-light); margin-bottom: 1.5rem;">No images uploaded yet.</p>
+                    <a href="admin-upload-image.php" class="btn btn-primary">Upload Your First Image</a>
+                </div>
+            <?php else: ?>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <?php foreach ($images as $image): ?>
+                        <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow);">
+                            <div style="width: 100%; height: 200px; overflow: hidden; background: var(--bg-offwhite);">
+                                <img src="<?php echo htmlspecialchars('images/uploads/' . $image['filename']); ?>" 
+                                     alt="<?php echo htmlspecialchars($image['alt_text'] ?: $image['original_filename']); ?>"
+                                     style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div style="padding: 1rem;">
+                                <h4 style="margin: 0 0 0.5rem 0; font-size: 0.95rem; color: var(--text-charcoal); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                    <?php echo htmlspecialchars($image['original_filename']); ?>
+                                </h4>
+                                <?php if ($image['alt_text']): ?>
+                                    <p style="margin: 0.25rem 0; font-size: 0.85rem; color: var(--text-light); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <?php echo htmlspecialchars($image['alt_text']); ?>
+                                    </p>
+                                <?php endif; ?>
+                                <?php if ($image['category']): ?>
+                                    <p style="margin: 0.25rem 0; font-size: 0.85rem; color: var(--accent-gold);">
+                                        <strong>Category:</strong> <?php echo htmlspecialchars($image['category']); ?>
+                                    </p>
+                                <?php endif; ?>
+                                <p style="margin: 0.25rem 0; font-size: 0.8rem; color: var(--text-light);">
+                                    <strong>Order:</strong> <?php echo $image['display_order']; ?> | 
+                                    <strong>Uploaded:</strong> <?php echo date('M d, Y', strtotime($image['upload_date'])); ?>
+                                </p>
+                            </div>
+                            <div style="padding: 0.75rem; border-top: 1px solid var(--divider-grey); display: flex; gap: 0.5rem;">
+                                <a href="?delete=<?php echo $image['id']; ?>&type=image" 
+                                   class="btn btn-danger" 
+                                   style="padding: 0.5rem 1rem; font-size: 0.85rem; flex: 1; text-align: center;"
+                                   onclick="return confirm('Are you sure you want to delete this image?');">Delete</a>
+                                <a href="admin-upload-image.php" 
+                                   class="btn btn-secondary" 
+                                   style="padding: 0.5rem 1rem; font-size: 0.85rem; flex: 1; text-align: center;">View Full</a>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+        
+        <script>
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('active');
             document.getElementById('eventForm').reset();
@@ -605,20 +705,32 @@ if (isset($_GET['success'])) {
         
         // Toggle between Events and Users sections
         function showSection(section) {
+            // Hide all sections
+            document.getElementById('eventsSection').style.display = 'none';
+            document.getElementById('usersSection').style.display = 'none';
+            document.getElementById('imagesSection').style.display = 'none';
+            
+            // Reset all buttons
+            document.getElementById('btnEvents').classList.remove('btn-primary');
+            document.getElementById('btnEvents').classList.add('btn-secondary');
+            document.getElementById('btnUsers').classList.remove('btn-primary');
+            document.getElementById('btnUsers').classList.add('btn-secondary');
+            document.getElementById('btnImages').classList.remove('btn-primary');
+            document.getElementById('btnImages').classList.add('btn-secondary');
+            
+            // Show selected section
             if (section === 'events') {
                 document.getElementById('eventsSection').style.display = 'block';
-                document.getElementById('usersSection').style.display = 'none';
                 document.getElementById('btnEvents').classList.add('btn-primary');
                 document.getElementById('btnEvents').classList.remove('btn-secondary');
-                document.getElementById('btnUsers').classList.add('btn-secondary');
-                document.getElementById('btnUsers').classList.remove('btn-primary');
             } else if (section === 'users') {
-                document.getElementById('eventsSection').style.display = 'none';
                 document.getElementById('usersSection').style.display = 'block';
                 document.getElementById('btnUsers').classList.add('btn-primary');
                 document.getElementById('btnUsers').classList.remove('btn-secondary');
-                document.getElementById('btnEvents').classList.add('btn-secondary');
-                document.getElementById('btnEvents').classList.remove('btn-primary');
+            } else if (section === 'images') {
+                document.getElementById('imagesSection').style.display = 'block';
+                document.getElementById('btnImages').classList.add('btn-primary');
+                document.getElementById('btnImages').classList.remove('btn-secondary');
             }
         }
         
