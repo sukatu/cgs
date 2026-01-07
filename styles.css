@@ -1482,6 +1482,17 @@ h1, h2, h3, h4, h5, h6 {
         gap: 3rem;
     }
     
+    /* Responsive speakers grid */
+    .event-speakers div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+    
+    .event-speakers img {
+        width: 120px !important;
+        height: 120px !important;
+    }
+    
     .partner-text {
         text-align: center;
     }
