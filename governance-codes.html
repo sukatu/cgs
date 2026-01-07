@@ -68,90 +68,40 @@
         </section>
 
         <section class="section content-section">
-            <div class="container">
+            <div class="container" style="max-width: 1400px;">
+                <div style="margin-bottom: 2rem; padding: 1.5rem; background: var(--white); border-radius: 8px; box-shadow: var(--shadow);">
+                    <p style="color: var(--text-charcoal); font-style: italic; margin-bottom: 0.5rem;">
+                        <em>Disclaimer: Some information may not be up to date</em>
+                    </p>
+                    <p style="color: var(--text-charcoal); font-size: 0.95rem;">
+                        If you would like to contribute to this page with an additional country or provide up-to-date information, please <a href="contact.html" style="color: var(--accent-gold); font-weight: 600;">contact us</a>.
+                    </p>
+                </div>
+
                 <div style="margin-bottom: 3rem;">
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
-                        <input type="text" placeholder="Search by country..." style="flex: 1; min-width: 250px; padding: 0.875rem; border: 1px solid var(--divider-grey); border-radius: 4px;">
-                        <select style="padding: 0.875rem; border: 1px solid var(--divider-grey); border-radius: 4px; background-color: white;">
-                            <option>All Regions</option>
-                            <option>West Africa</option>
-                            <option>East Africa</option>
-                            <option>Southern Africa</option>
-                            <option>North Africa</option>
-                        </select>
-                        <select style="padding: 0.875rem; border: 1px solid var(--divider-grey); border-radius: 4px; background-color: white;">
-                            <option>All Years</option>
-                            <option>2026</option>
-                            <option>2023</option>
-                            <option>2022</option>
+                        <input type="text" id="countrySearch" placeholder="Search by country..." style="flex: 1; min-width: 250px; padding: 0.875rem; border: 1px solid var(--divider-grey); border-radius: 4px;" onkeyup="filterCountries()">
+                        <select id="regionFilter" onchange="filterCountries()" style="padding: 0.875rem; border: 1px solid var(--divider-grey); border-radius: 4px; background-color: white;">
+                            <option value="">All Regions</option>
+                            <option value="West Africa">West Africa</option>
+                            <option value="East Africa">East Africa</option>
+                            <option value="Southern Africa">Southern Africa</option>
+                            <option value="North Africa">North Africa</option>
+                            <option value="Central Africa">Central Africa</option>
                         </select>
                     </div>
                 </div>
 
-                <div style="display: grid; gap: 2rem;">
-                    <div class="card" style="border-left: 4px solid var(--accent-gold);">
-                        <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1.5rem;">
-                            <div style="flex: 1; min-width: 300px;">
-                                <h3 style="font-size: 1.75rem; margin-bottom: 0.75rem; color: var(--primary-navy);">Ghana</h3>
-                                <p style="color: var(--text-charcoal); line-height: 1.7; margin-bottom: 1.5rem;">
-                                    Ghana's comprehensive national corporate governance code, providing guidance for boards, directors, and governance professionals across all sectors. The latest edition incorporates international best practices adapted to Ghana's regulatory context.
-                                </p>
-                                <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
-                                    <div><strong style="color: var(--primary-navy);">Latest Code:</strong> National Corporate Governance Code (2026)</div>
-                                    <div><strong style="color: var(--primary-navy);">Issuing Body:</strong> Institute of Directors, Ghana</div>
-                                </div>
-                                <div style="margin-top: 1.5rem;">
-                                    <a href="#" class="btn btn-primary" download>Download PDF</a>
-                                    <a href="blog.html" class="btn btn-outline" style="margin-left: 0.5rem;">Related Articles</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div id="countriesGrid" class="countries-grid">
+                    <!-- Countries will be dynamically loaded here -->
+                </div>
 
-                    <div class="card" style="border-left: 4px solid var(--primary-navy);">
-                        <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1.5rem;">
-                            <div style="flex: 1; min-width: 300px;">
-                                <h3 style="font-size: 1.75rem; margin-bottom: 0.75rem; color: var(--primary-navy);">Nigeria</h3>
-                                <p style="color: var(--text-charcoal); line-height: 1.7; margin-bottom: 1.5rem;">
-                                    Nigeria's corporate governance code for public companies, providing comprehensive guidance on board structure, accountability, and transparency.
-                                </p>
-                                <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
-                                    <div><strong style="color: var(--primary-navy);">Latest Code:</strong> Code of Corporate Governance (2023)</div>
-                                    <div><strong style="color: var(--primary-navy);">Issuing Body:</strong> Financial Reporting Council of Nigeria</div>
-                                </div>
-                                <div style="margin-top: 1.5rem;">
-                                    <a href="#" class="btn btn-primary" download>Download PDF</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card" style="border-left: 4px solid var(--primary-navy);">
-                        <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1.5rem;">
-                            <div style="flex: 1; min-width: 300px;">
-                                <h3 style="font-size: 1.75rem; margin-bottom: 0.75rem; color: var(--primary-navy);">Kenya</h3>
-                                <p style="color: var(--text-charcoal); line-height: 1.7; margin-bottom: 1.5rem;">
-                                    Guidelines on corporate governance practices for public listed companies in Kenya, emphasizing board effectiveness and shareholder rights.
-                                </p>
-                                <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
-                                    <div><strong style="color: var(--primary-navy);">Latest Code:</strong> Guidelines on Corporate Governance (2022)</div>
-                                    <div><strong style="color: var(--primary-navy);">Issuing Body:</strong> Capital Markets Authority, Kenya</div>
-                                </div>
-                                <div style="margin-top: 1.5rem;">
-                                    <a href="#" class="btn btn-primary" download>Download PDF</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card" style="border-left: 4px solid var(--primary-navy); opacity: 0.7;">
-                        <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1.5rem;">
-                            <div style="flex: 1; min-width: 300px;">
-                                <h3 style="font-size: 1.75rem; margin-bottom: 0.75rem; color: var(--primary-navy);">More Countries Coming Soon</h3>
-                                <p style="color: var(--text-charcoal); line-height: 1.7;">
-                                    We are continuously expanding our library of governance codes from across Africa. Check back regularly for updates, or <a href="contact.html" style="color: var(--accent-gold); font-weight: 600;">contact us</a> to suggest additions.
-                                </p>
-                            </div>
+                <!-- Country Detail Modal -->
+                <div id="countryModal" class="country-modal" onclick="closeCountryModal(event)">
+                    <div class="country-modal-content" onclick="event.stopPropagation()">
+                        <span class="country-modal-close" onclick="closeCountryModal(event)">&times;</span>
+                        <div id="countryModalBody">
+                            <!-- Country details will be loaded here -->
                         </div>
                     </div>
                 </div>
@@ -228,5 +178,298 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // African countries data from ECGI
+        const africanCountries = [
+            {
+                name: 'Egypt',
+                flag: '🇪🇬',
+                region: 'North Africa',
+                code: 'eg',
+                description: 'It is well established that the provisions of Egyptian laws provide various legal vehicles, however, the highly recommended legal forms are Joint Stock Company (JSC), Limited Liability Company (LLC), One-Person Company (OPC), and Branch of a Foreign Company (BFC). JSC shall be managed by the board of directors and the board shall be chaired by its chairman, in return, other legal forms mentioned above shall be managed by one or multiple managers. Undoubtedly, the provisions of law No. 159 for 1981 (Companies Law) and its executive regulations, as amended, Investment law No.72 for 2017 (Investment Law) and its executive regulations, law No. 95 for 1992 and its executive regulations, as amended, Corporate Governance Guide, Listing Rules, as amended and all circulars issued by the General Authority for Investment and Free Zones (GAFI) are deemed as the principal sources of corporate governance requirements and practices, in which entities shall comply and come in line with all provisions of the above-mentioned sources of corporate governance.',
+                latestCode: 'The Egyptian Corporate Governance Code (2016)',
+                issuingBody: 'Egyptian Institute of Directors (EIoD)',
+                year: '2016',
+                codes: [
+                    { title: 'The Egyptian Corporate Governance Code', date: 'Aug 2016', issuingBody: 'Egyptian Institute of Directors (EIoD)', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/egypt_cg_code.pdf' },
+                    { title: 'Guide to Corporate Governance Regulations and Standards in Egypt', date: 'Mar 2011', issuingBody: 'Egyptian Institute of Directors (EIoD)', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/code_egypt_2011_englishtranslation2016.pdf' },
+                    { title: 'Code of Corporate Governance for Listed Companies', date: '13 Feb 2011', issuingBody: 'Egyptian Institute of Directors (EIoD)', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/code_cg_egypt_13feb2011_ar.pdf' },
+                    { title: 'Guide to Corporate Governance Principles in Egypt', date: '2006', issuingBody: 'General Authority of Investment and Free Zones / Cairo and Alexandria Stock Exchange', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/egyptiancodeofcorporategovernance_en.pdf' },
+                    { title: 'The Code of Corporate Governance for the Public Enterprise Sector', date: 'Jul 2006', issuingBody: 'Egyptian Institute of Directors (EIoD) / Ministry of Investment', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/egyptsoecodeofcg_en.pdf' }
+                ],
+                resources: 'More detailed information regarding corporate governance rules applicable to listed companies in Egypt is available at https://www.legal500.com/guides/chapter/egypt-corporate-governance/',
+                contact: {
+                    name: 'Egyptian Financial Regulatory Authority',
+                    address: 'Cairo, Egypt',
+                    email: 'info@fra.gov.eg'
+                }
+            },
+            {
+                name: 'Ethiopia',
+                flag: '🇪🇹',
+                region: 'East Africa',
+                code: 'et',
+                description: 'Corporate governance guidelines for Ethiopian companies. The Ethiopian Capital Market Authority regulates corporate governance practices to ensure market integrity and investor protection.',
+                latestCode: 'Corporate Governance Guidelines',
+                issuingBody: 'Ethiopian Capital Market Authority',
+                year: '2021',
+                codes: [
+                    { title: 'Corporate Governance Guidelines', date: '2021', issuingBody: 'Ethiopian Capital Market Authority', pdf: 'pdfs/et/et-0.pdf' }
+                ],
+                resources: 'More detailed information regarding corporate governance rules applicable to companies in Ethiopia is available through the Ethiopian Capital Market Authority.',
+                contact: {
+                    name: 'Ethiopian Capital Market Authority',
+                    address: 'Addis Ababa, Ethiopia',
+                    email: 'info@ecma.gov.et'
+                }
+            },
+            {
+                name: 'Ghana',
+                flag: '🇬🇭',
+                region: 'West Africa',
+                code: 'gh',
+                description: 'The principal legislation affecting the governance of listed companies is the Companies Act, 1963 (Act 179). The Companies Act includes general provisions relating to the organisational framework of all companies, both public and private, as well as special provisions for public companies only, relating to invitations to the public for the acquisition or disposal of listed securities, standards for financial reporting, procedures for appointing directors, etcetera. Apart from the Companies Act, other relevant legislation that affects the governance of listed companies includes the Securities Industry Act, 2016 (Act 929) and the Securities and Exchange Commission Regulations, 2003 (LI 1728), which regulate public invitations for and trading in listed securities, as well as disclosure obligations and financial reporting standards for listed companies. The Listing Rules of the Ghana Stock Exchange (Listing Rules), the Code on Takeovers and Mergers (Takeover Code) issued by the Securities and Exchange Commission (SEC) and the SEC\'s Code of Best Practices on Corporate Governance (Corporate Governance Code) are also key to the governance regime of listed companies.',
+                latestCode: 'The National Corporate Governance Code 2022',
+                issuingBody: 'Institute of Directors, Ghana',
+                year: '2022',
+                codes: [
+                    { title: 'The National Corporate Governance Code 2022', date: '01 Nov 2022', issuingBody: 'Institute of Directors, Ghana', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/final_national_cg_code.pdf' },
+                    { title: 'The Banking Business - Corporate Governance Directive 2018', date: '01 Mar 2018', issuingBody: 'Bank of Ghana', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/corporate_governance_directive-final.pdf' },
+                    { title: 'Corporate Governance Guidelines on Best Practices - 2009', date: '30 Nov 2009', issuingBody: 'Securities and Exchange Commission', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/cg_guidelines_ghana_2010_en.pdf' }
+                ],
+                resources: 'More detailed information regarding corporate governance rules applicable to listed companies in Ghana is available at https://thelawreviews.co.uk/edition/the-corporate-governance-review-edition-15',
+                contact: {
+                    name: 'Securities and Exchange Commission Ghana',
+                    address: 'No. 30, 3rd Circular Road, Cantonments, Accra',
+                    phone: '+233-302-768970-2',
+                    email: 'info@sec.gov.gh'
+                }
+            },
+            {
+                name: 'Kenya',
+                flag: '🇰🇪',
+                region: 'East Africa',
+                code: 'ke',
+                description: 'The Kenyan capital market is regulated by the Capital Markets Authority (CMA). The CMA was set up in 1989 as a statutory agency under the Capital Markets Act Cap 485A. It is charged with the prime responsibility of both regulating and developing an orderly, fair and efficient capital markets in Kenya with the view to promoting market integrity and investor confidence. Presently, the Kenyan capital market is relatively small with only 66 companies listed in the Nairobi Securities Exchange (NSE), which is the country\'s only securities exchange. In 2016 the CMA published a code for corporate governance practices for publicly listed companies. The Code replaced the Guidelines on Corporate Governance Practices by Public Listed Companies in Kenya, 2002. The code was informed by the need to respond to the changing business environment coupled with the desire to align Kenyan local standards to global best practice to promote institutional strengthening for listed companies. The code sets out the principles and specific recommendations on structures and processes, which companies should adopt in making good corporate governance an integral part of their business dealings and culture. The code advocates for the adoption of standards that go beyond the minimum prescribed by legislation. It adopts a "Apply or Explain" approach which is principle-based rather than rule-based. With a view of implementing and reinforcing the code for corporate governance in 2017 CMA promulgated a stewardship code for institutional investors.',
+                latestCode: 'Code of Corporate Governance Practices for Issuers of Securities to the Public 2015',
+                issuingBody: 'Capital Markets Authority, Kenya',
+                year: '2015',
+                codes: [
+                    { title: 'Stewardship Code for Institutional Investors, 2017', date: '09 May 2017', issuingBody: 'Capital Markets Authority, Kenya', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/Kenya.pdf' },
+                    { title: 'Code of Corporate Governance Practices for Issuers of Securities to the Public, 2015', date: '15 Dec 2015', issuingBody: 'Capital Markets Authority, Kenya', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/code_of_corporate_governance_practices_for_issuers_of_securities_to_the_public_2015_-_code-8_1.pdf' },
+                    { title: 'Code of Corporate Governance Practices for Public Listed Companies in Kenya, 2014', date: '19 May 2014', issuingBody: 'Capital Markets Authority, Kenya', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/draft_cg_code_kenya_19may2014_en.pdf' },
+                    { title: 'Principles for Corporate Governance in Kenya and Sample Code of Best Practice for Corporate Governance', date: '30 Nov 2001', issuingBody: 'Private Sector Corporate Governance Trust', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/principles_2.pdf' },
+                    { title: 'Sample Code of Best Practice for Corporate Governance in Kenya', date: '2001', issuingBody: 'Private Sector Corporate Governance Trust', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/sample_code.pdf' }
+                ],
+                resources: 'More detailed information regarding corporate governance rules applicable to listed companies in Kenya is available through the Capital Markets Authority.',
+                contact: {
+                    name: 'Capital Markets Authority',
+                    address: 'Embankment Plaza, 3rd Floor, Longonot Road, off Kilimanjaro Avenue, Upperhill, P.O Box 74800 - 00200, Nairobi, Kenya',
+                    phone: '+254 20 2264000/ 2264900 / 2221869',
+                    email: 'corporate@cma.or.ke',
+                    website: 'www.cma.or.ke'
+                }
+            },
+            {
+                name: 'Nigeria',
+                flag: '🇳🇬',
+                region: 'West Africa',
+                code: 'ng',
+                description: 'The Nigerian corporate governance regime is characterised by a combination of a statutory framework and subsidiary legislation enacted by the relevant regulatory authorities. These laws can be divided into two categories: general laws and sector-specific laws. While the general laws govern every entity incorporated in Nigeria, the sector-specific laws govern only companies that operate within their specific sector or industry. The general laws are: the Companies and Allied Matters Act (CAMA), the Investments and Securities Act 2007 (ISA), which also established the Securities and Exchange Commission (SEC) as its regulatory authority, and the Financial Reporting Council of Nigeria Act 2011 (FRCN Act), administered by the Financial Reporting Council of Nigeria (FRCN). The sector-specific laws include, among others, the Banks and Other Financial Institutions Act (BOFIA) and the Insurance Act (IA). The Nigerian corporate governance space has a number of corporate governance codes applicable to publicly listed companies and for sector-specific companies. Of particular import in this regard is the recently published Nigeria Code of Corporate Governance 2018 (NCCG Code). The NCCG Code was published by the FRCN on 15 January 2019, and seeks to promote public awareness of essential corporate values and ethical practices by recommending practices and principles that affected companies are to adhere to. The NCCG Code generally applies to all public companies as well as regulated private companies, and to private companies that are the holding companies of public companies.',
+                latestCode: 'Nigerian Code of Corporate Governance 2018',
+                issuingBody: 'Financial Reporting Council of Nigeria',
+                year: '2019',
+                codes: [
+                    { title: 'Nigerian Code of Corporate Governance 2018', date: '15 Jan 2019', issuingBody: 'Financial Reporting Council of Nigeria', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/nccg_2018.pdf' },
+                    { title: 'Nigeria Not-for-Profit Organisations: Governance Code - 2016', date: '17 Oct 2016', issuingBody: 'Financial Reporting Council of Nigeria', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/NFPO%20CODE%20-%202016%5B1%5D.pdf' },
+                    { title: 'Nigeria National Code of Corporate Governance - 2016 (Private Sector Code)', date: '01 Oct 2016', issuingBody: 'Financial Reporting Council of Nigeria', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/PRIVATE%20SECTOR%20CODE%20-2016%5B1%5D.pdf' },
+                    { title: 'Draft of The Public Sector Governance Code in Nigeria - 2016', date: '23 Jan 2016', issuingBody: 'Financial Reporting Council of Nigeria', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/PUBLIC%20SECTOR%20CODE%20AMENDED%20FINAL%2023%20JAN%202016%5B1%5D.pdf' },
+                    { title: 'Exposure Draft of the National Code of Corporate Governance 2015 (Public Sector Code)', date: '2015', issuingBody: 'Financial Reporting Council of Nigeria', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/exposure_draft_national%20code_nigeria_public_2015_en.pdf' },
+                    { title: 'Code of Corporate Governance for Banks and Discount Houses in Nigeria, and Guidelines for Whistle Blowing in the Nigerian Banking Industry', date: '16 May 2014', issuingBody: 'Central Bank of Nigeria', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/cg_code_nigeria_16may2014_en.pdf' },
+                    { title: 'Code of Corporate Governance', date: '27 Jan 2011', issuingBody: 'Securities and Exchange Commission', pdf: 'pdfs/ng/ng-6.pdf' },
+                    { title: 'Code of Corporate Governance for Licensed Pension Operators', date: 'Jun 2008', issuingBody: 'National Pension Commission', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/cg_code_pension_operators_nigeria_jun2010_en.pdf' },
+                    { title: 'Code of Corporate Governance for Banks in Nigeria Post Consolidation', date: '01 Mar 2006', issuingBody: 'Central Bank of Nigeria', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/cg_code_nigeria_2006_en.pdf' },
+                    { title: 'Code of Best Practices on Corporate Governance in Nigeria', date: 'Oct 2003', issuingBody: 'Securities and Exchange Commission / Corporate Affairs Commission', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/cg_code_nigeria_oct2003_en.pdf' }
+                ],
+                resources: 'More detailed information regarding corporate governance rules applicable to listed companies in Nigeria is available at https://thelawreviews.co.uk/edition/the-corporate-governance-review-edition-15',
+                contact: {
+                    name: 'Financial Reporting Council of Nigeria',
+                    address: 'LCCI Conference Centre, 10, Olowopopo Street (Near MKO Abiola Gardens), Central Business District, Alausa, Lagos',
+                    email: 'enquiries@financialreportingcouncil.gov.ng',
+                    website: 'www.financialreportingcouncil.gov.ng'
+                }
+            },
+            {
+                name: 'South Africa',
+                flag: '🇿🇦',
+                region: 'Southern Africa',
+                code: 'za',
+                description: 'Corporate governance in South Africa is informed by common law and statute, soft law and market regulation. South Africa is a member of the G20 and as such works closely with other members for the implementation of international best practice in financial and market regulation. It has also taken a global lead in the adoption of integrated reporting, a fact that has influenced its corporate governance practice. The emeritus chairman of the International Integrated Reporting Council and the Global Reporting Initiative is also the chief drafter of the South Africa Corporate Governance Code, colloquially known as the \'King Code\'. South Africa modelled its company law on the English example and therefore has a unitary board. Much of English common law of companies has been adopted into South African case law. The Companies Act 71 of 2008 commenced on 1 May 2011 and it includes a statutory statement of directors\' duties. King IV, published in 2016, has moved from a \'apply or explain\' basis of compliance to an \'apply and explain\' basis. King IV proceeds from the premise that all organisations that claim to practice sound governance will have applied these basic sixteen principles, but that the method of adoption may differ in accordance with the circumstances of the individual organisation. King IV further assumes that the organisation has implemented integrated reporting, without which the sixteen principles cannot be fully met. Sustainable development is an underpinning philosophy of King IV and it promotes a stakeholder inclusive model of governance.',
+                latestCode: 'King Report on Corporate Governance for South Africa - 2016 (King IV Report)',
+                issuingBody: 'Institute of Directors in Southern Africa',
+                year: '2016',
+                codes: [
+                    { title: 'Governance in SMEs - A Guide to the Application of Corporate Governance in Small and Medium Enterprises', date: '2017', issuingBody: 'Institute of Directors in Southern Africa', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/governanceinsmesguidelowres.pdf' },
+                    { title: 'King Report on Corporate Governance for South Africa - 2016 (King IV Report)', date: '01 Nov 2016', issuingBody: 'Institute of Directors in Southern Africa', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/King_Report_On_Corporate_Governance_For_South_Africa_2016.pdf' },
+                    { title: 'Code for Responsible Investing in South Africa (CRISA)', date: '19 Jul 2011', issuingBody: 'Institute of Directors in Southern Africa / Committee on Responsible Investing by Institutional Investors in South Africa', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/crisa_19_july_2011_0.pdf' },
+                    { title: 'Draft Code for Responsible Investing by Institutional Investors in South Africa', date: '01 Sep 2010', issuingBody: 'Institute of Directors in Southern Africa / Committee on Responsible Investing by Institutional Investors in South Africa', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/draft_code_institutional_investors_1sep2010_en.pdf' },
+                    { title: 'King Code of Governance for South Africa 2009 (King III)', date: 'Sep 2009', issuingBody: 'Institute of Directors in Southern Africa', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/king3.pdf' },
+                    { title: 'King Report on Corporate Governance for South Africa - 2002 (King II Report)', date: '28 Feb 2002', issuingBody: 'Institute of Directors in Southern Africa', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/king2.pdf' },
+                    { title: 'King I Report', date: '24 Nov 1994', issuingBody: 'Institute of Directors in Southern Africa', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/king_i_sa.pdf' }
+                ],
+                resources: 'More detailed information regarding corporate governance rules applicable to companies in South Africa is available through the Institute of Directors in Southern Africa.',
+                contact: {
+                    name: 'Institute of Directors in Southern Africa',
+                    address: 'Johannesburg, South Africa',
+                    email: 'info@iodsa.co.za'
+                }
+            },
+            {
+                name: 'Tunisia',
+                flag: '🇹🇳',
+                region: 'North Africa',
+                code: 'tn',
+                description: 'The primary source of corporate governance legislation in Tunisia is the Law No. 2000-93 enacting the Commercial Companies Code (CCC). The CCC has been amended in October 2005 with Law n. 2005-96 that aims to reinforce the existing regulatory framework by consolidating financial relations\' security. In March 2009, Law n. 2009-16 introduced new provisions to supplement the CCC by addressing the transactions subject to prior authorization of the BoD, the shareholders\' general meeting, and the audit committee. Regarding corporate governance best practices, the Arab Institute of Business Managers (IACE) has published in June 2008 the first corporate governance guidelines in Tunisia entitled "Guide de Bonnes Pratiques de Gouvernance des Entreprises Tunisiennes" (The Tunisian Code of Best Practice of Corporate Governance (TCBP)) serving as good practices to disseminate in Tunisian companies. Traditionally, the governance system of Tunisian companies is marked by the weight of state and family capitalism. According to the Code, the board of directors (BoD) or the management board and supervisory board, are the main governance bodies of public limited companies in Tunisia. The Tunisian legislator allows companies to choose between two forms of governance: the monistic model or single-tier based on the existence of a BoD and the dualistic model or two-tier characterized by the separation of management and control responsibilities through a management board and a supervisory board.',
+                latestCode: 'Guide de Bonnes Pratiques de Gouvernance des Entreprises Tunisiennes (2012)',
+                issuingBody: 'Arab Institute of Business Managers (IACE)',
+                year: '2012',
+                codes: [
+                    { title: 'Guide de Bonnes Pratiques de Gouvernance des Entreprises Tunisiennes (2012)', date: '01 Jan 2012', issuingBody: 'Centre Tunisien de Gouvernance d\'Entreprise (CTGE)', pdf: 'https://www.ecgi.global/system/files/2024-05/guide-de-bonnes-pratiques-de-gouvernance-des-entreprises-tunisiennes-2012.pdf' },
+                    { title: 'Guide de Bonnes Pratiques de Gouvernance des Entreprises Tunisiennes', date: '25 Jun 2008', issuingBody: 'Arab Institute of Business Managers (IACE)', pdf: 'https://www.ecgi.global/sites/default/files/codes/documents/guide_tunisia_2008_en.pdf' },
+                ],
+                resources: 'More detailed information regarding corporate governance rules applicable to listed companies in Tunisia is available at: https://chicagounbound.uchicago.edu/international_immersion_program_papers/122/ and https://doi.org/10.22495/clgrv3i2p2',
+                contact: {
+                    name: 'Tunisian Financial Market Council',
+                    address: 'Tunis, Tunisia',
+                    email: 'info@cmf.gov.tn'
+                }
+            }
+        ];
+
+        // Render countries grid
+        function renderCountries(countries = africanCountries) {
+            const grid = document.getElementById('countriesGrid');
+            if (!grid) return;
+
+            if (countries.length === 0) {
+                grid.innerHTML = '<p style="text-align: center; padding: 3rem; color: var(--text-light);">No countries found matching your search criteria.</p>';
+                return;
+            }
+
+            grid.innerHTML = countries.map(country => `
+                <div class="country-card" onclick="openCountryModal('${country.code}')">
+                    <div class="country-flag">${country.flag}</div>
+                    <h3 class="country-name">Corporate Governance in ${country.name}</h3>
+                </div>
+            `).join('');
+        }
+
+        // Filter countries
+        function filterCountries() {
+            const searchTerm = document.getElementById('countrySearch')?.value.toLowerCase() || '';
+            const regionFilter = document.getElementById('regionFilter')?.value || '';
+
+            const filtered = africanCountries.filter(country => {
+                const matchesSearch = country.name.toLowerCase().includes(searchTerm);
+                const matchesRegion = !regionFilter || country.region === regionFilter;
+                return matchesSearch && matchesRegion;
+            });
+
+            renderCountries(filtered);
+        }
+
+        // Open country modal
+        function openCountryModal(countryCode) {
+            const country = africanCountries.find(c => c.code === countryCode);
+            if (!country) return;
+
+            const modal = document.getElementById('countryModal');
+            const modalBody = document.getElementById('countryModalBody');
+
+            // Build codes section HTML
+            const codesHTML = country.codes ? `
+                <div class="country-detail-section">
+                    <h3 class="country-detail-section-title">Codes</h3>
+                    <div class="codes-list">
+                        ${country.codes.map((code, index) => {
+                            // Use provided PDF path or generate default path
+                            const pdfPath = code.pdf || `pdfs/${country.code}/${country.code}-${index}.pdf`;
+                            const fileName = code.title.replace(/[^a-z0-9]/gi, '_') + '.pdf';
+                            return `
+                                <div class="code-item">
+                                    <div class="code-date">${code.date}</div>
+                                    <div class="code-info">
+                                        <h4 class="code-title">${code.title}</h4>
+                                        <p class="code-issuer">${code.issuingBody}</p>
+                                    </div>
+                                    <div class="code-action">
+                                        <a href="${pdfPath}" class="btn btn-primary btn-small" download="${fileName}" target="_blank">
+                                            <span class="download-icon">📥</span> Download PDF
+                                        </a>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            ` : '';
+
+            // Build resources section HTML
+            const resourcesHTML = country.resources ? `
+                <div class="country-detail-section">
+                    <h3 class="country-detail-section-title">Resources</h3>
+                    <p class="country-detail-description">${country.resources}</p>
+                </div>
+            ` : '';
+
+            // Build contact section HTML
+            const contactHTML = country.contact ? `
+                <div class="country-detail-section">
+                    <h3 class="country-detail-section-title">Contact</h3>
+                    <div class="contact-info">
+                        <p><strong>${country.contact.name}</strong></p>
+                        ${country.contact.address ? `<p>${country.contact.address}</p>` : ''}
+                        ${country.contact.phone ? `<p>Tel: ${country.contact.phone}</p>` : ''}
+                        ${country.contact.email ? `<p>Email: <a href="mailto:${country.contact.email}">${country.contact.email}</a></p>` : ''}
+                        ${country.contact.website ? `<p>Website: <a href="http://${country.contact.website}" target="_blank">${country.contact.website}</a></p>` : ''}
+                    </div>
+                </div>
+            ` : '';
+
+            modalBody.innerHTML = `
+                <div class="country-detail-header">
+                    <div class="country-detail-flag">${country.flag}</div>
+                    <h2 class="country-detail-title">Corporate Governance in ${country.name}</h2>
+                </div>
+                <div class="country-detail-content">
+                    <p class="country-detail-description">${country.description}</p>
+                    
+                    ${codesHTML}
+                    
+                    ${resourcesHTML}
+                    
+                    ${contactHTML}
+                </div>
+            `;
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close country modal
+        function closeCountryModal(event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            const modal = document.getElementById('countryModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCountries();
+        });
+    </script>
 </body>
 </html>
