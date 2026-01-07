@@ -1523,12 +1523,23 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     /* Responsive grid for moderator and panel members */
-    div[style*="grid-template-columns: repeat(4"] {
+    div[style*="grid-template-columns: 1fr 3fr"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    div[style*="grid-template-columns: repeat(3"] {
         grid-template-columns: repeat(2, 1fr) !important;
     }
     
-    div[style*="grid-template-columns: repeat(4"] img {
+    div[style*="grid-template-columns: repeat(3"] img,
+    div[style*="grid-template-columns: 1fr 3fr"] img {
         width: 120px !important;
         height: 120px !important;
+    }
+    
+    @media (max-width: 600px) {
+        div[style*="grid-template-columns: repeat(3"] {
+            grid-template-columns: 1fr !important;
+        }
     }
 }
