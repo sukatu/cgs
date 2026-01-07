@@ -15,8 +15,8 @@
                 </div>
                 <div class="nav-utility">
                     <button class="search-btn" id="searchBtn">Search</button>
-                    <a href="network.html" class="login-btn">Login</a>
-                    <a href="network.html" class="join-btn">Join the Network</a>
+                    <a href="network.php" class="login-btn">Login</a>
+                    <a href="network.php" class="join-btn">Join the Network</a>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
                     </ul>
                 </li>
                 <li><a href="training.html">Training</a></li>
-                <li><a href="network.html">Network</a></li>
+                <li><a href="network.php">Network</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
                 <div class="hamburger" id="hamburger">
@@ -87,6 +87,13 @@
             <div class="container">
                 <h2 class="section-title">Upcoming Webinars</h2>
                 
+                <div id="upcomingWebinars">
+                    <!-- Events will be loaded here dynamically -->
+                    <p style="text-align: center; color: var(--text-light); padding: 2rem;">Loading webinars...</p>
+                </div>
+                
+                <!-- Static fallback - will be replaced by dynamic content -->
+                <!--
                 <div class="event-card">
                     <div class="event-header">
                         <div>
@@ -161,6 +168,7 @@
                         <a href="#" class="btn btn-outline">View Agenda</a>
                     </div>
                 </div>
+                -->
             </div>
         </section>
 
@@ -168,6 +176,13 @@
             <div class="container">
                 <h2 class="section-title">Past Webinars</h2>
                 
+                <div id="pastWebinars">
+                    <!-- Events will be loaded here dynamically -->
+                    <p style="text-align: center; color: var(--text-light); padding: 2rem;">Loading past webinars...</p>
+                </div>
+                
+                <!-- Static fallback - will be replaced by dynamic content -->
+                <!--
                 <div class="event-card">
                     <div class="event-header">
                         <div>
@@ -236,6 +251,7 @@
                         <a href="blog.html" class="btn btn-outline">Read Summary</a>
                     </div>
                 </div>
+                -->
             </div>
         </section>
     </main>
@@ -289,7 +305,7 @@
                         <li><a href="governance-codes.html">Governance Codes</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="media.html">Media</a></li>
-                        <li><a href="network.html">Network</a></li>
+                        <li><a href="network.php">Network</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -302,11 +318,22 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Corporate Governance Series (CGS) by CSTS Ghana. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                <p>&copy; 2024 Corporate Governance Series (CGS) by CSTS Ghana. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="admin-login.php" style="color: var(--accent-gold);">Admin Login</a></p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script src="events-loader.js"></script>
+    <script>
+        // Load webinars when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load upcoming webinars
+            loadUpcomingEvents('webinar', 'upcomingWebinars');
+            
+            // Load past/completed webinars
+            loadCompletedEvents('webinar', 'pastWebinars');
+        });
+    </script>
 </body>
 </html>

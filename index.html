@@ -14,9 +14,12 @@
                     <a href="index.html"><img src="logo.png" alt="Corporate Governance Series CGS Logo"></a>
                 </div>
                 <div class="nav-utility">
-                    <button class="search-btn" id="searchBtn">Search</button>
-                    <a href="network.html" class="login-btn">Login</a>
-                    <a href="network.html" class="join-btn">Join the Network</a>
+                    <div class="header-search">
+                        <input type="text" placeholder="Search..." id="headerSearchInput">
+                        <button class="search-btn" id="searchBtn" style="display: none;">Search</button>
+                    </div>
+                    <a href="network.php" class="login-btn">Login</a>
+                    <a href="network.php" class="join-btn">Join the Network</a>
                 </div>
             </div>
         </div>
@@ -47,7 +50,7 @@
                         </ul>
                     </li>
                     <li><a href="training.html">Training</a></li>
-                    <li><a href="network.html">Network</a></li>
+                    <li><a href="network.php">Network</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
                 <div class="hamburger" id="hamburger">
@@ -66,7 +69,57 @@
                 <p class="hero-subtitle">Corporate Governance Series (CGS) is the premier platform for African stakeholders to debate, refine, and implement world-class governance frameworks, with Ghana as a strategic launchpad.</p>
                 <div class="hero-buttons">
                     <a href="events.html" class="btn btn-primary">Explore the Series</a>
-                    <a href="network.html" class="btn btn-secondary">Join the Network</a>
+                    <a href="network.php" class="btn btn-secondary">Join the Network</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Upcoming Event Banner (IBA-style) - Prominently placed at top -->
+        <section class="section" style="padding: 4rem 0; background-color: var(--bg-offwhite);">
+            <div class="container">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1400px; margin: 0 auto;">
+                    <!-- Left Card: About CGS -->
+                    <div class="featured-card" style="background-color: var(--white); padding: 3rem; border-radius: 8px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--primary-navy);">About CGS</h2>
+                            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-charcoal); margin-bottom: 2rem;">
+                                The foremost platform for African governance stakeholders. CGS was born out of the conviction that we can contribute to sustainable business growth across Africa through the promotion and protection of corporate governance excellence.
+                            </p>
+                            <a href="about.html" style="color: var(--primary-navy); text-decoration: none; font-weight: 600;">Read more →</a>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <a href="network.php" class="btn" style="background-color: var(--primary-navy); color: white; padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; display: inline-flex; align-items: center; gap: 0.5rem; transition: background-color 0.3s ease;">
+                                <span>👥</span> Join the Network
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Card: Featured Event Banner -->
+                    <div id="featuredEventCard" class="featured-card" style="background: linear-gradient(135deg, var(--primary-navy) 0%, #0d2f7a 100%); padding: 3rem; border-radius: 8px; box-shadow: var(--shadow); position: relative; overflow: hidden; min-height: 400px; display: flex; flex-direction: column; justify-content: space-between; color: white;">
+                        <!-- Background pattern overlay -->
+                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.03) 10px, rgba(255,255,255,0.03) 20px); opacity: 0.5; z-index: 0;"></div>
+                        
+                        <div style="position: relative; z-index: 1;">
+                            <div style="background-color: rgba(255, 255, 255, 0.2); color: white; padding: 0.5rem 1rem; border-radius: 4px; display: inline-block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600;">
+                                Featured Conference
+                            </div>
+                            <h2 id="featuredEventTitle" style="font-size: 2.25rem; margin-bottom: 1.5rem; color: white; line-height: 1.2; font-weight: 700;">
+                                Loading upcoming event...
+                            </h2>
+                            <div id="featuredEventMeta" style="margin-bottom: 1.5rem; font-size: 1rem; opacity: 0.95; display: flex; flex-direction: column; gap: 0.75rem;">
+                                <!-- Event date and details will be inserted here -->
+                            </div>
+                        </div>
+                        
+                        <div style="position: relative; z-index: 1; display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
+                            <a id="featuredEventButton" href="#" class="btn" style="background-color: var(--accent-gold); color: var(--primary-navy); padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+                                <span>Book now</span> <span>→</span>
+                            </a>
+                            <a href="events.html" class="btn" style="background-color: rgba(255, 255, 255, 0.1); color: white; padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; border: 2px solid rgba(255, 255, 255, 0.3); transition: all 0.3s ease;">
+                                All events
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -194,7 +247,7 @@
                 <div style="text-align: center; max-width: 700px; margin: 0 auto;">
                     <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Build your governance advantage.</h2>
                     <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
-                        <a href="network.html" class="btn btn-primary">Join the Network</a>
+                        <a href="network.php" class="btn btn-primary">Join the Network</a>
                         <a href="contact.html" class="btn btn-outline">Contact CGS</a>
                     </div>
                 </div>
@@ -251,7 +304,7 @@
                         <li><a href="governance-codes.html">Governance Codes</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="media.html">Media</a></li>
-                        <li><a href="network.html">Network</a></li>
+                        <li><a href="network.php">Network</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -264,11 +317,135 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Corporate Governance Series (CGS) by CSTS Ghana. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                <p>&copy; 2024 Corporate Governance Series (CGS) by CSTS Ghana. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="admin-login.php" style="color: var(--accent-gold);">Admin Login</a></p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script src="events-loader.js"></script>
+    <script>
+        // Load featured upcoming event on homepage
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFeaturedEvent();
+            
+            // Header search functionality
+            const headerSearchInput = document.getElementById('headerSearchInput');
+            if (headerSearchInput) {
+                headerSearchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        // Open the search modal with the search term
+                        const searchBtn = document.getElementById('searchBtn');
+                        if (searchBtn) {
+                            searchBtn.click();
+                            // Set the search value in the modal
+                            setTimeout(() => {
+                                const searchModalInput = document.querySelector('.search-modal-content input[type="text"]');
+                                if (searchModalInput) {
+                                    searchModalInput.value = headerSearchInput.value;
+                                    searchModalInput.dispatchEvent(new Event('input', { bubbles: true }));
+                                }
+                            }, 100);
+                        }
+                    }
+                });
+            }
+        });
+        
+        // Load the next upcoming event as featured
+        async function loadFeaturedEvent() {
+            try {
+                const response = await fetch('api-events.php?status=upcoming&limit=1');
+                const data = await response.json();
+                
+                if (data.success && data.events && data.events.length > 0) {
+                    const event = data.events[0];
+                    const eventDate = formatDate(event.event_date);
+                    const eventTime = formatTime(event.event_date);
+                    
+                    document.getElementById('featuredEventTitle').textContent = event.title;
+                    
+                    let metaHTML = '';
+                    if (eventDate) {
+                        metaHTML += `<div style="display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.2rem;">📅</span> <span>${eventDate}</span></div>`;
+                    }
+                    if (event.location) {
+                        metaHTML += `<div style="display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.2rem;">📍</span> <span>${escapeHtml(event.location)}</span></div>`;
+                    }
+                    if (event.format) {
+                        metaHTML += `<div style="display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.2rem;">💻</span> <span>${escapeHtml(event.format)}</span></div>`;
+                    }
+                    document.getElementById('featuredEventMeta').innerHTML = metaHTML;
+                    
+                    if (event.description) {
+                        document.getElementById('featuredEventDescription').textContent = 
+                            event.description.length > 200 ? event.description.substring(0, 200) + '...' : event.description;
+                    }
+                    
+                    const button = document.getElementById('featuredEventButton');
+                    if (event.registration_link) {
+                        button.href = event.registration_link;
+                    } else {
+                        button.href = 'events.html';
+                    }
+                } else {
+                    // Show placeholder if no upcoming events
+                    const featuredCard = document.getElementById('featuredEventCard');
+                    if (featuredCard) {
+                        featuredCard.innerHTML = `
+                            <div style="position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem;">
+                                <div style="background-color: rgba(255, 255, 255, 0.2); color: white; padding: 0.5rem 1rem; border-radius: 4px; display: inline-block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600;">
+                                    Featured Conference
+                                </div>
+                                <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: white; line-height: 1.2; font-weight: 700;">
+                                    No Upcoming Events
+                                </h2>
+                                <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); margin-bottom: 2rem;">
+                                    Check back soon for our next event!
+                                </p>
+                                <a href="events.html" class="btn" style="background-color: rgba(255, 255, 255, 0.1); color: white; padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; border: 2px solid rgba(255, 255, 255, 0.3); transition: all 0.3s ease;">
+                                    All events
+                                </a>
+                            </div>
+                        `;
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading featured event:', error);
+                // Hide featured event section on error
+                const featuredSection = document.querySelector('.featured-event-section');
+                if (featuredSection) {
+                    featuredSection.style.display = 'none';
+                }
+            }
+        }
+        
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric'
+            });
+        }
+        
+        function formatTime(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleTimeString('en-US', { 
+                hour: '2-digit', 
+                minute: '2-digit'
+            });
+        }
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
 </body>
 </html>

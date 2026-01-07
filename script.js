@@ -229,12 +229,33 @@ const searchDatabase = [
     }
 ];
 
+// Header search input functionality (IBA-style)
+const headerSearchInput = document.getElementById('headerSearchInput');
+if (headerSearchInput) {
+    headerSearchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            // Open the search modal with the search term
+            if (searchBtn) {
+                searchBtn.click();
+                // Set the search value in the modal
+                setTimeout(() => {
+                    if (searchInput) {
+                        searchInput.value = headerSearchInput.value;
+                        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+                    }
+                }, 100);
+            }
+        }
+    });
+}
+
 // Open search modal
 if (searchBtn) {
     searchBtn.addEventListener('click', () => {
         if (searchModal) {
             searchModal.classList.add('active');
-            searchInput.focus();
+            if (searchInput) searchInput.focus();
         }
     });
 }

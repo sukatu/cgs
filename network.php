@@ -1,3 +1,6 @@
+<?php
+require_once 'config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,7 +78,15 @@
                             <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Sign In</h2>
                             <p style="color: var(--text-charcoal);">Access your member dashboard</p>
                         </div>
-                        <form id="loginForm">
+                        <?php
+                        require_once 'config.php';
+                        if (isset($_SESSION['login_error'])) {
+                            echo '<div style="background-color: #fee; color: #c33; padding: 0.75rem; border-radius: 4px; margin-bottom: 1rem;">' . htmlspecialchars($_SESSION['login_error']) . '</div>';
+                            unset($_SESSION['login_error']);
+                        }
+                        ?>
+                        <form id="loginForm" method="POST" action="user-auth.php?action=login">
+                            <input type="hidden" name="action" value="login">
                             <div class="form-group">
                                 <label for="loginEmail">Email Address</label>
                                 <input type="email" id="loginEmail" name="email" placeholder="Enter your email" required>
@@ -108,16 +119,17 @@
                             <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Create Account</h2>
                             <p style="color: var(--text-charcoal);">Join the CGS Network</p>
                         </div>
-                        <form id="registerForm">
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                                <div class="form-group">
-                                    <label for="registerFirstName">First Name</label>
-                                    <input type="text" id="registerFirstName" name="firstName" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="registerLastName">Last Name</label>
-                                    <input type="text" id="registerLastName" name="lastName" required>
-                                </div>
+                        <?php
+                        if (isset($_SESSION['register_error'])) {
+                            echo '<div style="background-color: #fee; color: #c33; padding: 0.75rem; border-radius: 4px; margin-bottom: 1rem;">' . htmlspecialchars($_SESSION['register_error']) . '</div>';
+                            unset($_SESSION['register_error']);
+                        }
+                        ?>
+                        <form id="registerForm" method="POST" action="user-auth.php?action=register">
+                            <input type="hidden" name="action" value="register">
+                            <div class="form-group">
+                                <label for="registerName">Full Name</label>
+                                <input type="text" id="registerName" name="name" required>
                             </div>
                             <div class="form-group">
                                 <label for="registerEmail">Email Address</label>
@@ -189,11 +201,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="registerPassword">Password</label>
-                                <input type="password" id="registerPassword" name="password" required>
+                                <input type="password" id="registerPassword" name="password" required minlength="6">
                             </div>
                             <div class="form-group">
                                 <label for="registerPasswordConfirm">Confirm Password</label>
-                                <input type="password" id="registerPasswordConfirm" name="passwordConfirm" required>
+                                <input type="password" id="registerPasswordConfirm" name="confirm_password" required minlength="6">
                             </div>
                             <button type="submit" class="btn btn-primary btn-full">Create Account</button>
                             <div style="text-align: center; margin-top: 1.5rem;">
@@ -300,7 +312,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Corporate Governance Series (CGS) by CSTS Ghana. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                <p>&copy; 2024 Corporate Governance Series (CGS) by CSTS Ghana. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="admin-login.php" style="color: var(--accent-gold);">Admin Login</a></p>
             </div>
         </div>
     </footer>
@@ -322,21 +334,25 @@
 
         // Form handlers
         document.getElementById('loginForm')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Login functionality would be connected to backend authentication.');
+            // Form will submit normally to PHP handler
         });
 
         document.getElementById('registerForm')?.addEventListener('submit', function(e) {
-            e.preventDefault();
             const password = document.getElementById('registerPassword').value;
             const passwordConfirm = document.getElementById('registerPasswordConfirm').value;
             
             if (password !== passwordConfirm) {
+                e.preventDefault();
                 alert('Passwords do not match.');
                 return;
             }
             
-            alert('Registration functionality would be connected to backend user management.');
+            if (password.length < 6) {
+                e.preventDefault();
+                alert('Password must be at least 6 characters.');
+                return;
+            }
+            // Form will submit normally to PHP handler
         });
     </script>
 </body>
