@@ -16,12 +16,19 @@ function getDBConnection() {
         $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         
         if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+            error_log("Database connection error: " . $conn->connect_error);
+            throw new Exception("Database connection failed: " . $conn->connect_error);
+        }
+        
+        // Set charset to utf8mb4 for proper character support
+        if (!$conn->set_charset("utf8mb4")) {
+            error_log("Error setting charset: " . $conn->error);
         }
         
         return $conn;
     } catch (Exception $e) {
-        die("Database connection error: " . $e->getMessage());
+        error_log("Database connection exception: " . $e->getMessage());
+        throw $e;
     }
 }
 
