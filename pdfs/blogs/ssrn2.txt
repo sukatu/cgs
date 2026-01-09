@@ -1,0 +1,89 @@
+
+3
+
+Automatic Zoom
+Electronic copy available at: http://ssrn.com/abstract=1845429
+1
+1.0 INTRODUCTION
+Research into dividend policy has shown not only that a general theory of dividend policy
+remains elusive, but also that corporate dividend practice varies over time, among firms
+and across countries (Amidu, 2007).
+Corporate governance has dominated policy agenda in developed market economies for
+more than a decade and it is gradually warming its way to the top of the policy agenda on
+the African continent (Abor, 2007). Developing countries are now increasingly
+embracing the concept of good corporate governance because of its ability to impact
+positively on sustainable growth (Abor, 2007). At the Annual General Meeting of Cocoa
+Processing Company (a listed company on the GSE) in 2008, shareholders of the
+company raised concerns about the payment of low dividend accusing the Directors of
+squandering their investments.
+Although some empirical studies on Corporate Governance in Ghana have been carried
+out on firms listed on Ghana Stock Exchange (GSE) (Abor, 2007; Isshaq, 2009), no
+empirical study exists to determine the linkage between corporate governance and
+dividend policy of firms in Ghana. There is also very scanty literature on the topic. A
+study of the relationship between corporate governance and the dividend policy of
+Ghanaian firms is therefore crucial and will provide the initial argument for other
+researchers to build on. Within the Sub-Saharan Africa, the study is among the few work
+on corporate governance especially relating it to dividend policy and it offers evidence on
+the impact of corporate governance on dividend policy. The paper provides useful
+information that is of great value to policy makers, academics and other stakeholders.
+The purpose of this paper was to examine the effect of corporate governance on dividend
+policy in Ghana, after controlling the influence of other variables likely to impact on
+dividend policy. The specific objectives for the study are as follows:
+1. To establish the relationship between corporate governance and dividend policy
+Electronic copy available at: https://ssrn.com/abstract=1845429
+Electronic copy available at: http://ssrn.com/abstract=1845429
+3
+of past dividends. Amidu and Abor (2006) reported similar findings in Ghana. They
+found that the most important factor influencing dividend payout by firms listed on the
+Ghana Stock Exchange (GSE) is their level of earnings or profitability.
+2.2 Theories on Why Firms Pay Dividends
+2.2.1 Bird-in-the-hand theory
+The "Bird in Hand" theory of Gordon (1962) argues that outside shareholders prefer a
+higher dividend policy. They prefer a dividend today to a highly uncertain capital gain
+from a questionable future investment. A number of studies demonstrate that this model
+fails if it is posited in a complete and perfect market with investors who behave according
+to notions of rational behavior (Miller and Modigliani, 1961; Bhattacharya, 1979)
+2.2.2 Signaling Theory
+According to the information content of dividends or signaling theory, firms, despite the
+distortion of investment decisions to capital gains, may pay dividends to signal their
+future prospects (Amidu, 2007). The intuition underlying this argument is based on the
+information asymmetry between managers (insiders) and outside investors, where
+managers have private information about the current and future fortunes of the firm that
+is not available to outsiders.
+2.2.3 Agency theory
+Even if a firm does not have free cash flow, dividend payments can still be useful for the
+shareholders in order to control the overinvestment problem. Easterbrook (1984) argues
+that dividends reduce the overinvestment problem because the payment of dividends
+increases the frequency with which firms have to go to equity markets in order to raise
+additional capital. In the process of attracting new equity, firms subject themselves to the
+monitoring and disciplining of these markets. This lowers agency cost.
+2.3 Corporate Governance
+Electronic copy available at: https://ssrn.com/abstract=1845429
+4
+The existence of divergent and sometimes conflicting objectives among corporate
+managers and shareholders has given rise to the design of many concepts and
+mechanisms to ensure that the cost associated with such divergent interest is minimal.
+One of the arrangements proposed to deal with this is corporate governance (Kyereboah-
+Coleman, 2007). Corporate governance is primarily concerned with finding a solution to
+the principal-agent problem (Ehikioya, 2009). Advocates of corporate governance have
+identified internal and external governance mechanisms that reduce the agency problem
+(Agarwal and Knoeber, 1996). The corporate governance structure such as ownership
+structure, Board composition, Board size, and CEO duality have a great influence on
+performance and corporate decisions.
+The proxies for corporate governance in this study are Board size, Board composition and
+CEO duality (whether the CEO is also the Board Chairman).
+2.3.1 Size of the Board
+Jensen (1993) and Lipton and Lorsch (1992) have argued that large Boards are less
+effective and are easier for a CEO to control. Raheja (2005) showed that larger Boards
+have higher coordination costs. Also smaller Boards reduce the possibility of free riding
+by individual directors and thus increase their decision-making processes. Studies by
+Wen et al. (2002) and Abor (2007) found evidence in support of a positive relationship
+between Board size and leverage. They argued that large Boards with superior
+monitoring ability pursue higher leverage to raise the value of the firm.
+2.3.2 Board Independence
+John and Senbet (1998) show that the independence of a corporate Board is measured by
+the number of outside or non-executive directors. The larger the proportion of non-
+executive directors, the more independent the Board. A general consensus is that non-
+executive directors are deemed to act as “professional referees” to ensure shareholder
+value maximization (Fama, 1980). Jiraporn et al. (2008) found a positive and
+Electronic copy available at: https://ssrn.com/abstract=1845429

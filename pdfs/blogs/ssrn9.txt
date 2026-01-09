@@ -1,0 +1,175 @@
+
+52
+
+Automatic Zoom
+International Journal of Economics and Financial
+Issues
+ISSN: 2146-4138
+available at http: www.econjournals.com
+International Journal of Economics and Financial Issues, 2019, 10(1), 52-58.
+International Journal of Economics and Financial Issues | Vol 10 • Issue 1 • 202052
+Does Corporate Governance Structures Predict Firm’s Market
+Value? Empirical Evidence from Ghana
+Helena Ahulu, John MacCarthy*
+University of Professional Studies, Accra, Ghana. *Email: john_maccarthy@hotmail.com
+Received: 17 September 2019 Accepted: 04 December 2019 DOI: https://doi.org/10.32479/ijefi.8874
+ABSTRACT
+This paper examined the effect of corporate governance structures on the market value of firms in Ghana. Quantitative data was collected on thirty-
+one firms listed on the Ghana stock exchange from 2009 to 2018 to predict the effect of corporate governance structures on the firm’s market value.
+Panel data regression analysis revealed that corporate governance structures accounted for 84.9% of the variation of a firm’s market value for the
+period. Furthermore, the study revealed a significant relationship between chief executive officer (CEO) duality, non-executive director, board size
+and firm’s profitability and value. The study concludes that firms should separate CEO position from board chairman position to enhance a firm’s
+profitability and value.
+Keywords: Agency Theory, Board Size, Corporate Governance, Duality, Firms
+JEL Classifications: G32, G34, O16
+1. INTRODUCTION
+Corporate governance is a process by which organisations are
+directed, controlled and held to account to the stakeholders
+of firm (Guo et al., 2013). It is a formal distribution of power
+between three main parties: The board of directors, managers and
+shareholders to ensure that the decisions of management do not
+conflict with the shareholder interest (Ngoungo, 2012). Corporate
+governance is an attempt to minimise the problems associated
+with agency theory. The conflict between principal and agents due
+to the separation and control of a firm by owners and managers
+is commonly referred to as principal-agent problems (Byrmes
+et al., 2003). The issue of corporate governance arises because of
+the separation between the ownership and management of a firm.
+This creates a problem commonly referred to as “principal-agent”
+problem where management pursue their personal interest at the
+expense of owners’ interest. The investors provide the capital
+necessary to run the firm while managers manage and control
+the firm to achieve the objective of the investors. Some of the
+agency problems are the perks, executive pay, empire building and
+risk- shifting and others. Although the principal-agent problems
+have existed since the industrial revolution, business and political
+leaders around the world had a re-awakening following fraudulent
+business manoeuvres by the former energy giant, Enron, Inc.,
+which eventually created financial crisis in the United States of
+America (U.S.A).
+Corporate governance failures were accounted for the collapse
+of well performing firms in the past: Enron, Xerox, Parmalat,
+WorldCom among others (Adewale, 2013; Angelides and Thomas,
+2011; Badele and Fundeanu, 2014; Kasum and Etudaiye-Muthar,
+2014; Ogujiuba and Obiechina, 2011; Oyerinde, 2014). Agency
+problems have received lot of attention after the 2008 global
+credit crunch that culminated into bank failures and worldwide
+economic crises. Since then many multinational agencies have
+encouraged governments, regulators and firms to examine the
+subject matter closely to take proactive steps to implement
+proper corporate governance procedures. These have seen many
+countries sanctioning their own corporate governance systems:
+the Securities and Exchange Commission (SEC) (1977) in the
+This Journal is licensed under a Creative Commons Attribution 4.0 International License
+Electronic copy available at: https://ssrn.com/abstract=3505869
+Ahulu and MacCarthy: Does Corporate Governance Structures Predict Firm’s Market Value? Empirical Evidence from GhanaInternational Journal of Economics and Financial Issues | Vol 10 • Issue 1 • 2020 53
+U.S.A., the Cadbury Committee (1991) in the U.K., the Combined
+Code (1998) by the London Stock Exchange, OECD principles on
+Corporate Governance (1999), the Sarbanese Oxley Act (2002)
+in the U.S.A., the J.J. Irani Committee (2004) in India. These
+legislations were enacted to tighten the maintenance of internal
+control systems, impose external constraints to curb the tendency
+of the agents (i.e., managers) to act in ways that benefit their
+personal interest instead of the interest of the firms they represent.
+The recent banking crisis in Ghana has been partly due to the
+absence of good corporate governance structures which has
+led to purchase and assumption of seven banks other financial
+institutions authorised by the Bank of Ghana. This has brought
+corporate governance to the fore once again and continues to be
+a concern to both academics and practitioners because it affects
+the market value of firms. However, the empirical evidence on
+the effect of corporate governance on a firm’s market value is mix
+and unclear. This has generated a renewed interest especially in
+the developing economies such as Ghana where the development
+of corporate governance structures has been done in a piecemeal
+approach without a national perspective. Listed firms in Ghana
+have separate corporate governance guidelines while other
+businesses are governed by the Companies Code 1963 (Act 179).
+Good corporate governance creates the platform for the board and
+executive managers to pursue goals which are in harmony with the
+company objectives. Examples in Ghana include the enactments
+of the 2002 corporate governance code by the SEC, Banking Act
+2004 amended in 2007, 2016 and recent amendments in 2018
+following the 2018 banking crisis. A good corporate mechanism
+instituted either within a corporate establishment or in the larger
+economic setting, yields the level of confidence needed for the
+optimal operation of the economy. Conyon and He (2014) and
+Ueng (2016) have suggested that financial scandals and corporate
+dysfunctional behaviour have their roots in weak corporate
+governance systems. Corporate governance failures result in
+incompetence, poor organisational culture, and leadership styles
+that are excessively focused on the short-term profit, excessive
+risk-taking, and the pursuit of self-interest by managers (Zona,
+2016). O’Connor and Byrne (2015) and Rashid (2015) traced the
+challenges in a firm’s profitability and value to poor corporate
+governance systems and weak and ineffective enforcement of
+corporate governance standards by the board of directors.
+2. LITERATURE REVIEW
+The section reviews literature underpinning corporate governance
+practices and firms’ profitability and value. The major concern
+of corporate governance is how structures and processes used
+by management affect the market value of a firm. The section is
+organised into: Theoretical review and empirical review.
+2.1. Theoretical Review
+Two main theories that underline corporate governance are the
+agency theory and stewardship theory. Agency theory relates
+to management ethics while stewardship is concern with the
+formation of social culture in a firm. The reviews provide in-depth
+correlation between these two theories to corporate governance
+and firm’s performance.
+2.1.1. Agency theory
+Jensen and Meckling (1976) presented the agency theory as
+a theoretical basis of corporate governance, which identifies
+governance mechanisms that can minimises the conflict of interests
+resulting from the separation of ownership and management of
+a firm’s resources. Agency theory is based on the relationship
+between the principals (i.e., owners) and agents (i.e., managers)
+in which the agents carry out the firm’s activities on behalf of
+the owners. An agency problem arises when there is imperfect
+alignment of interest between the principal and the agent. The
+wealth and welfare of shareholders and other stakeholders are not
+maximised in the event of conflict of interest between the two.
+Agency theory is based on the separation of ownership and control
+of firm by the principals (i.e., owners) and agents (i.e., managers).
+The theory assumes that owners engage managers in order for the
+managers to maximise the interest of the owners. On the contrary,
+managers rather maximise their personal interest at the expense of
+the owners’ interest (Sila et al., 2016). Agency theory arises due
+to the separation of owners from management (Ali, 2014). The
+theory opines that it is impossible for managers to act on behalf of
+the owners without conflict of interest. Often, the managers make
+decisions that are not in the best interest of the owners as they may
+succumb to self-interest, opportunistic behaviour and fall short of
+expectations of the owners. Managers will prefer to invest free cash
+flow into a new project rather than pay dividend to shareholders
+in order to expand and grow their firms (MacCarthy and Ahulu,
+2019). Sometimes, managers are motivated to borrow to expand
+and grow the business not because it is the best decision for the
+firm but because they want to boost their personal career growth.
+These debts can create high cost to the firm and sometimes result
+in financial distress, leading to bankruptcy at the expense of the
+owners. This implies that managers sometimes take excessive
+risk to borrow and buy assets to expand the firm at the expense
+of the owners. Agency theory creates the problem of information
+asymmetry, adverse selection, and moral hazard in that order.
+2.1.1.1. Information asymmetry
+This is a challenge that arises where agency problem exists and
+occurs when a firm’s internal information is controlled by managers
+to the extent that managers have too much or little information on
+the firm (Dahlstrom and Persson, 2010). Information asymmetry
+makes owners unable to take appropriate decisions on the firm.
+Owners are unable to take appropriate decisions on the firm where
+information asymmetry exist. Tsai (2008) states that the higher
+the information asymmetry the greater the uncertainty of owners
+are, concerning the firm and its growth prospects.
+2.1.1.2. Adverse selection
+This situation arises from information asymmetry where managers
+of a firm make wrong choices or fail to make the best choices for
+the firm due to their personal interest.
+2.1.1.3. Moral hazard
+This situation follows after information asymmetry and adverse
+selection. Moral hazard arises when managers do not take the
+full consequences and responsibilities of their actions, hence
+acting less carefully than they otherwise would, and leaving
+responsibility of the consequences of their actions on another party.
+Electronic copy available at: https://ssrn.com/abstract=3505869

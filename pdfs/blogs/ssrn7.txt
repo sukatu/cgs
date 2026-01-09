@@ -1,0 +1,127 @@
+
+1
+
+Automatic Zoom
+T THABANE & E SNYMAN VAN DEVENTER PER / PELJ 2018 (21) 1
+Abstract
+Globally, states use state-owned companies (SOCs) or public corporations
+to provide public goods, limit private and foreign control of the domestic
+economy, generate public funds for the fiscus, increase service delivery and
+encourage economic development and industrialisation. Particularly given
+its unique socio-political and economic dynamics, a country such as South
+Africa clearly needs this type of strategic enterprise. Yet, that does not mean
+that everything at our SOCs is as it should be. The beleaguered South
+African Broadcasting Corporation (SABC) has recently seen the resignation
+of board members, shareholder interference in its operational affairs, and a
+high turnover of chief accounting officers and other executive management
+members. Due to non-performance, it has also received several cash
+injections from its shareholder to enable it to continue to deliver its services.
+In addition, the shareholder minister took it upon herself to amend the
+SABC's memorandum of incorporation, conferring upon herself the authority
+to appoint, suspend or even dismiss key executive members. South African
+Airways (SAA), in turn, has had seven CEOs in less than four years, has
+had to be bailed out at a cost of R550 million, and has in addition been
+granted a R5 billion guarantee by the shareholder for a restructuring
+exercise. Other SOCs such as Eskom, the Post Office and Telkom have
+also experienced high board and executive management turnover,
+perennial underperformance necessitating regular bailouts, and challenges
+regarding the division of power between their boards and the various
+shareholder ministers. Another issue that seems to plague South Africa's
+SOCs is the appointment of board members and executive officials with
+questionable qualifications. By critically examining the corporate
+governance challenges besetting the SABC, SAA and Eskom in particular,
+this article seeks to explore the root causes of the corporate governance
+deficiencies of SOCs, and how their corporate governance can be
+enhanced. It is concluded that the challenges faced by the country's SOCs
+are twofold: firstly, the SOCs boards' lack of appreciation of the cardinal
+corporate governance rules, and secondly, the role of government as a
+single or dominant shareholder, which results in substantial political
+interference in the running of the SOCs. This dual problem requires a dual
+solution. To arrest the problem of poor corporate governance in SOCs,
+government as the shareholder should firstly appoint fit and proper directors,
+having followed a sound due-diligence process. Once it has established
+such properly skilled and competent boards, however, government should
+adopt an arm's-length approach to the affairs of the SOCs as a way of
+insulating these corporations from political interference.
+Keywords
+State-owned companies; corporate governance; deficiencies; South
+Africa; SAA; SABC; Eskom
+................................................................
+Pathological Corporate Governance Deficiencies
+in South Africa's State-Owned Companies:
+A Critical Reflection
+T Thabane and E Snyman-Van Deventer*
+Pioneer in peer-reviewed,
+open access online law publications
+Authors
+Tebello Thabane
+Elizabeth Snyman van Deventer
+Affiliation
+University of Cape Town
+University of the Free State
+South Africa
+Email
+Tebello.thabane@uct.ac.za
+snymane@ufs.ac.za
+Date of submission
+2 May 2017
+Date published
+8 January 2018
+Editor Prof O Fuo
+How to cite this article
+Thabane T and Snyman-Van
+Deventer E "Pathological
+Corporate Governance
+Deficiencies in South Africa's
+State-Owned Companies: A Critical
+Reflection" PER / PELJ 2018(21) -
+DOI
+http://dx.doi.org/10.17159/1727-
+3781/2018/v21i0a2345
+Copyright
+DOI
+http://dx.doi.org/10.17159/1727-
+3781/2018/v21i0a2345
+Electronic copy available at: https://ssrn.com/abstract=3122230
+T THABANE & E SNYMAN VAN DEVENTER PER / PELJ 2018 (21) 2
+1 Introduction
+In 2014, the office of the South African Public Protector in a published report
+found developments at the South African Broadcasting Corporation
+(SABC), a state-owned company, to be "symptomatic of pathological
+corporate governance deficiencies".1 In addition, the Public Protector found
+that the SABC board had failed "to provide strategic oversight to the national
+broadcaster as provided for in the SABC Board Charter and King III
+Report".2
+Of course, failure of corporate governance is in no way unique to the SABC.
+Within the South African context, other examples where failed corporate
+governance has led to reduced shareholder value or even the total collapse
+of companies include Masterbond, CNA, Unifer, Tollgate and Leisurenet.3
+This contribution, however, will focus specifically on corporate governance
+at the country's state-owned companies (SOCs), for a few reasons. Firstly,
+SOCs play a significant part in the growth, development and stability of the
+South African economy, with key SOCs being the Development Bank of
+Southern Africa, South African Airways (SAA), Eskom, Telkom and
+Transnet.4 Secondly, good corporate governance in SOCs also serves to
+incentivise other companies to embrace corporate governance principles,
+which may ultimately see an improvement in the country's global market
+power and ability to attract foreign investment.5 Thirdly, SOCs generally
+provide basic services to society, which means that in most instances the
+* Tebello Thabane. BA Law LLB (Lesotho) LLM (Pretoria) LLM (Free State). Lecturer
+in Commercial Law, University of Cape Town, PhD Candidate (UCT), South Africa.
+Email: tebello.thabane@uct.ac.za.
+** Elizabeth Snyman-Van Deventer. BIuris LLB LLM LLM LLD (Free State). Professor
+in Mercantile Law, University of the Free State, South Africa. Email:
+snymane@ufs.ac.za.
+1 Office of the Public Protector 2014 http://www.pprotect.org/sites/default/files/
+Legislation_report/SABC%20FINAL%20REPORT%2017%20FEBRUARY%202014
+.pdf 20.
+2 Office of the Public Protector 2014 http://www.pprotect.org/sites/default/files/
+Legislation_report/SABC%20FINAL%20REPORT%2017%20FEBRUARY%202014
+.pdf 21.
+3 Ahunwan Globalisation and Corporate Governance 13; Nancy et al Enron and other
+Corporate Fiascos.
+4 Others include Denel, Airports Company South Africa, the Public Investment
+Corporation, the Government Employees Medical Scheme, the Government
+Employees Pension Fund and the SA Post Office.
+5 Makuta 2009 Malawi LJ 55, 60.
+Electronic copy available at: https://ssrn.com/abstract=3122230

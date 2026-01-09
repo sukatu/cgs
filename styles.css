@@ -623,11 +623,17 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
 }
 
 .update-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-hover);
+}
+
+.update-card:active {
+    transform: translateY(-2px);
 }
 
 .update-content {
@@ -664,6 +670,9 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     gap: 0.5rem;
     transition: color 0.3s ease;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
 }
 
 .update-link:hover {

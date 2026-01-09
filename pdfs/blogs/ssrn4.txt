@@ -1,0 +1,216 @@
+
+71
+
+Automatic Zoom
+Electronic copy available at: http://ssrn.com/abstract=2658166Public and Municipal Finance, Volume 1, Issue 2, 2012
+71
+Olusegun Gabriel Adegbite (Scotland)
+Corporate governance developments in Ghana: the past,
+the present and the future
+Abstract
+Corporate governance has received a lot of attention after the 2008 global credit crunch that culminated into bank fail-
+ures and worldwide economic crises. In many developing countries, disclosures and the compliance with the corporate
+governance codes of best practices existing in such countries have become necessary due to ever increasing foreign
+investors who rely upon the financial reports of companies in those countries before having huge economic and finan-
+cial investments in them.
+In the case of Ghana, following the enactments of the 2002 corporate governance code by the SEC, many codes of best
+practices have emanated while there have been calls for a single code by various regulators and stakeholders. While
+full compliance with the codes and its enforcement by the SEC is being canvassed for, corruption which has persisted
+and continues to grow has been single out as the major bane within the Ghanaian system. This paper, however, contri-
+butes to a body of knowledge and existing literatures while giving a lucid picture as to the corporate governance devel-
+opments in Ghana in the past, the present and the future. It discusses the issue of compliance with the codes of best
+practices and the challenges being faced in a developing economy such as Ghana. It argues that while the socio-cultural
+problem of corruption persists, it is onerous on the government to fight through good governance, effective legal sys-
+tem, proper enforcement by the regulators and citizenship enlighten.
+Keywords: corporate governance, developments, Ghana, past, present, future.
+JEL Classification: G21, G34.
+Introduction
+Corporate Governance systems have evolved over
+centuries, often in response to corporate failures or
+systemic crises. The first well-documented failure
+of governance was the South Sea bubble 1 in the
+1700s, which revolutionized business law and
+practices in England. Similarly, much of the securi-
+ties laws in the US were put in place following the
+stock market crash of 1929 (Borgia, 2005). How-
+ever, the subject of corporate governance in many
+ Olusegun Gabriel Adegbite, 2012.
+1 Popular name in England for the speculation in the South Sea Corpora-
+tion, which failed disastrously in 1720. The corporation was formed in
+1711 by Robert Harley, who needed allies to carry through peace negoti-
+ations to end the War of the Spanish Succession. Holders of ȳ9 million
+worth of government bonds were allowed to exchange their bonds for
+stock (with 6% interest) in the new corporation, which was given a
+monopoly of British trade with the islands of the South Seas and South
+America. The monopoly was based on the expectation of securing
+extensive trading concessions from Spain in the peace treaty. These
+concessions barely materialized, however, so that the corporation had a
+very shaky commercial basis. Nonetheless, it was active financially, and
+in 1720 it proposed that it should assume responsibility for the entire
+national debt, again offering its own stock in exchange for government
+bonds, a transaction on which it expected to make a considerable profit.
+The government accepted this proposal, and the result was an incredible
+wave of speculation, which drove the price of the corporation’s stock
+from ȳ1281/2 in January 1720, to ȳ1000 in August. Many dishonest and
+imprudent speculative ventures sprang up in imitation. In September
+1720, the bubble bust. Banks failed when they could not collect loans on
+inflated stock, prices of stock fell, thousands were ruined (including
+many members of the government), and fraud in the South Sea Corpora-
+tion was exposed. Robert Walpole became first lord of the treasury and
+Chancellor of the Exchequer and started a series of measures to restore
+the credit of the corporation and to reorganize it. The busting of the
+bubble, which coincided with the similar collapse of the Mississippi
+Scheme in France, ended the prevalent belief that prosperity could be
+achieved through unlimited expansion of credit. Legislation was enacted
+that forbade unincorporated joint stock enterprise (Borgia, 2005).
+other developed markets in the late 1900’s received
+serious attention after some corporate and business
+collapses such as Parmalat and Enron cases which
+are attributed to poor governance practices. This
+development was accelerated with the onset of the
+Asian crisis in mid-1997 and the early 2000 glob-
+al financial crisis that started out in the US hous-
+ing market, causing global economic contagion
+(Ghana SEC, 2002).
+Interestingly, corporate governance in the develop-
+ing economies also received a lot of attention within
+the last decade (Oman, 2001; Goswami, 2001; Lin,
+2001; Malherbe and Segal, 2001). Corporate gover-
+nance developments in Ghana has however taken an
+interesting dimension with the introduction of 2002
+Code of best practices by SEC; as well as many
+other guidelines by all other agencies.
+While the subject has taken on international dimen-
+sions, due to the globalization of the economies and
+the financial investment markets, many multilateral
+agencies has continued to encourage governments,
+regulators and organizations to examine the subject
+closely and to take proactive steps to introduce and
+implement proper corporate governance procedures.
+Thus, many of these agencies either individually or
+collectively issued codes containing the general
+principles upon which acceptable corporate gover-
+nance frameworks should be based. Notably
+amongst these are the codes and principles issued by
+organizations such as the Organization for Econom-
+ic Co-operation and Development and the Com-
+monwealth Association for Corporate Governance
+(Ghana SEC, 2002).
+Electronic copy available at: https://ssrn.com/abstract=2658166
+Electronic copy available at: http://ssrn.com/abstract=2658166Public and Municipal Finance, Volume 1, Issue 2, 2012
+72
+1. What is corporate governance?
+A shared definition of corporate governance which
+is both valuable and consistent has not been easy to
+find (Borga, 2005), because every economy and
+country has different systems of corporate gover-
+nance that differ to each other in accordance to the
+strength, power and influence being exercised by
+their various stakeholders and management. Fur-
+thermore, different socio-economic, legal, political
+and cultural systems existing in each country do
+have relevant influences on corporate governance
+(Okike, 2007). That is why the use of the clause:
+there is “no one size fit all” approach in corporate
+governance is prevalently being used. Nevertheless,
+the objectives of corporate governance share com-
+mon denominator worldwide.
+However, few definitions from various bodies shall
+be considered in this piece.
+The Ghanaian Securities and Exchange Commission
+defined corporate governance in 2002 as “the man-
+ner in which corporate bodies are managed and
+operated”.
+The Organization for Economic Co-operation and
+Development (OECD)1 however defines it (corpo-
+rate governance) as a set of relationships governing
+the various members of a corporation. It is further
+defined by the OECD (1999) as the system by which
+business corporations are directed and controlled.
+It specifies the distribution rights and responsibili-
+ties among different participants in a corporation,
+such as: the board, managers, shareholders and
+other stakeholders while spelling out the rules and
+procedure for making decisions on corporate af-
+fairs. By doing this, it provides the structure through
+which the objectives are set and the means of attain-
+ing those objectives and performances monitoring.
+1 Pursuant to Article 1 of the Convention signed in Paris on December
+14, 1960, and which came into force on September 30, 1961, the Organ-
+ization for Economic Co-operation and Development (OECD) shall
+promote policies designed: (1) to achieve the highest sustainable eco-
+nomic growth and employment and a rising standard of living in member
+countries, while maintaining financial stability, and thus to contribute to
+the development of the world economy; (2) to contribute to sound
+economic expansion in member as well as non-member countries in the
+process of economic development; and (3) to contribute to the expan-
+sion of world trade on a multilateral, non-discriminatory basis in accor-
+dance with international obligations, OECD (2004).
+The original member countries of the OECD are Austria, Belgium,
+Canada, Denmark, France, Germany, Greece, Iceland, Ireland, Italy,
+Luxembourg, the Netherlands, Norway, Portugal, Spain, Sweden,
+Switzerland, Turkey, the United Kingdom and the United States. The
+following countries became members subsequently through accession at
+the dates indicated hereafter: Japan (April 28, 1964), Finland (January
+28, 1969), Australia (June 7, 1971), New Zealand (May 29, 1973),
+Mexico (May 18, 1994), the Czech Republic (December 21, 1995),
+Hungary (May 7, 1996), Poland (November 22, 1996), Korea (Decem-
+ber 12, 1996) and the Slovak Republic (December 14, 2000). The
+Commission of the European Communities takes part in the work of the
+OECD (Article 13 of the OECD Convention).
+2. Corporate governance developments (the past)
+The corporate governance developments and disclo-
+sures in any country are often shaped by a wide
+array of internal as well as external factors (Okike,
+2007). Accordingly, the internal factors include the
+state of the economy and the capital market, corpo-
+rate and business culture, the legal system, govern-
+ment policies, professional/regulatory bodies, amongst
+others while the external factors (such as the old
+colonial ties, membership of international account-
+ing standard committee, direct foreign investment
+activities of multinationals such as foreign banks
+and companies) contribute considerably, if not total-
+ly, to the complex reality of corporate governance
+development in any developing country. The im-
+pact of these factors and the differences in the sys-
+tem operating within each country are well docu-
+mented in the accounting and corporate governance
+literatures (see Rose and Meyer, 2003; Okike, 2007
+amongst others).
+Traces of the corporate governance root in Ghana
+can be traced to its companies’ laws right from the
+colonial days. The regulation, control and gover-
+nance of business enterprises in Ghana as of
+present, are largely contained within the provisions
+of the company legislation which has its root in
+Ghana’s colonial past. Like most other former Brit-
+ish colonies, Ghana inherited, at independence,
+many rules and regulations left behind by the co-
+lonial government. During the colonial period, Brit-
+ish company legislation was introduced into the
+country; hence Ghana’s legal system and corporate
+governance practices mirrored the UK pattern
+(Okike, 2007).
+Prior to the independence, foreigners, mostly Brit-
+ish, controlled the activities of business enterprises
+in many of their old colonies and thus bring along
+with them their economic interest and their (British)
+legislation. In brief, the Ghanaian Companies Code,
+1963 (Act 179) is based largely on the English
+Companies Act of 1948 (Adda and Hinson, 2006).
+Although the Code has seen no major changes since
+the enactment and many attempts at revising it have
+mainly been mere editorial changes, these historical
+analysis, therefore, confirms and suggest that the
+Ghanaian system of corporate governance is essen-
+tially an “Anglo-Saxon”, or the “outsider control
+system” (Franks and Meyer, 1994), and is a reflec-
+tion of its colonial heritage (Okike, 2007).
+Ghana SEC (2002) identified some common ele-
+ments that underlie good corporate governance upon
+which further evolution and developments in gover-
+nance structures are built upon today. They are: (1)
+the rights of shareholders; (2) the equitable treat-
+ment of shareholders; (3) the roles of stakeholders;
+Electronic copy available at: https://ssrn.com/abstract=2658166

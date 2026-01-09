@@ -1,0 +1,489 @@
+
+3
+
+Automatic Zoom
+Electronic copy available at: https://ssrn.com/abstract=2858144_____________________________________________________________________________________________________
+*Corresponding author: E-mail: isukula@yahoo.com;
+Asian Journal of Economics, Business and
+Accounting
+1(3): 1-15, 2016; Article no.AJEBA.29335
+SCIENCEDOMAIN international
+www.sciencedomain.org
+A Comparative Analysis of Corporate Governance
+Disclosure in Nigerian and South African Banks
+Araniyar C. Isukul1* and John J. Chizea1
+1Department of Banking and Finance, Rivers State University of Science and Technology, Npkolu,
+P.M.B. 5080, Port Harcourt, Rivers State, Nigeria.
+2Department of Economics, Baze University, Plot 686 Cadastral Zone, Abuja, Nigeria.
+Authors’ contributions
+This work was carried out in collaboration between both authors. Author ACI designed the research
+study, wrote the literature review and the first draft of the manuscript. Author JJC managed the
+literature searches, analyses and interpretation of the results of the research. Both authors read and
+approved the final manuscript.
+Article Information
+DOI: 10.9734/AJEBA/2016/29335
+Editor(s):
+(1) Chan Sok Gee, Department of Finance and Banking, University of Malaya, 50603 Kuala Lumpur, Malaysia.
+Reviewers:
+(1) Haslindar Ibrahim, University of Science, Malaysia.
+(2) Jan-Erik Lane, Public Policy Institute in Belgrade, Serbia.
+Complete Peer review History: http://www.sciencedomain.org/review-history/16916
+Received 4th September 2016
+Accepted 8th November 2016
+Published 14th November 2016
+ABSTRACT
+This research examines corporate governance disclosure in Nigerian and South African Banks
+using the un-weighted disclosure index technique. This research provides a cross sectional
+examination of corporate governance disclosure practices in the annual reports of 10 listed banks
+in Nigeria and South Africa for the year 2013. The results suggest that Nigerian and South African
+banks have a high level corporate governance disclosure. However, Nigeria and South African
+banks have low levels of voluntary corporate governance disclosure. Furthermore, in reporting of
+voluntary corporate governance disclosure, Nigerian banks appear to be collating information with
+no link to the overall business strategy of the organization while the South African banks have a
+more robust approach to voluntary corporate governance disclosure as they apply international
+guidelines such as the global reporting initiative in reporting voluntary corporate governance
+disclosure.
+Data Article
+Electronic copy available at: https://ssrn.com/abstract=2858144
+Electronic copy available at: https://ssrn.com/abstract=2858144Isukul and Chizea; AJEBA, 1(3): 1-15, 2016; Article no.AJEBA.29335
+2
+Keywords: Corporate governance disclosure; developing countries; agency theory; corporate social
+responsibility.
+1. INTRODUCTION
+Corporate governance disclosure is crucial for
+the functioning of an effective and efficient
+financial market [1,2]. The timeliness, adequacy
+and availability of appropriate information about
+financial and market securities are critical for
+both market confidence and pricing efficiency [2].
+For investors to make critical decision and sound
+judgements on the value of market securities,
+they need to be well informed of the relevant
+facts [3]. Information disclosure is considered an
+important element that is needed for the effective
+operation of financial and security markets.
+Presently, regulators are increasingly disturbed
+about the quality of both financial and non-
+financial information disclosure of firms in both
+developed and developing countries [4].
+There is an enormous disparity in the volume of
+corporate governance disclosure research in
+countries with developed capital markets when
+compared to countries with less developed
+capital markets. In countries with developed
+capital market and effective legal/regulatory
+frameworks, a significant amount of research on
+corporate governance disclosure has been
+executed [5]. Unfortunately, this is not the case
+with countries with less developed markets. In
+less developed countries, there is a paucity of
+research on corporate governance disclosure; in
+all sincerity, this should not be so [6,7,8]. In
+comparison with corporate governance
+disclosure in developed countries; in developing
+countries, there are generally lower disclosure
+standards, weaker regulatory and legal systems
+as well as limited enforcement capacity [9,10];
+there is significant state ownership or holding of
+many private business corporations in
+developing countries [11] and board
+effectiveness and independence tends to be
+weak and ineffective [12].
+From the onset, the intention of this research
+was to select the some of the best banks in
+Africa to examine their corporate governance
+disclosure practices, as larger banks are known
+to have better disclosure practices than smaller
+banks, since corporate governance disclosure
+tends to generate considerable costs to firms.
+More importantly, the research intends to
+examine the current state of corporate
+governance disclosure practices in Nigerian and
+South Africa so as to understand and inform on
+the nature, focus and extent of corporate
+governance disclosure in Nigerian and South
+African banking industry. This will inform to what
+extent corporate governance disclosure in
+Nigerian and South African banks are similar and
+different, and if there are differences, what
+exactly are the differences. The research
+questions this paper intends to address is to
+what extent do Nigerian and South African banks
+disclose corporate governance information in
+their annual report, is there any difference in the
+level of corporate governance information
+disclosed in their annual reports between these
+two countries? Secondly, do they disclose more
+corporate governance information than existing
+regulations require? This paper intends to
+contribute to the burgeoning research on
+corporate governance disclosure in developing
+countries with particular emphasis on South
+African and Nigerian Banks.
+2. AGENCY THEORY
+In corporate governance research, agency theory
+has been used to investigate corporate
+governance disclosure [13,14,2]. The basic
+assumption about of the agency theory is that
+managers (agents) and the owners (principals)
+interest are not aligned [15]. The managers or
+directors are more interested in maximizing their
+own wealth, power and prestige while
+safeguarding their reputation; on the other hand
+shareholders are more inclined to maximize the
+value of their shares and asset holdings [16].
+This divergence in the alignment of interest has
+been the cause of severe tension between
+agents and principals. [17] posit that these
+divergences of interest could sometimes lead to
+what they call ‘agency loss.’ Agency loss may
+occur when the returns to the residual claimants
+(the owners) falls short or below what they would
+be if the principals, the owners exercise direct
+control of the corporation [18].
+According to the agency theory, in a bid to
+address these tensions and resolve the
+differences, the principals have developed a
+number of policy incentives that seek to align the
+interest of agents alongside theirs [19]. Some of
+the policy prescriptions include: Incentive
+schemes for managers which recompense them
+monetarily for enhancing shareholders interest.
+These schemes constitute plans allowing senior
+executives to obtain shares of the company
+Electronic copy available at: https://ssrn.com/abstract=2858144
+Isukul and Chizea; AJEBA, 1(3): 1-15, 2016; Article no.AJEBA.29335
+3
+usually at a reduced price, consequently aligning
+financial interest of executives with those of
+shareholders [15]. Apparently, transparency in
+the form of increased corporate governance
+disclosure is considered an important instrument
+for aligning management and shareholders
+interest [2]. Also, it serves as a means of
+mitigating the information asymmetry that exist
+between management and shareholders.
+3. CORPORATE GOVERNANCE IN
+DEVELOPING COUNTRIES
+Developing countries, in particular, have been
+warned of the consequences of adopting poor
+corporate governance practices that may cause
+the shares of businesses to be sold for billions of
+dollars less than they ought to if their firms had
+put in place good corporate governance
+practices and policies [20]. The model of
+corporate governance in developing countries
+has embraced both market based and insider
+approaches to corporate governance [21].
+Privatization of government owned business
+enterprises is one example of market based
+corporate governance practices [12]. Of recent,
+the increasing trend of privatization mantra has
+followed decades of state ownership and control
+of business enterprises [22]; a common
+characteristic of most developing countries in
+Africa. After the period of independence, state
+ownership was done more as a sign of national
+pride and sovereignty rather than any practical
+economic considerations [23]. With the un-
+sustainability of most state owned enterprises by
+developing countries in Africa, most African
+countries have carried out far reaching economic
+reforms that has focused on privatizing most
+government run state enterprises [24]. The role
+of government in these countries has been
+redefined to focus on creating and providing the
+necessary infrastructure, enabling environment
+and regulatory framework for corporate
+governance firms and business enterprises to
+thrive [25].
+Also, a common feature of corporate governance
+in developing countries is the inclination towards
+an insider approach, with a prevalence of family
+owned, closely guarded business enterprises
+and the problems and issues that arise with
+family oriented business structures [25]. The
+board executives of most of these businesses
+are filled with family members and close friends,
+often times, none of them are qualified for
+sensitive positions they occupy [26]. In a
+business environment such as this, the
+executives are more inclined to further their own
+personal interest to the detriment of other critical
+stakeholders and shareholders [27]. As a means
+of checking the excesses of board members,
+independent directors have been advocated as a
+panacea to curb the improper executive action
+[28]. However, in developing countries this is not
+the case, as the business community can
+regarded as quite small and also there is an
+interlocking of personal and financial interests
+[9]. In such developing countries, independence
+directors are more likely to be rubber stamp, they
+are incapable of acting as effective checks
+against executive excesses [29]. The weak
+nature of financial and capital market
+infrastructure and poor legal enforcement
+mechanisms implies that shareholder protection;
+especially minority shareholders and property
+rights of individual and corporations are not
+effectively protected [30,21].
+3.1 Corporate Governance in Nigeria and
+South Africa
+In Nigeria, corporate governance practices and
+conduct has been characterized by endemic
+corruption, poor transparency and disclosure
+practices as well as significant political
+interferences in corporate governance activities,
+consequently distorting and undermining
+corporate governance development [10,22,12]. In
+recent times, ongoing corporate governance
+reforms have been initiated to improve corporate
+governance practices in Nigeria. Some of these
+reforms include: 2003 Code of Conduct for
+Corporate Governance, the 2006 mandatory
+Code of Conduct for Nigerian Banks
+post consolidation, the 2007 Code of Conduct
+for Shareholders Association in Nigeria,
+consolidation of Nigerian banks and the increase
+in the minimum of capital base were all policy
+reforms intended to strengthen corporate
+governance practices in the state. These
+measures were taken to prevent a repeat of the
+incident that occurred recently, when several
+banks were bailed out by the central bank of
+Nigeria for inability to perform their banking
+obligations as result of financial failure,
+fraudulent activities by bank managers and
+questionable business practices [31].
+The story is South Africa is not entirely different.
+Amongst emerging countries in the world, South
+Africa stands out as a very interesting case in
+which to examine how specific corporate
+governance reforms have emerged or unfolded
+[32]. [33] Identify a number of government
+Electronic copy available at: https://ssrn.com/abstract=2858144
+Isukul and Chizea; AJEBA, 1(3): 1-15, 2016; Article no.AJEBA.29335
+4
+legislations that have been designed to influence
+and strengthen corporate governance in South
+Africa: The Companies Act, the Insider Trading
+Act, the Public Finance Management Act and the
+Securities Services Act. In addition, South Africa
+initiated the publication of corporate governance
+guidelines and codes of practice with the King
+Report I, King Report II, and King Report III
+instigating an unprecedented global interest in
+corporate governance in Africa. In spite of
+several comprehensive legislations corporate
+governance reforms, South Africa has been
+affected by major corporate governance failures
+in recent years. The collapse of corporations
+such as Macmed, Regal Treasury Bank and
+Leisurenet are particularly significant [34]. In an
+effort to reform and address peculiar corporate
+governance problems in South Africa, [33]
+recommend that the following issues need to be
+resolved: intentional regulatory and bureaucratic
+strangling of small and medium scale business
+enterprise, addressing the problem of a weak,
+incompetent and ineffective board structure and
+also the issue of independence of board.
+3.2 Research on Corporate Governance
+Disclosure
+Corporate governance disclosure practices do
+not and cannot develop in a vacuum, [35]
+maintain that the levels of corporate governance
+disclosure tend to reflect the underlying
+institutional and environmental influences that
+affects managers and business firms in different
+countries. There are a variety of environmental
+factors that influence disclosure practices by
+companies, they have been identified [36], and
+these factors include regulatory framework,
+capital markets, economy, enforcement
+mechanisms and culture all form part of
+environmental influences [37,3]. Most research
+on corporate governance disclosure has focused
+on disclosure issues of developing countries and
+have been researched from an agency theory
+perspective [38,13]. Again, agency theory
+perspective has used transparency as a tool and
+mechanism for aligning the interest shareholders
+and management. The influence of corporate
+governance disclosure has been examined at the
+level of country [39] and also at the level of the
+firm [40]. The extant research predicts that
+the governance variables likely to influence
+corporate governance disclosure can be
+classified into two categories: External
+governance mechanism in the form of political
+institutions, legal system and freedom of the
+press for the country-level studies [30,20]; and
+internal governance mechanisms that involve
+regulatory oversight, ownership concentration,
+share ownership by directors and managers,
+organizational structure of the corporation, and
+costs of voluntary corporate governance
+disclosure [41]. [42] examined corporate
+governance disclosure in eight Canadian banks;
+they categorized corporate governance
+disclosure of the banks into the following
+categories: Board structure and directors’ profile,
+financial information and corporate information,
+board independence and board committee,
+corporate social responsibility disclosure,
+information on website and remuneration of
+board. They find that larger banks disclose more
+information than small banks, the smaller banks
+had less information on their websites. Also,
+information on board structure and directors
+profile was scanty and remuneration of board of
+small banks was not as detailed as the larger
+banks. The percentage scores for disclosure on
+larger banks ranged between 96% to 91%. For
+smaller banks, percentage scores ranged from
+88% to 80%.
+In developing countries, research on corporate
+governance disclosure are few and have focused
+on some of the following issues: overall levels
+of disclosure using disclosure index extracted
+from corporate governance literature, levels of
+compliance with international standards and
+domestic regulation, institutional factors that
+hinder, constrain and hamper corporate
+governance disclosure [43,29]. In general, the
+research on corporate governance disclosure for
+many developing countries reveals a low or
+minimal level of disclosure [44].
+Samaha et al. [11] assessed corporate
+governance disclosure of Egyptian firms listed on
+the Egyptian Stock Exchange (ESA) and they
+find that the level of corporate governance
+disclosure by Egyptian firms to be minimal,
+however they also find that levels of disclosure of
+corporate governance are high for items that are
+considered mandatory under the Egyptian
+Accounting Standard. They conclude that the
+levels of corporate governance disclosure are
+lower for companies with duality position and
+levels of corporate governance disclosure
+increases with the number of independent
+directors on the board. [43] investigates the
+extent to which Ghanaian firms comply with
+international accounting standards and also the
+levels of corporate governance disclosure. The
+findings of the research reveal that most of the
+firms listed in the Ghana stock exchange did not
+Electronic copy available at: https://ssrn.com/abstract=2858144
+Isukul and Chizea; AJEBA, 1(3): 1-15, 2016; Article no.AJEBA.29335
+5
+overwhelmingly comply with international
+accounting standard disclosure requirements.
+The pioneering research on corporate
+governance disclosure in Nigeria was done by
+[37] he found that most of the companies in the
+study a low level of corporate governance
+disclosure with respect to balance sheet,
+valuation method and historical items. However,
+the companies did not adequately comply with
+the disclosure requirements and also the levels
+of corporate governance disclosure was poor, an
+estimated 43.11%. A similar study on corporate
+governance disclosure in South Africa was done
+by [45] who did a comparative analysis of
+corporate governance disclosure in South Africa
+and the United Kingdom. For South African, the
+study revealed low levels of disclosure for listed
+South Africa firms and this was found to be
+common with other studies done on corporate
+governance disclosure in developing countries.
+Although the findings are not encouraging, they
+are consistent with [44,22] and who found similar
+results with companies in other developing
+countries.
+3.3 Characteristics of the Banking Sector
+in Nigeria and South Africa
+Prior to the banking consolidation reforms in
+2004, there were a total of 89 in Nigeria with a
+total of 3200 deposit money banks (DMB) and
+total employment in the sector has gone up from
+about 55,000 before reforms to over 77,519
+currently [46]. The banking consolidation
+exercise by the Central Bank of Nigeria has
+demanded that all deposit banks increase their
+minimum capital base from US $15 million to US
+$200 million by December, 2005. Banks that
+failed to meet these new requirements were
+expected to merge for failing to do so, and those
+who failed to meet the new minimum capital base
+requirements would have their license revoked.
+According to [47] some of the constructive
+reforms that have been put in place include:
+recapitalization of banks to 25 billion naira
+shareholder fund, zero tolerance of misreporting
+and infractions, stricter enforcement of corporate
+governance principles, stringent application of
+the contingency planning framework for systemic
+distress, closer collaboration with the Economic
+and Financial Crimes Commission (EFCC) in the
+establishment of Financial Intelligence Unit (FIU)
+and enforcement of the anti-money laundering
+measures and currency reforms. In actual fact,
+these institutional reforms were constructed to
+prevent the emergence of a banking crisis that
+could result from inherently weak banks
+characterized by persistent under capitalization,
+high levels of non-performing loans, illiquidity,
+insolvency, and poor corporate governance
+practices [48].
+As of December 2013, the Nigerian Banking
+Industry is comprised of 20 domestic banks and
+4 foreign banks. The six tier-one banks (Zenith
+Bank, United Bank for Africa, Access Bank, First
+Bank, Equatorial Trust Bank, and Guarantee
+Trust Bank) account for 70% of the industry’s’
+total assets of $136 billion as at December 2012.
+The other banks (18 in number) hold less than
+35% of total assets. For that reason, it should not
+come as a surprise that research on the Nigerian
+banking industry focuses on the 5 leading banks.
+According to the Central Bank of Nigeria (CBN),
+Nigerian banks operate through an extensive
+network that includes over 5,585 DMBs and
+close to 12,755 automated banking machines
+(ABMs) across the country. In total these
+financial institutions have over 136 billion dollars
+in assets, which represent a 300.5% increase in
+assets within seven year of the banking
+consolidation [48].
+In comparison, South African banks appears to
+have a better developed and more robust
+banking infrastructure than Nigerian Banks, they
+have a have large sophisticated financial
+structure and a highly competitive banking
+industry which is dominated by both local and
+foreign banks. The total financial sector asset
+is estimated 298 percent of GDP and it exceeds
+those of most developing economies.
+Commercial banks assets alone are an
+estimated 112 percent of GDP, while the
+insurance sector gross asset is 67 percent of
+GDP. The South African Reserve Bank (SARB)
+maintain that total banking sector asset recorded,
+on the average, an annual growth rate of 7.2
+percent during a three year period (2011-2014)
+and reaching US $362 billion by December of
+2014. On the whole, Southern African banks are
+well capitalized, and more often than not have
+lower non-performing loan ratios in comparison
+to the other developing countries.
+In South Africa, there are 31 registered banks,
+this comprises of 17 South African Banks, 14
+foreign banks, and 3 mutual banks. Also, 41
+international banks have authorized
+representative offices in South Africa; however,
+these representative offices do not collect
+financial deposits. Five major commercial banks
+continue to dominate the South African banking
+Electronic copy available at: https://ssrn.com/abstract=2858144

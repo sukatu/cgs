@@ -1,0 +1,162 @@
+
+14
+
+Automatic Zoom
+Electronic copy available at: http://ssrn.com/abstract=1665083
+1
+Working Paper
+August 2010
+CORPORATE GOVERNANCE IN TRANSITION AND DEVELOPING
+ECONOMIES: A CASE STUDY OF GHANA∗∗∗∗
+Robert W. McGee
+Florida International University
+ABSTRACT
+The World Bank has published a series of reports on corporate governance as part of its project
+on the Reports on the Observance of Standards and Codes (ROSC). The corporate governance
+principles in its ROSC Reports are benchmarked against the OECD’s Principles of Corporate
+Governance (OECD 2004). The main categories of principles are discussed below. This study
+focuses on the main corporate governance attributes of Ghana. The paper concludes with an
+extensive bibliography.
+INTRODUCTION
+Corporate governance issues are especially important in transition economies, since these
+countries do not have the long-established financial institution infrastructure to deal with
+corporate governance issues. Before the fall of the Berlin Wall and the collapse of the Soviet
+Union, there was no need to discuss corporate governance issues because all enterprises were
+owned by the state and there were no shareholders. All that has changed since 1989. This study
+discusses in general how transition economies are dealing with corporate governance issues and
+the extra obstacles they have to overcome due to a lack of established financial institution
+infrastructure, then focuses on the main corporate governance issues in a particular country.
+Corporate governance has become an important topic in transition economies in recent
+years. Directors, owners and corporate managers have started to realize that there are benefits
+that can accrue from having a good corporate governance structure. Good corporate governance
+∗ A different version of this study appeared in Robert W. McGee (ed.), Corporate Governance in Developing
+Economies: Case Studies of Africa, Asia and Latin America, New York: Springer, 2009.
+Electronic copy available at: https://ssrn.com/abstract=1665083
+13
+V The Responsibility of the Board
+A Board members should act on a fully informed
+basis, in good faith, with due diligence and
+care, and in the best interests of the company
+and the shareholders.
+X
+B The board should treat all shareholders fairly. X
+C The board should ensure compliance with
+applicable law and take into account the
+interests of stakeholders.
+X
+D The board should fulfill certain board
+functions.
+X
+E The board should be able to exercise objective
+judgment on corporate affairs independent
+from management.
+X
+F Board members should have access to
+accurate, relevant and timely information.
+X
+Table 2 shows the scores for each subcategory. The weighted-average score was 3.04.
+Table 2
+Corporate Governance Scores
+Category
+Total
+Points
+# of
+Items Average
+Rights of Shareholders 17 6 2.83
+Equitable Treatment of Shareholders 8 3 2.67
+Role of Stakeholders in Corporate Governance 15 4 3.75
+Disclosure and Transparency 12 4 3.00
+The Responsibility of the Board 18 6 3.00
+Overall Average 3.04
+The graph below shows the relative scores. The best score was in the category of Role. The
+scores for the other categories were about the same, ranging from 2.67 to 3.00.
+Electronic copy available at: https://ssrn.com/abstract=1665083
+14
+Corporate Governance Scores - Ghana
+2.83 2.67
+3.75
+3 3
+0
+1
+2
+3
+4
+5
+Rights Treatment Role D&T Board
+RECOMMENDATIONS
+The ROSC Report made several recommendations. They centered on the following broad areas:
+• Overhaul the institutional framework,
+• Continue the legislative review and modernization,
+• Increase awareness of corporate governance issues.
+The Securities and Exchange Commission (SEC) needs to be strengthened in order to become
+compliant with IOSCO requirements. It should have a separate enforcement department to focus on the
+SEC monitoring efforts. SEC personnel need more training. There needs to be more transparency.
+Speedier dispute resolution is needed in the High Court and that process has started. However, its
+expertise and specialization need to be addressed. There is a new Commercial Court but it needs to
+demonstrate improvement in functioning. More training and resources are needed and there should be
+monitoring for quality. Private arbitration should be co0nsidered as an alternative to the official dispute
+resolution mechanism.
+A central registry system needs to be developed for equities. The SEC should assert jurisdiction
+over the registry system. A clearance system for brokers would accelerate the processing of share trades.
+The governance of state owned enterprises (SOE) needs to be improved. The capital markets laws
+are being reformed and the ROSC urged the continuation of the reforms. The Companies Code needs to
+be updated in order to be harmonized with SEC regulations. There are two codes on mergers and they
+need to be harmonized.
+The board representation and nomination process needs to be improved. Related party
+transactions need to be regulated or prohibited based on international best practices. Disclosure rules for
+beneficial ownership need to be adopted. There is a regulatory vacuum in some areas.
+Ghana should promote director and executive training. There should be increased awareness and
+more institutional investor activism.
+BIBLIOGRAPHY
+Accounting Principles Board. 1970. Basic Concepts and Accounting Principles Underlying
+Financial Statements of Business Enterprises – Statement No. 4. New York: American
+Institute of Certified Public Accountants.
+Anonymous. 2001a. Minority What? Economist, February 24, 2001, 358(8210), 72.
+Electronic copy available at: https://ssrn.com/abstract=1665083
+15
+Anonymous, (December 2000/January 2001). S&P Devises Scoring System for Corporate
+Governance Risk. Central European, December 2000/January 2001, 10(10), 20-21.
+Ashton, Robert H., Paul R. Graul & James D. Newton. 1989. Audit Delay and the Timeliness of
+Corporate Reporting. Contemporary Accounting Research 5(2): 657-673.
+Atiase, Rowland K., Linda S. Bamber & Senyo Tse. 1989. Timeliness of Financial Reporting,
+the Firm Size Effect, and Stock Price Reactions to Annual Earnings Announcements.
+Contemporary Accounting Research 5(2): 526-552.
+Basu, Sudipta. 1997. The Conservatism Principle and the Asymmetric Timeliness of Earnings.
+Journal of Accounting & Economics 24: 3-37.
+Black, Bernard. 2000. Does Corporate Governance Matter? A Crude Test Using Russian Data.
+University of Pennsylvania Law Review, June, 149(6), 2131-2150.
+British Accounting Association Corporate Governance Special Interest Group website
+http://www.baacgsig.qub.ac.uk/
+Buck, T. 2003. Modern Russian Corporate Governance: Convergent Forces or Product of
+Russia’s History? Journal of World Business, 38(4), 299-313.
+Cadbury, A., et al. 1992. (The Cadbury Report) Report of the Committee on Financial Aspects
+of Corporate Governance, December 1, London: Gee Publishing Ltd. Available at
+http://www.worldbank.org/html/fpd/privatesector/cg/docs/cadbury.pdf.
+Center for International Private Enterprise. 2002. Instituting Corporate Governance in
+Developing, Emerging and Transitional Economies: A Handbook. Washington, DC: The
+Center for International Private Enterprise. www.cipe.org.
+Chai, Mary L. & Samuel Tung. 2002. The Effect of Earnings-Announcement Timing on
+Earnings Management. Journal of Business Finance & Accounting 29 (9 & 10): 1337-1354.
+Chambers, Anne E. & Stephen H. Penman. 1984. Timeliness of Reporting and the Stock Price
+Reaction to Earnings Announcements. Journal of Accounting Research 22(1): 21-47.
+Corporate Monitoring http://www.corpmon.com/
+Davies, B. & G.P. Whittred. 1980. The Association between Selected Corporate Attributes and
+Timeliness in Corporate Reporting: Further Analysis. Abacus 16(1): 48-60.
+Davis Global Advisors. Leading Corporate Governance Indicators, Newton, MA: Davis Global
+Advisors. Annual publication.
+http://www.davisglobal.com/publications/lcgi/index.html
+Dwyer, Peggy D. & Earl R. Wilson. 1989. An Empirical Investigation of Factors Affecting the
+Timeliness of Reporting by Municipalities. Journal of Accounting and Public Policy 8(1): 29-
+55.
+Encyclopedia of Corporate Governance http://www.encycogov.com/
+European Corporate Governance Institute website http://www.ecgi.org/
+European Corporate Governance Institute link to Codes
+http://www.ecgi.org/codes/all_codes.htm
+Feinberg, P. 2000. Historically Indifferent Russia Starts to Heed Corporate Governance Rules,
+Pensions & Investments, November 13, 28(23), 18-19.
+Filatotchev, I., T. Buck and V. Zhukov. 2000. Downsizing in Privatized Firms in Russia,
+Ukraine, and Belarus. Academy of Management Journal, 43(3), 286-304.
+Filatotchev, I., M. Wright, K. Uhlenbruck, L. Tihanyi and R. Hoskisson. 2003. Governance,
+Organizational Capabilities, and Restructuring in Transition Economies. Journal of World
+Business, 38(4), 331-347.
+Electronic copy available at: https://ssrn.com/abstract=1665083
