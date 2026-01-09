@@ -14,7 +14,7 @@ require_once 'config.php';
         <div class="nav-top">
             <div class="nav-top-container">
                 <div class="logo">
-                    <a href="index.html"><img src="logo.png" alt="Corporate Governance Series CGS Logo"></a>
+                    <a href="index.html"><img src="logo-header.png" alt="Corporate Governance Series CGS Logo" class="logo-header"></a>
                 </div>
                 <div class="nav-utility">
                     <div class="header-search">
