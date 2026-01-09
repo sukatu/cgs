@@ -46,7 +46,7 @@ function requireAdminLogin() {
 // Require user login
 function requireUserLogin() {
     if (!isUserLoggedIn()) {
-        header('Location: login.html?redirect=' . urlencode($_SERVER['REQUEST_URI']));
+        header('Location: login-user.html?redirect=' . urlencode($_SERVER['REQUEST_URI']));
         exit();
     }
 }

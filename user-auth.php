@@ -3,11 +3,20 @@ require_once 'config.php';
 
 // User login
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'login') {
-    $email = $_POST['email'] ?? '';
+    $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
+    
+    // Validation
+    if (empty($email) || empty($password)) {
+        $_SESSION['login_error'] = 'Please enter both email and password';
+        $redirectUrl = $_GET['redirect'] ?? 'login-user.html';
+        header('Location: ' . $redirectUrl);
+        exit();
+    }
     
     $conn = getDBConnection();
     
+    // Get user from database
     $stmt = $conn->prepare("SELECT id, name, email, password_hash FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -15,21 +24,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
+        
+        // Verify password
         if (password_verify($password, $user['password_hash'])) {
+            // Set session variables
             $_SESSION['user_logged_in'] = true;
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];
             $_SESSION['user_email'] = $user['email'];
             
+            // Handle "Remember me" functionality (optional - can be enhanced with cookies)
+            if (isset($_POST['remember']) && $_POST['remember']) {
+                // Set a longer session timeout or cookie (optional implementation)
+                ini_set('session.gc_maxlifetime', 86400 * 30); // 30 days
+            }
+            
+            $stmt->close();
+            $conn->close();
+            
             // Redirect to dashboard or return to previous page
             $redirect = $_GET['redirect'] ?? 'user-dashboard.php';
-            header('Location: ' . $redirect);
+            // Sanitize redirect URL to prevent open redirects
+            $redirect = filter_var($redirect, FILTER_SANITIZE_URL);
+            if (!filter_var($redirect, FILTER_VALIDATE_URL) || parse_url($redirect, PHP_URL_HOST) === null) {
+                // Only allow relative URLs
+                header('Location: ' . $redirect);
+            } else {
+                header('Location: user-dashboard.php');
+            }
             exit();
+        } else {
+            // Invalid password
+            $_SESSION['login_error'] = 'Invalid email or password';
         }
+    } else {
+        // User not found
+        $_SESSION['login_error'] = 'Invalid email or password';
     }
     
-    $_SESSION['login_error'] = 'Invalid email or password';
-    header('Location: login.html');
+    $stmt->close();
+    $conn->close();
+    
+    // Redirect back to login page with error
+    $redirectUrl = $_GET['redirect'] ?? 'login-user.html';
+    header('Location: ' . $redirectUrl);
     exit();
 }
 
@@ -98,8 +136,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 }
 
 // Logout
-if (isset($_GET['logout'])) {
+if (isset($_GET['logout']) || (isset($_POST['action']) && $_POST['action'] === 'logout')) {
+    // Unset all session variables
+    $_SESSION = array();
+    
+    // Destroy the session cookie
+    if (isset($_COOKIE[session_name()])) {
+        setcookie(session_name(), '', time()-3600, '/');
+    }
+    
+    // Destroy the session
     session_destroy();
+    
+    // Redirect to home page
     header('Location: index.html');
     exit();
 }
