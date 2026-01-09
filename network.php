@@ -17,7 +17,10 @@ require_once 'config.php';
                     <a href="index.html"><img src="logo-header.png" alt="Corporate Governance Series CGS Logo" class="logo-header"></a>
                 </div>
                 <div class="nav-utility">
-                    <button class="search-btn" id="searchBtn">Search</button>
+                    <div class="header-search">
+                        <input type="text" placeholder="Search..." id="headerSearchInput">
+                        <button class="search-btn" id="searchBtn" style="display: none;">Search</button>
+                    </div>
                     <a href="network.html" class="login-btn">Login</a>
                     <a href="network.html" class="join-btn">Join the Network</a>
                 </div>
