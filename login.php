@@ -42,6 +42,7 @@ require_once 'config.php';
                         <a href="resources.html">Resources</a>
                         <ul class="dropdown-menu">
                             <li><a href="governance-codes.html">Governance Codes in Africa</a></li>
+                            <li><a href="blog.html">Blog</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -49,7 +50,6 @@ require_once 'config.php';
                         <ul class="dropdown-menu">
                             <li><a href="videos.html">Videos</a></li>
                             <li><a href="pictures.html">Pictures</a></li>
-                            <li><a href="blog.html">Blog</a></li>
                         </ul>
                     </li>
                     <li><a href="training.html">Training</a></li>
