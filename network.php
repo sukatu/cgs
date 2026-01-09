@@ -84,8 +84,12 @@ require_once 'config.php';
                         <?php
                         require_once 'config.php';
                         if (isset($_SESSION['login_error'])) {
-                            echo '<div style="background-color: #fee; color: #c33; padding: 0.75rem; border-radius: 4px; margin-bottom: 1rem;">' . htmlspecialchars($_SESSION['login_error']) . '</div>';
+                            echo '<div style="background-color: #ffebee; color: #d32f2f; padding: 0.75rem; border-radius: 4px; margin-bottom: 1rem; border: 1px solid #ffcdd2;">' . htmlspecialchars($_SESSION['login_error']) . '</div>';
                             unset($_SESSION['login_error']);
+                        }
+                        if (isset($_SESSION['login_success'])) {
+                            echo '<div style="background-color: #e8f5e9; color: #388e3c; padding: 0.75rem; border-radius: 4px; margin-bottom: 1rem; border: 1px solid #c8e6c9;">' . htmlspecialchars($_SESSION['login_success']) . '</div>';
+                            unset($_SESSION['login_success']);
                         }
                         ?>
                         <form id="loginForm" method="POST" action="user-auth.php?action=login">
@@ -124,8 +128,12 @@ require_once 'config.php';
                         </div>
                         <?php
                         if (isset($_SESSION['register_error'])) {
-                            echo '<div style="background-color: #fee; color: #c33; padding: 0.75rem; border-radius: 4px; margin-bottom: 1rem;">' . htmlspecialchars($_SESSION['register_error']) . '</div>';
+                            echo '<div style="background-color: #ffebee; color: #d32f2f; padding: 0.75rem; border-radius: 4px; margin-bottom: 1rem; border: 1px solid #ffcdd2;">' . htmlspecialchars($_SESSION['register_error']) . '</div>';
                             unset($_SESSION['register_error']);
+                        }
+                        if (isset($_SESSION['register_success'])) {
+                            echo '<div style="background-color: #e8f5e9; color: #388e3c; padding: 0.75rem; border-radius: 4px; margin-bottom: 1rem; border: 1px solid #c8e6c9;">' . htmlspecialchars($_SESSION['register_success']) . '</div>';
+                            unset($_SESSION['register_success']);
                         }
                         ?>
                         <form id="registerForm" method="POST" action="user-auth.php?action=register">

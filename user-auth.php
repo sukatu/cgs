@@ -73,32 +73,87 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
 // User registration
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'register') {
-    $name = $_POST['name'] ?? '';
-    $email = $_POST['email'] ?? '';
+    // Sanitize and collect all form data
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';
-    $phone = $_POST['phone'] ?? '';
-    $country = $_POST['country'] ?? '';
-    $city = $_POST['city'] ?? '';
-    $organization = $_POST['organization'] ?? '';
-    $role = $_POST['role'] ?? '';
+    $phone = trim($_POST['phone'] ?? '');
+    $country = trim($_POST['country'] ?? '');
+    $city = trim($_POST['city'] ?? '');
+    $organization = trim($_POST['organization'] ?? '');
+    $role = trim($_POST['role'] ?? '');
+    $bio = trim($_POST['bio'] ?? '');
+    $linkedin_url = trim($_POST['linkedin'] ?? '');
+    
+    // Handle interests (checkboxes come as array)
+    $interests = [];
+    if (isset($_POST['interests']) && is_array($_POST['interests'])) {
+        $interests = $_POST['interests'];
+    }
+    $interests_string = !empty($interests) ? implode(', ', $interests) : '';
     
     // Validation
-    if (empty($name) || empty($email) || empty($password)) {
-        $_SESSION['register_error'] = 'Name, email, and password are required';
-        header('Location: network.html');
+    if (empty($name)) {
+        $_SESSION['register_error'] = 'Full name is required';
+        header('Location: network.php');
+        exit();
+    }
+    
+    if (empty($email)) {
+        $_SESSION['register_error'] = 'Email address is required';
+        header('Location: network.php');
+        exit();
+    }
+    
+    // Validate email format
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['register_error'] = 'Please enter a valid email address';
+        header('Location: network.php');
+        exit();
+    }
+    
+    if (empty($password)) {
+        $_SESSION['register_error'] = 'Password is required';
+        header('Location: network.php');
+        exit();
+    }
+    
+    if (strlen($password) < 6) {
+        $_SESSION['register_error'] = 'Password must be at least 6 characters long';
+        header('Location: network.php');
         exit();
     }
     
     if ($password !== $confirm_password) {
         $_SESSION['register_error'] = 'Passwords do not match';
-        header('Location: network.html');
+        header('Location: network.php');
         exit();
     }
     
-    if (strlen($password) < 6) {
-        $_SESSION['register_error'] = 'Password must be at least 6 characters';
-        header('Location: network.html');
+    // Validate required fields
+    if (empty($country)) {
+        $_SESSION['register_error'] = 'Country is required';
+        header('Location: network.php');
+        exit();
+    }
+    
+    if (empty($city)) {
+        $_SESSION['register_error'] = 'City is required';
+        header('Location: network.php');
+        exit();
+    }
+    
+    if (empty($role)) {
+        $_SESSION['register_error'] = 'Please select your role';
+        header('Location: network.php');
+        exit();
+    }
+    
+    // Validate LinkedIn URL if provided
+    if (!empty($linkedin_url) && !filter_var($linkedin_url, FILTER_VALIDATE_URL)) {
+        $_SESSION['register_error'] = 'Please enter a valid LinkedIn URL';
+        header('Location: network.php');
         exit();
     }
     
@@ -109,28 +164,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $stmt->bind_param("s", $email);
     $stmt->execute();
     if ($stmt->get_result()->num_rows > 0) {
-        $_SESSION['register_error'] = 'Email already registered. Please login instead.';
-        header('Location: network.html');
+        $_SESSION['register_error'] = 'This email is already registered. Please login instead.';
+        $stmt->close();
+        $conn->close();
+        header('Location: network.php');
         exit();
     }
+    $stmt->close();
     
-    // Create user
+    // Hash password
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    $stmt = $conn->prepare("INSERT INTO users (name, email, password_hash, phone, country, city, organization, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssss", $name, $email, $password_hash, $phone, $country, $city, $organization, $role);
+    
+    // Create user with all fields
+    $stmt = $conn->prepare("INSERT INTO users (name, email, password_hash, phone, country, city, organization, role, interests, bio, linkedin_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssssssss", $name, $email, $password_hash, $phone, $country, $city, $organization, $role, $interests_string, $bio, $linkedin_url);
     
     if ($stmt->execute()) {
-        // Auto-login after registration
+        $newUserId = $stmt->insert_id;
+        $stmt->close();
+        
+        // Auto-login after successful registration
         $_SESSION['user_logged_in'] = true;
-        $_SESSION['user_id'] = $stmt->insert_id;
+        $_SESSION['user_id'] = $newUserId;
         $_SESSION['user_name'] = $name;
         $_SESSION['user_email'] = $email;
         
+        // Set success message
+        $_SESSION['success'] = 'Account created successfully! Welcome to the CGS Network.';
+        
+        $conn->close();
+        
+        // Redirect to dashboard
         header('Location: user-dashboard.php');
         exit();
     } else {
-        $_SESSION['register_error'] = 'Registration failed. Please try again.';
-        header('Location: network.html');
+        $_SESSION['register_error'] = 'Registration failed. Please try again. Error: ' . $conn->error;
+        $stmt->close();
+        $conn->close();
+        header('Location: network.php');
         exit();
     }
 }
