@@ -1,3 +1,8 @@
+<?php
+require_once 'config.php';
+session_start();
+$isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,6 +68,21 @@
     </nav>
 
     <main>
+        <?php if (isset($_SESSION['success'])): ?>
+            <div class="container" style="margin-top: 2rem;">
+                <div style="background-color: #e8f5e9; color: #388e3c; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;">
+                    <?php echo htmlspecialchars($_SESSION['success']); unset($_SESSION['success']); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="container" style="margin-top: 2rem;">
+                <div style="background-color: #ffebee; color: #d32f2f; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;">
+                    <?php echo htmlspecialchars($_SESSION['error']); unset($_SESSION['error']); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        
         <section class="page-header">
             <div class="container">
                 <h1>Videos</h1>
@@ -95,7 +115,12 @@
                             <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--divider-grey); font-size: 0.9rem; color: var(--text-charcoal);">
                                 <strong>Duration:</strong> 1:14:22 | <strong>Event:</strong> CGS SOE Governance Series
                             </div>
-                            <a href="https://www.youtube.com/watch?v=1809paF4iuk" target="_blank" class="update-link" style="margin-top: 1rem; display: inline-block;">Watch on YouTube →</a>
+                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem; align-items: center;">
+                                <a href="https://www.youtube.com/watch?v=1809paF4iuk" target="_blank" class="update-link" style="display: inline-block;">Watch on YouTube →</a>
+                                <?php if ($isLoggedIn): ?>
+                                    <a href="user-bookmark-handler.php?action=add&type=video&id=1809paF4iuk&title=<?php echo urlencode('LIVE: Strengthening Corporate Governance of State-Owned Entities in Ghana: Opportunities & Challenges'); ?>&description=<?php echo urlencode('An in-depth live discussion exploring the critical opportunities and challenges in strengthening corporate governance of State-Owned Entities (SOEs) in Ghana'); ?>&url=https://www.youtube.com/watch?v=1809paF4iuk&redirect=videos.html" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library">📚</a>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
 
@@ -114,7 +139,12 @@
                             <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--divider-grey); font-size: 0.9rem; color: var(--text-charcoal);">
                                 <strong>Format:</strong> Panel Discussion | <strong>Event:</strong> CGS SOE Governance Series
                             </div>
-                            <a href="https://www.youtube.com/watch?v=bVH51cX7dhs" target="_blank" class="update-link" style="margin-top: 1rem; display: inline-block;">Watch on YouTube →</a>
+                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem; align-items: center;">
+                                <a href="https://www.youtube.com/watch?v=bVH51cX7dhs" target="_blank" class="update-link" style="display: inline-block;">Watch on YouTube →</a>
+                                <?php if ($isLoggedIn): ?>
+                                    <a href="user-bookmark-handler.php?action=add&type=video&id=bVH51cX7dhs&title=<?php echo urlencode('Corporate Governance of SOEs in Ghana: Challenges & Recommendations | Panel Discussion'); ?>&description=<?php echo urlencode('A comprehensive panel discussion addressing the governance challenges facing State-Owned Enterprises in Ghana'); ?>&url=https://www.youtube.com/watch?v=bVH51cX7dhs&redirect=videos.html" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library">📚</a>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
 
@@ -133,7 +163,12 @@
                             <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--divider-grey); font-size: 0.9rem; color: var(--text-charcoal);">
                                 <strong>Speaker:</strong> Mr. Joseph Sarpong | <strong>Event:</strong> CGS SOE Governance Series
                             </div>
-                            <a href="https://www.youtube.com/watch?v=RFs_7S6FCO0" target="_blank" class="update-link" style="margin-top: 1rem; display: inline-block;">Watch on YouTube →</a>
+                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem; align-items: center;">
+                                <a href="https://www.youtube.com/watch?v=RFs_7S6FCO0" target="_blank" class="update-link" style="display: inline-block;">Watch on YouTube →</a>
+                                <?php if ($isLoggedIn): ?>
+                                    <a href="user-bookmark-handler.php?action=add&type=video&id=RFs_7S6FCO0&title=<?php echo urlencode('Overview of State-Owned Enterprises in Ghana: Challenges and Recommendations | Mr. Joseph Sarpong'); ?>&description=<?php echo urlencode('An insightful presentation by Mr. Joseph Sarpong providing a comprehensive overview of State-Owned Enterprises in Ghana'); ?>&url=https://www.youtube.com/watch?v=RFs_7S6FCO0&redirect=videos.html" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library">📚</a>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                 </div>

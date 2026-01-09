@@ -1,3 +1,8 @@
+<?php
+require_once 'config.php';
+session_start();
+$isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,6 +68,21 @@
     </nav>
 
     <main>
+        <?php if (isset($_SESSION['success'])): ?>
+            <div class="container" style="margin-top: 2rem;">
+                <div style="background-color: #e8f5e9; color: #388e3c; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;">
+                    <?php echo htmlspecialchars($_SESSION['success']); unset($_SESSION['success']); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="container" style="margin-top: 2rem;">
+                <div style="background-color: #ffebee; color: #d32f2f; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;">
+                    <?php echo htmlspecialchars($_SESSION['error']); unset($_SESSION['error']); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        
         <section class="page-header">
             <div class="container">
                 <h1>CGS Blog</h1>
@@ -93,7 +113,12 @@
                                     <strong>Author:</strong> CGS Research Team<br>
                                     <strong>Read Time:</strong> 12 min
                                 </div>
-                                <a href="blog-esg-ghana-perspective.html" class="update-link">Read Article →</a>
+                                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                    <a href="blog-esg-ghana-perspective.html" class="update-link">Read Article →</a>
+                                    <?php if ($isLoggedIn): ?>
+                                        <a href="user-bookmark-handler.php?action=add&type=article&id=esg-ghana-perspective&title=<?php echo urlencode('ESG: The Ghana Perspective'); ?>&description=<?php echo urlencode('Understanding how Environmental, Social, and Governance factors integrate into Ghana\'s legal framework'); ?>&url=blog-esg-ghana-perspective.html&redirect=blog.html" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library" onclick="event.stopPropagation();">📚</a>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
                     </article>
@@ -108,7 +133,12 @@
                                     <strong>Author:</strong> CGS Research Team<br>
                                     <strong>Read Time:</strong> 10 min
                                 </div>
-                                <a href="blog-principles-rules-africa.html" class="update-link">Read Article →</a>
+                                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                    <a href="blog-principles-rules-africa.html" class="update-link">Read Article →</a>
+                                    <?php if ($isLoggedIn): ?>
+                                        <a href="user-bookmark-handler.php?action=add&type=article&id=principles-rules-africa&title=<?php echo urlencode('Neither Principles nor Rules: Making Corporate Governance Work in Sub-Saharan Africa'); ?>&description=<?php echo urlencode('Research from Nigeria suggests African countries need an integrated approach combining rule-based and principle-based regulation'); ?>&url=blog-principles-rules-africa.html&redirect=blog.html" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library" onclick="event.stopPropagation();">📚</a>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
                     </article>
@@ -123,7 +153,12 @@
                                     <strong>Author:</strong> CGS Research Team<br>
                                     <strong>Read Time:</strong> 10 min
                                 </div>
-                                <a href="blog-soes-ghana.html" class="update-link">Read Article →</a>
+                                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                    <a href="blog-soes-ghana.html" class="update-link">Read Article →</a>
+                                    <?php if ($isLoggedIn): ?>
+                                        <a href="user-bookmark-handler.php?action=add&type=article&id=soes-ghana&title=<?php echo urlencode('Corporate Governance and Performance of State-Owned Enterprises in Ghana'); ?>&description=<?php echo urlencode('Research reveals that governance mechanisms alone don\'t directly improve SOE performance'); ?>&url=blog-soes-ghana.html&redirect=blog.html" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library" onclick="event.stopPropagation();">📚</a>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
                     </article>
@@ -138,7 +173,12 @@
                                     <strong>Author:</strong> CGS Research Team<br>
                                     <strong>Read Time:</strong> 10 min
                                 </div>
-                                <a href="blog-agency-costs-ghana.html" class="update-link">Read Article →</a>
+                                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                    <a href="blog-agency-costs-ghana.html" class="update-link">Read Article →</a>
+                                    <?php if ($isLoggedIn): ?>
+                                        <a href="user-bookmark-handler.php?action=add&type=article&id=agency-costs-ghana&title=<?php echo urlencode('Agency Costs and Corporate Governance in Ghana: What Works and What Doesn\'t'); ?>&description=<?php echo urlencode('Research examining Ghanaian companies reveals that smaller boards, audit committees, and higher ownership stakes effectively reduce agency costs'); ?>&url=blog-agency-costs-ghana.html&redirect=blog.html" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library" onclick="event.stopPropagation();">📚</a>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
                     </article>

@@ -196,9 +196,16 @@
                     </p>
                 </div>
 
-                <!-- Back to Blog -->
-                <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--divider-grey);">
+                <!-- Back to Blog and Bookmark -->
+                <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--divider-grey); display: flex; justify-content: center; gap: 1rem; align-items: center;">
                     <a href="blog.html" class="btn btn-outline" style="text-decoration: none;">← Back to Blog</a>
+                    <?php
+                    require_once 'config.php';
+                    session_start();
+                    if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in']):
+                    ?>
+                        <a href="user-bookmark-handler.php?action=add&type=article&id=esg-ghana-perspective&title=<?php echo urlencode('ESG: The Ghana Perspective'); ?>&description=<?php echo urlencode('Understanding how Environmental, Social, and Governance factors integrate into Ghana\'s legal framework and why implementing ESG is crucial for sustainable business success'); ?>&url=blog-esg-ghana-perspective.html&redirect=blog-esg-ghana-perspective.html" class="btn btn-primary" style="text-decoration: none;">📚 Add to Library</a>
+                    <?php endif; ?>
                 </div>
 
             </div>
