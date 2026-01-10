@@ -168,12 +168,20 @@ require_once 'config.php';
                             </div>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                                 <div class="form-group">
-                                    <label for="registerCountry">Country</label>
-                                    <input type="text" id="registerCountry" name="country" required>
+                                    <label for="registerCountry">Country *</label>
+                                    <div class="country-select-wrapper">
+                                        <input type="text" id="registerCountry" name="country" placeholder="Search or select country..." required autocomplete="off" class="country-select-input">
+                                        <div class="country-dropdown" id="countryDropdown" style="display: none;">
+                                            <div class="country-search-box">
+                                                <input type="text" id="countrySearchInput" placeholder="Type to search countries..." autocomplete="off">
+                                            </div>
+                                            <div class="country-list" id="countryList"></div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="registerCity">City</label>
-                                    <input type="text" id="registerCity" name="city" required>
+                                    <label for="registerCity">City *</label>
+                                    <input type="text" id="registerCity" name="city" placeholder="Enter your city" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -402,8 +410,377 @@ require_once 'config.php';
                 alert('Password must be at least 6 characters.');
                 return;
             }
+            
+            // Validate country is selected
+            const countryInput = document.getElementById('registerCountry');
+            if (countryInput && !countryInput.value) {
+                e.preventDefault();
+                alert('Please select a country.');
+                return false;
+            }
+            
             // Form will submit normally to PHP handler
         });
+
+        // Country selector functionality - Comprehensive list of countries
+        const countries = [
+            // African Countries (prioritized for CGS)
+            'Algeria', 'Angola', 'Benin', 'Botswana', 'Burkina Faso', 'Burundi', 'Cabo Verde',
+            'Cameroon', 'Central African Republic', 'Chad', 'Comoros', 'Congo', 'Democratic Republic of the Congo',
+            'Djibouti', 'Egypt', 'Equatorial Guinea', 'Eritrea', 'Eswatini', 'Ethiopia', 'Gabon', 'Gambia',
+            'Ghana', 'Guinea', 'Guinea-Bissau', 'Ivory Coast', 'Kenya', 'Lesotho', 'Liberia', 'Libya',
+            'Madagascar', 'Malawi', 'Mali', 'Mauritania', 'Mauritius', 'Morocco', 'Mozambique', 'Namibia',
+            'Niger', 'Nigeria', 'Rwanda', 'São Tomé and Príncipe', 'Senegal', 'Seychelles', 'Sierra Leone',
+            'Somalia', 'South Africa', 'South Sudan', 'Sudan', 'Tanzania', 'Togo', 'Tunisia', 'Uganda',
+            'Zambia', 'Zimbabwe',
+            // Americas
+            'United States', 'Canada', 'Mexico', 'Argentina', 'Brazil', 'Chile', 'Colombia', 'Peru',
+            'Venezuela', 'Ecuador', 'Guatemala', 'Cuba', 'Haiti', 'Dominican Republic', 'Honduras',
+            'El Salvador', 'Nicaragua', 'Costa Rica', 'Panama', 'Jamaica', 'Trinidad and Tobago',
+            'Barbados', 'Belize', 'Guyana', 'Suriname', 'Uruguay', 'Paraguay', 'Bolivia',
+            // Europe
+            'United Kingdom', 'Germany', 'France', 'Italy', 'Spain', 'Netherlands', 'Belgium', 'Switzerland',
+            'Sweden', 'Norway', 'Denmark', 'Finland', 'Poland', 'Portugal', 'Greece', 'Austria',
+            'Czech Republic', 'Hungary', 'Romania', 'Ukraine', 'Russia', 'Ireland', 'Croatia', 'Serbia',
+            'Bulgaria', 'Slovakia', 'Slovenia', 'Bosnia and Herzegovina', 'Albania', 'North Macedonia',
+            'Montenegro', 'Kosovo', 'Iceland', 'Luxembourg', 'Malta', 'Cyprus', 'Estonia', 'Latvia',
+            'Lithuania', 'Belarus', 'Moldova', 'Georgia', 'Armenia', 'Azerbaijan', 'Turkey',
+            // Asia
+            'China', 'India', 'Japan', 'South Korea', 'Indonesia', 'Philippines', 'Thailand', 'Vietnam',
+            'Malaysia', 'Singapore', 'Bangladesh', 'Pakistan', 'Afghanistan', 'Iran', 'Iraq', 'Saudi Arabia',
+            'United Arab Emirates', 'Israel', 'Jordan', 'Lebanon', 'Kuwait', 'Qatar', 'Oman', 'Bahrain',
+            'Yemen', 'Syria', 'Sri Lanka', 'Nepal', 'Myanmar', 'Cambodia', 'Laos', 'Mongolia',
+            'Kazakhstan', 'Uzbekistan', 'Kyrgyzstan', 'Tajikistan', 'Turkmenistan',
+            // Oceania
+            'Australia', 'New Zealand', 'Papua New Guinea', 'Fiji', 'New Caledonia', 'French Polynesia',
+            'Samoa', 'Tonga', 'Vanuatu', 'Solomon Islands', 'Palau', 'Micronesia', 'Marshall Islands'
+        ];
+
+        // Initialize country selector
+        function initCountrySelector() {
+            const countryInput = document.getElementById('registerCountry');
+            const countryDropdown = document.getElementById('countryDropdown');
+            const countryList = document.getElementById('countryList');
+            const countrySearchInput = document.getElementById('countrySearchInput');
+
+            if (!countryInput || !countryDropdown || !countryList) return;
+
+            // Render country list
+            let selectedIndex = -1;
+            function renderCountries(filter = '') {
+                const filtered = countries.filter(country => 
+                    country.toLowerCase().includes(filter.toLowerCase())
+                ).sort();
+                
+                selectedIndex = -1; // Reset selection
+
+                if (filtered.length === 0) {
+                    countryList.innerHTML = '<div class="country-item country-no-results">No countries found</div>';
+                    return;
+                }
+
+                countryList.innerHTML = filtered.map((country, index) => 
+                    `<div class="country-item ${index === 0 ? 'country-item-highlight' : ''}" data-country="${country}" data-index="${index}">${country}</div>`
+                ).join('');
+
+                // Add click handlers
+                countryList.querySelectorAll('.country-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        const selectedCountry = this.getAttribute('data-country');
+                        if (selectedCountry && selectedCountry !== 'No countries found') {
+                            countryInput.value = selectedCountry;
+                            countryDropdown.style.display = 'none';
+                            countryInput.classList.remove('country-dropdown-open');
+                            if (countrySearchInput) {
+                                countrySearchInput.value = '';
+                            }
+                            // Trigger change event for validation
+                            countryInput.dispatchEvent(new Event('change', { bubbles: true }));
+                        }
+                    });
+                    
+                    item.addEventListener('mouseenter', function() {
+                        // Remove highlight from all items
+                        countryList.querySelectorAll('.country-item').forEach(i => i.classList.remove('country-item-highlight'));
+                        // Add highlight to hovered item
+                        this.classList.add('country-item-highlight');
+                        const index = parseInt(this.getAttribute('data-index'));
+                        selectedIndex = index;
+                    });
+                });
+            }
+
+            // Initial render
+            renderCountries();
+
+            // Show dropdown on click/focus
+            countryInput.addEventListener('click', function() {
+                countryDropdown.style.display = 'block';
+                countryInput.classList.add('country-dropdown-open');
+                if (countrySearchInput) {
+                    setTimeout(() => {
+                        countrySearchInput.focus();
+                        countrySearchInput.value = countryInput.value; // Sync search with input
+                        if (countryInput.value) {
+                            renderCountries(countryInput.value);
+                        }
+                    }, 100);
+                }
+            });
+            
+            countryInput.addEventListener('focus', function() {
+                if (countryDropdown.style.display === 'none') {
+                    countryDropdown.style.display = 'block';
+                    countryInput.classList.add('country-dropdown-open');
+                }
+                if (countrySearchInput) {
+                    setTimeout(() => {
+                        countrySearchInput.focus();
+                        countrySearchInput.value = countryInput.value; // Sync search with input
+                        if (countryInput.value) {
+                            renderCountries(countryInput.value);
+                        }
+                    }, 100);
+                }
+            });
+
+            // Search functionality
+            if (countrySearchInput) {
+                countrySearchInput.addEventListener('input', function(e) {
+                    renderCountries(e.target.value);
+                });
+            }
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!countryInput.contains(e.target) && !countryDropdown.contains(e.target)) {
+                    countryDropdown.style.display = 'none';
+                    countryInput.classList.remove('country-dropdown-open');
+                }
+            });
+
+            // Allow typing in main input to search
+            countryInput.addEventListener('input', function(e) {
+                const searchValue = e.target.value;
+                if (countrySearchInput) {
+                    countrySearchInput.value = searchValue;
+                    renderCountries(searchValue);
+                }
+                if (countryDropdown.style.display === 'none' && searchValue) {
+                    countryDropdown.style.display = 'block';
+                    countryInput.classList.add('country-dropdown-open');
+                }
+            });
+            
+            // Handle keyboard navigation in main input
+            countryInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (countryDropdown.style.display === 'block') {
+                        const highlighted = countryList.querySelector('.country-item-highlight:not(.country-no-results)');
+                        if (highlighted) {
+                            highlighted.click();
+                        } else {
+                            const firstItem = countryList.querySelector('.country-item:not(.country-no-results)');
+                            if (firstItem) {
+                                firstItem.click();
+                            }
+                        }
+                    } else {
+                        countryDropdown.style.display = 'block';
+                        countryInput.classList.add('country-dropdown-open');
+                        if (countrySearchInput) {
+                            setTimeout(() => countrySearchInput.focus(), 100);
+                        }
+                    }
+                } else if (e.key === 'ArrowDown' || e.key === 'Down') {
+                    e.preventDefault();
+                    countryDropdown.style.display = 'block';
+                    countryInput.classList.add('country-dropdown-open');
+                    if (countrySearchInput) {
+                        setTimeout(() => countrySearchInput.focus(), 100);
+                    }
+                } else if (e.key === 'Escape') {
+                    countryDropdown.style.display = 'none';
+                    countryInput.classList.remove('country-dropdown-open');
+                }
+            });
+
+            // Handle keyboard navigation in search input
+            if (countrySearchInput) {
+                countrySearchInput.addEventListener('keydown', function(e) {
+                    const items = Array.from(countryList.querySelectorAll('.country-item:not(.country-no-results)'));
+                    
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const highlighted = countryList.querySelector('.country-item-highlight:not(.country-no-results)');
+                        if (highlighted) {
+                            highlighted.click();
+                        } else if (items.length > 0) {
+                            items[0].click();
+                        }
+                    } else if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        if (selectedIndex < items.length - 1) {
+                            selectedIndex++;
+                            items.forEach(i => i.classList.remove('country-item-highlight'));
+                            if (items[selectedIndex]) {
+                                items[selectedIndex].classList.add('country-item-highlight');
+                                items[selectedIndex].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                            }
+                        }
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        if (selectedIndex > 0) {
+                            selectedIndex--;
+                            items.forEach(i => i.classList.remove('country-item-highlight'));
+                            if (items[selectedIndex]) {
+                                items[selectedIndex].classList.add('country-item-highlight');
+                                items[selectedIndex].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                            }
+                        }
+                    } else if (e.key === 'Escape') {
+                        countryDropdown.style.display = 'none';
+                        countryInput.classList.remove('country-dropdown-open');
+                        countryInput.focus();
+                    }
+                });
+            }
+        }
+
+        // Initialize country selector when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initCountrySelector);
+        } else {
+            initCountrySelector();
+        }
     </script>
+    
+    <style>
+        /* Country Selector Styles */
+        .country-select-wrapper {
+            position: relative;
+        }
+        
+        .country-select-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--divider-grey);
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background-color: white;
+            cursor: text;
+        }
+        
+        .country-select-input:focus {
+            outline: none;
+            border-color: var(--primary-navy);
+        }
+        
+        .country-select-input.country-dropdown-open {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            border-color: var(--primary-navy);
+        }
+        
+        .country-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid var(--divider-grey);
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            max-height: 300px;
+            overflow: hidden;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .country-search-box {
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--divider-grey);
+            background: var(--bg-offwhite);
+        }
+        
+        .country-search-box input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--divider-grey);
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .country-search-box input:focus {
+            outline: none;
+            border-color: var(--primary-navy);
+        }
+        
+        .country-list {
+            max-height: 250px;
+            overflow-y: auto;
+        }
+        
+        .country-item {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid var(--bg-offwhite);
+        }
+        
+        .country-item:hover,
+        .country-item-highlight {
+            background-color: var(--bg-offwhite);
+            color: var(--primary-navy);
+            font-weight: 600;
+        }
+        
+        .country-item:last-child {
+            border-bottom: none;
+        }
+        
+        .country-no-results {
+            padding: 1rem;
+            text-align: center;
+            color: var(--text-light);
+            font-style: italic;
+            cursor: default;
+        }
+        
+        .country-no-results:hover {
+            background-color: white;
+            color: var(--text-light);
+            font-weight: normal;
+        }
+        
+        .country-list::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .country-list::-webkit-scrollbar-track {
+            background: var(--bg-offwhite);
+        }
+        
+        .country-list::-webkit-scrollbar-thumb {
+            background: var(--divider-grey);
+            border-radius: 4px;
+        }
+        
+        .country-list::-webkit-scrollbar-thumb:hover {
+            background: var(--text-light);
+        }
+        
+        @media (max-width: 768px) {
+            .country-dropdown {
+                max-height: 250px;
+            }
+            
+            .country-list {
+                max-height: 200px;
+            }
+        }
+    </style>
 </body>
 </html>
