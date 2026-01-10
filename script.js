@@ -17,26 +17,55 @@ if (hamburger && navMenu) {
     });
 }
 
-// Login Form Handler
-const loginForm = document.getElementById('loginForm');
-if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        
-        // Basic validation
-        if (email && password) {
-            // Simulate login process
-            alert('Login functionality would be implemented here.\n\nEmail: ' + email);
-            
-            // In a real application, you would send this to a server
-            // For now, we'll just show an alert
-            console.log('Login attempt:', { email, password });
+// Login Form Handler (only for simple login forms without backend handlers)
+// Network.php and login-user.html have their own handlers, so we skip them
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+    if (!loginForm) {
+        // No login form found, skip
+        return;
+    }
+    
+    // Check if this form has its own backend handler (network.php uses user-auth.php)
+    const formAction = loginForm.getAttribute('action');
+    if (formAction) {
+        // Skip if form has backend handler - let backend handle submission
+        if (formAction.includes('user-auth.php') || formAction.includes('login.php') || formAction.includes('/user-auth')) {
+            return; // Form has backend handler, don't interfere
         }
-    });
-}
+    }
+    
+    // Only handle forms with email/password IDs (not loginEmail/loginPassword used in network.php)
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    
+    // Only add handler if BOTH elements exist and are not null
+    if (emailInput && passwordInput && emailInput !== null && passwordInput !== null) {
+        loginForm.addEventListener('submit', function(e) {
+            // Double-check elements still exist before accessing value
+            if (!emailInput || !passwordInput) {
+                console.warn('Login form elements not found, allowing normal submission');
+                return true; // Let form submit normally
+            }
+            
+            const emailValue = (emailInput.value || '').trim();
+            const passwordValue = passwordInput.value || '';
+            
+            // Basic validation
+            if (!emailValue || !passwordValue) {
+                e.preventDefault();
+                alert('Please enter both email and password.');
+                return false;
+            }
+            // Otherwise let form submit normally (backend will handle it)
+        });
+    } else {
+        // Elements don't exist (likely network.php with loginEmail/loginPassword)
+        // Let form submit normally without JavaScript interference
+        console.log('Login form elements (email/password) not found - form will submit normally');
+    }
+    // If elements don't exist, form will submit normally without JavaScript interference
+});
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

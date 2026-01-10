@@ -8,6 +8,21 @@ require_once 'config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Network | Corporate Governance Series</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .error-message, .success-message {
+            animation: slideIn 0.3s ease;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -82,18 +97,23 @@ require_once 'config.php';
                             <p style="color: var(--text-charcoal);">Access your member dashboard</p>
                         </div>
                         <?php
-                        require_once 'config.php';
+                        // Session is already started in config.php (required at top of file)
                         if (isset($_SESSION['login_error'])) {
-                            echo '<div style="background-color: #ffebee; color: #d32f2f; padding: 0.75rem; border-radius: 4px; margin-bottom: 1rem; border: 1px solid #ffcdd2;">' . htmlspecialchars($_SESSION['login_error']) . '</div>';
+                            echo '<div class="error-message" style="background-color: #ffebee; color: #d32f2f; padding: 0.75rem; border-radius: 4px; margin-bottom: 1rem; border: 1px solid #ffcdd2; display: block;">';
+                            echo '<strong>⚠️ Error:</strong> ' . htmlspecialchars($_SESSION['login_error']);
+                            echo '</div>';
                             unset($_SESSION['login_error']);
                         }
                         if (isset($_SESSION['login_success'])) {
-                            echo '<div style="background-color: #e8f5e9; color: #388e3c; padding: 0.75rem; border-radius: 4px; margin-bottom: 1rem; border: 1px solid #c8e6c9;">' . htmlspecialchars($_SESSION['login_success']) . '</div>';
+                            echo '<div class="success-message" style="background-color: #e8f5e9; color: #388e3c; padding: 0.75rem; border-radius: 4px; margin-bottom: 1rem; border: 1px solid #c8e6c9; display: block;">';
+                            echo '<strong>✅ Success:</strong> ' . htmlspecialchars($_SESSION['login_success']);
+                            echo '</div>';
                             unset($_SESSION['login_success']);
                         }
                         ?>
-                        <form id="loginForm" method="POST" action="user-auth.php?action=login">
+                        <form id="loginForm" method="POST" action="user-auth.php?action=login&source=network.php">
                             <input type="hidden" name="action" value="login">
+                            <input type="hidden" name="source_page" value="network.php">
                             <div class="form-group">
                                 <label for="loginEmail">Email Address</label>
                                 <input type="email" id="loginEmail" name="email" placeholder="Enter your email" required>
@@ -346,7 +366,25 @@ require_once 'config.php';
 
         // Form handlers
         document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            
+            // Basic client-side validation
+            if (!email || !password) {
+                e.preventDefault();
+                alert('Please enter both email and password.');
+                return false;
+            }
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Signing in...';
+            }
+            
             // Form will submit normally to PHP handler
+            return true;
         });
 
         document.getElementById('registerForm')?.addEventListener('submit', function(e) {

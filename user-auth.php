@@ -6,10 +6,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
     
+    // Determine where to redirect back (preserve the source page)
+    $sourcePage = $_POST['source_page'] ?? $_GET['source'] ?? 'network.php';
+    $redirectUrl = $_GET['redirect'] ?? $sourcePage;
+    
     // Validation
     if (empty($email) || empty($password)) {
         $_SESSION['login_error'] = 'Please enter both email and password';
-        $redirectUrl = $_GET['redirect'] ?? 'login-user.html';
         header('Location: ' . $redirectUrl);
         exit();
     }
@@ -20,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     } catch (Exception $e) {
         $_SESSION['login_error'] = 'Database connection error. Please try again later.';
         error_log("Database connection error: " . $e->getMessage());
-        header('Location: login-user.html');
+        header('Location: ' . $redirectUrl);
         exit();
     }
     
@@ -29,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     if ($tableCheck->num_rows === 0) {
         $_SESSION['login_error'] = 'Database not properly configured. Please contact administrator.';
         $conn->close();
-        header('Location: login-user.html');
+        header('Location: ' . $redirectUrl);
         exit();
     }
     
@@ -39,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $_SESSION['login_error'] = 'Database error. Please try again later.';
         error_log("Prepare failed: " . $conn->error);
         $conn->close();
-        header('Location: login-user.html');
+        header('Location: ' . $redirectUrl);
         exit();
     }
     
@@ -49,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         error_log("Execute failed: " . $stmt->error);
         $stmt->close();
         $conn->close();
-        header('Location: login-user.html');
+        header('Location: ' . $redirectUrl);
         exit();
     }
     
@@ -65,6 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];
             $_SESSION['user_email'] = $user['email'];
+            
+            // Set success message
+            $_SESSION['login_success'] = 'Welcome back, ' . htmlspecialchars($user['name']) . '!';
             
             // Handle "Remember me" functionality (optional - can be enhanced with cookies)
             if (isset($_POST['remember']) && $_POST['remember']) {
@@ -87,19 +93,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             }
             exit();
         } else {
-            // Invalid password
-            $_SESSION['login_error'] = 'Invalid email or password';
+            // Invalid password - be more specific
+            $_SESSION['login_error'] = 'Invalid email or password. Please check your credentials and try again.';
+            error_log("Login failed - Invalid password for email: $email");
         }
     } else {
-        // User not found
-        $_SESSION['login_error'] = 'Invalid email or password';
+        // User not found - be more specific
+        $_SESSION['login_error'] = 'Invalid email or password. Please check your credentials and try again.';
+        error_log("Login failed - User not found for email: $email");
     }
     
     $stmt->close();
     $conn->close();
     
-    // Redirect back to login page with error
-    $redirectUrl = $_GET['redirect'] ?? 'login-user.html';
+    // Redirect back to source page with error
     header('Location: ' . $redirectUrl);
     exit();
 }

@@ -2,27 +2,46 @@
 require_once 'config.php';
 requireUserLogin();
 
-$conn = getDBConnection();
+// Get database connection with error handling
+try {
+    $conn = getDBConnection();
+} catch (Exception $e) {
+    $_SESSION['error'] = 'Database connection error. Please try again later.';
+    error_log("Paper submission - Database connection error: " . $e->getMessage());
+    header('Location: user-dashboard.php?section=papers');
+    exit();
+}
+
 $userId = $_SESSION['user_id'];
 
+// Function to create user_papers table
+function createUserPapersTable($conn) {
+    $createTableSQL = "
+    CREATE TABLE IF NOT EXISTS `user_papers` (
+      `id` int(11) NOT NULL AUTO_INCREMENT,
+      `user_id` int(11) NOT NULL,
+      `title` varchar(255) NOT NULL,
+      `abstract` text,
+      `keywords` varchar(255) DEFAULT NULL,
+      `category` varchar(50) DEFAULT NULL,
+      `file_path` varchar(500) DEFAULT NULL,
+      `status` varchar(50) DEFAULT 'under-review',
+      `submitted_date` datetime DEFAULT CURRENT_TIMESTAMP,
+      `reviewed_date` datetime DEFAULT NULL,
+      PRIMARY KEY (`id`),
+      KEY `user_id` (`user_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    ";
+    
+    if (!$conn->query($createTableSQL)) {
+        error_log("Failed to create user_papers table: " . $conn->error);
+        return false;
+    }
+    return true;
+}
+
 // Create user_papers table if it doesn't exist
-$createTableSQL = "
-CREATE TABLE IF NOT EXISTS `user_papers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `abstract` text,
-  `keywords` varchar(255) DEFAULT NULL,
-  `category` varchar(50) DEFAULT NULL,
-  `file_path` varchar(500) DEFAULT NULL,
-  `status` varchar(50) DEFAULT 'under-review',
-  `submitted_date` datetime DEFAULT CURRENT_TIMESTAMP,
-  `reviewed_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-";
-$conn->query($createTableSQL);
+createUserPapersTable($conn);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validate required fields
@@ -97,31 +116,62 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (move_uploaded_file($file['tmp_name'], $targetPath)) {
         $filePath = $targetPath;
         
+        // Verify table exists before inserting
+        $tableCheck = $conn->query("SHOW TABLES LIKE 'user_papers'");
+        if ($tableCheck->num_rows === 0) {
+            // Try to create table again
+            if (!createUserPapersTable($conn)) {
+                unlink($targetPath);
+                $_SESSION['error'] = 'Database table not found. Please contact administrator.';
+                error_log("user_papers table does not exist and could not be created: " . $conn->error);
+                $conn->close();
+                header('Location: user-dashboard.php?section=papers');
+                exit();
+            }
+        }
+        
         // Insert into database
         $stmt = $conn->prepare("
             INSERT INTO user_papers (user_id, title, abstract, keywords, category, file_path, status, submitted_date)
             VALUES (?, ?, ?, ?, ?, ?, 'under-review', NOW())
         ");
         
-        if ($stmt) {
-            $stmt->bind_param("isssss", $userId, $title, $abstract, $keywords, $category, $filePath);
-            
-            if ($stmt->execute()) {
-                $_SESSION['success'] = 'Paper submitted successfully! Your paper is now under review.';
-            } else {
-                // Delete uploaded file if database insert fails
-                unlink($targetPath);
-                $_SESSION['error'] = 'Failed to submit paper. Please try again. Error: ' . $conn->error;
-            }
-            
-            $stmt->close();
-        } else {
+        if (!$stmt) {
             // Delete uploaded file if prepare fails
             unlink($targetPath);
-            $_SESSION['error'] = 'Database error. Please try again.';
+            $_SESSION['error'] = 'Database error: Could not prepare statement. ' . $conn->error;
+            error_log("Paper submission - Prepare failed: " . $conn->error);
+            $conn->close();
+            header('Location: user-dashboard.php?section=papers');
+            exit();
         }
+        
+        $stmt->bind_param("isssss", $userId, $title, $abstract, $keywords, $category, $filePath);
+        
+        if ($stmt->execute()) {
+            $paperId = $stmt->insert_id;
+            if ($paperId > 0) {
+                $_SESSION['success'] = 'Paper submitted successfully! Your paper is now under review.';
+                error_log("Paper submitted successfully - ID: $paperId, User ID: $userId, Title: $title");
+            } else {
+                // Insert succeeded but no ID returned - this shouldn't happen but handle it
+                $_SESSION['success'] = 'Paper submitted successfully! Your paper is now under review.';
+                error_log("Paper submitted - Insert succeeded but no ID returned. User ID: $userId, Title: $title");
+            }
+        } else {
+            // Delete uploaded file if database insert fails
+            unlink($targetPath);
+            $errorMsg = $stmt->error ? $stmt->error : $conn->error;
+            $_SESSION['error'] = 'Failed to submit paper to database. Please try again.';
+            error_log("Paper submission - Execute failed: " . $errorMsg);
+            error_log("User ID: $userId, Title: $title, File: $filePath");
+            error_log("SQL State: " . ($stmt->sqlstate ?? 'N/A'));
+        }
+        
+        $stmt->close();
     } else {
         $_SESSION['error'] = 'Failed to upload file. Please check file permissions or try again.';
+        error_log("Paper submission - File upload failed. User ID: $userId, File: " . $file['name']);
     }
     
     $conn->close();
