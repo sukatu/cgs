@@ -122,7 +122,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $country = trim($_POST['country'] ?? '');
     $city = trim($_POST['city'] ?? '');
     $organization = trim($_POST['organization'] ?? '');
-    $role = trim($_POST['role'] ?? '');
+    $profession = trim($_POST['profession'] ?? '');
+    // Keep database column as 'role' for compatibility, but accept 'profession' from form
+    $role = $profession; // Map profession to role for database
     $bio = trim($_POST['bio'] ?? '');
     $linkedin_url = trim($_POST['linkedin'] ?? '');
     
@@ -185,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
     
     if (empty($role)) {
-        $_SESSION['register_error'] = 'Please select your role';
+        $_SESSION['register_error'] = 'Please select your profession';
         header('Location: network.php');
         exit();
     }

@@ -9,7 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? '';
     $email = $_POST['email'] ?? '';
     $organization = $_POST['organization'] ?? '';
-    $role = $_POST['role'] ?? '';
+    $profession = $_POST['profession'] ?? $_POST['role'] ?? ''; // Support both profession and role for compatibility
+    $role = $profession; // Map profession to role for database (database column is still 'role')
     $city = $_POST['city'] ?? '';
     $country = $_POST['country'] ?? '';
     $bio = $_POST['bio'] ?? '';

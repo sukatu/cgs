@@ -22,9 +22,9 @@ The registration form collects:
 - Email Address
 - Country
 - City
-- Role (dropdown selection)
-- Password
-- Confirm Password
+- Profession (dropdown selection) *
+- Password *
+- Confirm Password *
 
 **Optional Fields:**
 - Phone Number
@@ -41,13 +41,17 @@ The registration form collects:
 - Digital Governance
 - State-Owned Entities
 
-**Role Options:**
+**Profession Options:**
 - Lawyer
 - Banker
 - Board Member/Director
 - Student
 - Regulator
 - Consultant
+- Academic/Researcher
+- Executive/CEO
+- Compliance Officer
+- Auditor
 - Other
 
 ### 3. Backend Registration Handler
@@ -79,7 +83,7 @@ The registration form collects:
 
 5. **User Creation:**
    - Inserts user into `users` table with all provided data
-   - Stores: name, email, password_hash, phone, country, city, organization, role, interests, bio, linkedin_url
+   - Stores: name, email, password_hash, phone, country, city, organization, role (mapped from profession field), interests, bio, linkedin_url
    - Returns new user ID on success
 
 6. **Auto-Login:**
@@ -113,7 +117,7 @@ The registration form collects:
 - "Passwords do not match"
 - "Country is required"
 - "City is required"
-- "Please select your role"
+- "Please select your profession"
 - "This email is already registered. Please login instead."
 - "Registration failed. Please try again."
 
@@ -129,7 +133,7 @@ The registration form collects:
 - country (VARCHAR)
 - city (VARCHAR)
 - organization (VARCHAR, optional)
-- role (VARCHAR)
+- role (VARCHAR) - stored as "profession" in UI but kept as "role" in database for compatibility
 - interests (TEXT, optional) - comma-separated
 - bio (TEXT, optional)
 - linkedin_url (VARCHAR, optional)

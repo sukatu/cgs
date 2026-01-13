@@ -31,14 +31,7 @@ require_once 'config.php';
                 <div class="logo">
                     <a href="index.html"><img src="logo-header.png" alt="Corporate Governance Series CGS Logo" class="logo-header"></a>
                 </div>
-                <div class="nav-utility">
-                    <div class="header-search">
-                        <input type="text" placeholder="Search..." id="headerSearchInput">
-                        <button class="search-btn" id="searchBtn" style="display: none;">Search</button>
-                    </div>
-                    <a href="network.html" class="login-btn">Login</a>
-                    <a href="network.html" class="join-btn">Join the Network</a>
-                </div>
+                <?php include 'header-nav.php'; ?>
             </div>
         </div>
         <div class="nav-bottom">
@@ -122,11 +115,12 @@ require_once 'config.php';
                                 <label for="loginPassword">Password</label>
                                 <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required>
                             </div>
-                            <div style="margin-bottom: 1.5rem;">
+                            <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
                                 <label class="checkbox-label">
                                     <input type="checkbox" name="remember">
                                     <span>Remember me</span>
                                 </label>
+                                <a href="forgot-password.php" class="forgot-password" style="color: var(--primary-navy); text-decoration: none; font-size: 0.9rem;">Forgot password?</a>
                             </div>
                             <button type="submit" class="btn btn-primary btn-full">Sign In</button>
                             <div style="text-align: center; margin-top: 1.5rem;">
@@ -189,43 +183,51 @@ require_once 'config.php';
                                 <input type="text" id="registerOrganization" name="organization">
                             </div>
                             <div class="form-group">
-                                <label for="registerRole">Role</label>
-                                <select id="registerRole" name="role" required>
-                                    <option value="">Select your role</option>
+                                <label for="registerProfession">Profession *</label>
+                                <select id="registerProfession" name="profession" required>
+                                    <option value="">Select your profession</option>
                                     <option value="lawyer">Lawyer</option>
                                     <option value="banker">Banker</option>
                                     <option value="board">Board Member/Director</option>
                                     <option value="student">Student</option>
                                     <option value="regulator">Regulator</option>
                                     <option value="consultant">Consultant</option>
+                                    <option value="academic">Academic/Researcher</option>
+                                    <option value="executive">Executive/CEO</option>
+                                    <option value="compliance">Compliance Officer</option>
+                                    <option value="auditor">Auditor</option>
                                     <option value="other">Other</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Areas of Interest (select all that apply)</label>
                                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem; margin-top: 0.5rem;">
+                                    <label class="checkbox-label" style="font-weight: 600; border-bottom: 1px solid var(--divider-grey); padding-bottom: 0.5rem; margin-bottom: 0.25rem; grid-column: 1 / -1;">
+                                        <input type="checkbox" id="selectAllInterests" style="margin-right: 0.5rem;">
+                                        <span style="color: var(--primary-navy);">Select All</span>
+                                    </label>
                                     <label class="checkbox-label">
-                                        <input type="checkbox" name="interests" value="board-effectiveness">
+                                        <input type="checkbox" name="interests" value="board-effectiveness" class="interest-checkbox">
                                         <span>Board Effectiveness</span>
                                     </label>
                                     <label class="checkbox-label">
-                                        <input type="checkbox" name="interests" value="compliance">
+                                        <input type="checkbox" name="interests" value="compliance" class="interest-checkbox">
                                         <span>Compliance</span>
                                     </label>
                                     <label class="checkbox-label">
-                                        <input type="checkbox" name="interests" value="esg">
+                                        <input type="checkbox" name="interests" value="esg" class="interest-checkbox">
                                         <span>ESG</span>
                                     </label>
                                     <label class="checkbox-label">
-                                        <input type="checkbox" name="interests" value="risk">
+                                        <input type="checkbox" name="interests" value="risk" class="interest-checkbox">
                                         <span>Risk Governance</span>
                                     </label>
                                     <label class="checkbox-label">
-                                        <input type="checkbox" name="interests" value="digital">
+                                        <input type="checkbox" name="interests" value="digital" class="interest-checkbox">
                                         <span>Digital Governance</span>
                                     </label>
                                     <label class="checkbox-label">
-                                        <input type="checkbox" name="interests" value="soes">
+                                        <input type="checkbox" name="interests" value="soes" class="interest-checkbox">
                                         <span>State-Owned Entities</span>
                                     </label>
                                 </div>
@@ -654,6 +656,46 @@ require_once 'config.php';
         } else {
             initCountrySelector();
         }
+
+        // Areas of Interest - Select All functionality
+        function initSelectAllInterests() {
+            const selectAllCheckbox = document.getElementById('selectAllInterests');
+            const interestCheckboxes = document.querySelectorAll('.interest-checkbox');
+            
+            if (selectAllCheckbox && interestCheckboxes.length > 0) {
+                // Handle "Select All" checkbox
+                selectAllCheckbox.addEventListener('change', function() {
+                    interestCheckboxes.forEach(checkbox => {
+                        checkbox.checked = this.checked;
+                    });
+                });
+                
+                // Handle individual checkbox changes - update "Select All" state
+                interestCheckboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        const allChecked = Array.from(interestCheckboxes).every(cb => cb.checked);
+                        const someChecked = Array.from(interestCheckboxes).some(cb => cb.checked);
+                        
+                        // Update "Select All" checkbox state
+                        selectAllCheckbox.checked = allChecked;
+                        selectAllCheckbox.indeterminate = someChecked && !allChecked;
+                    });
+                });
+                
+                // Initialize "Select All" state
+                const allChecked = Array.from(interestCheckboxes).every(cb => cb.checked);
+                const someChecked = Array.from(interestCheckboxes).some(cb => cb.checked);
+                selectAllCheckbox.checked = allChecked;
+                selectAllCheckbox.indeterminate = someChecked && !allChecked;
+            }
+        }
+
+        // Initialize select all functionality
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initSelectAllInterests);
+        } else {
+            initSelectAllInterests();
+        }
     </script>
     
     <style>
@@ -780,6 +822,26 @@ require_once 'config.php';
             .country-list {
                 max-height: 200px;
             }
+        }
+        
+        /* Select All Interests Styling */
+        #selectAllInterests {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        #selectAllInterests:indeterminate {
+            background-color: var(--primary-navy);
+            border-color: var(--primary-navy);
+        }
+        
+        .interest-checkbox {
+            cursor: pointer;
+        }
+        
+        .checkbox-label[style*="font-weight: 600"] {
+            margin-bottom: 0.5rem !important;
         }
     </style>
 </body>

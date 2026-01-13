@@ -1,3 +1,9 @@
+<?php
+require_once 'config.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,14 +19,13 @@
                 <div class="logo">
                     <a href="index.html"><img src="logo-header.png" alt="Corporate Governance Series CGS Logo" class="logo-header"></a>
                 </div>
-                <div class="nav-utility">
-                    <div class="header-search">
-                        <input type="text" placeholder="Search..." id="headerSearchInput">
-                        <button class="search-btn" id="searchBtn" style="display: none;">Search</button>
-                    </div>
-                    <a href="network.php" class="login-btn">Login</a>
-                    <a href="network.php" class="join-btn">Join the Network</a>
-                </div>
+                <?php
+                require_once 'config.php';
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+                include 'header-nav.php';
+                ?>
             </div>
         </div>
         <div class="nav-bottom">

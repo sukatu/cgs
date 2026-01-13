@@ -169,6 +169,55 @@ if ($checkFK->num_rows == 0) {
     echo "<div class='info'>ℹ️ Foreign key constraint already exists on user_library table.</div>";
 }
 
+// 7. Create password_resets table
+echo "<h3>7. Creating password_resets table...</h3>";
+$sql = "CREATE TABLE IF NOT EXISTS `password_resets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(100) NOT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `expires_at` datetime NOT NULL,
+  `used` tinyint(1) DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `token` (`token`),
+  KEY `user_id` (`user_id`),
+  KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+
+if ($conn->query($sql) === TRUE) {
+    echo "<div class='success'>✅ password_resets table created successfully.</div>";
+    
+    // Check foreign key on password_resets
+    $checkFK = $conn->query("
+        SELECT CONSTRAINT_NAME 
+        FROM information_schema.KEY_COLUMN_USAGE 
+        WHERE TABLE_SCHEMA = DATABASE() 
+        AND TABLE_NAME = 'password_resets' 
+        AND CONSTRAINT_NAME LIKE '%user_id%'
+        AND REFERENCED_TABLE_NAME = 'users'
+    ");
+    if ($checkFK->num_rows == 0) {
+        // Add foreign key constraint
+        $sql = "ALTER TABLE `password_resets` 
+                ADD CONSTRAINT `fk_password_resets_user` 
+                FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE";
+        if ($conn->query($sql) === TRUE) {
+            echo "<div class='success'>✅ Foreign key constraint added to password_resets table.</div>";
+        } else {
+            echo "<div class='error'>⚠️ Could not add foreign key to password_resets: " . $conn->error . "</div>";
+        }
+    } else {
+        echo "<div class='info'>ℹ️ Foreign key constraint already exists on password_resets table.</div>";
+    }
+} else {
+    if (strpos($conn->error, 'already exists') !== false) {
+        echo "<div class='info'>ℹ️ password_resets table already exists.</div>";
+    } else {
+        echo "<div class='error'>❌ Error creating password_resets table: " . $conn->error . "</div>";
+    }
+}
+
 $conn->close();
 
 echo "<br><div class='success' style='font-size: 1.2em; font-weight: bold; padding: 20px;'>✅ Database setup complete! All necessary tables have been created.</div>";

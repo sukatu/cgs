@@ -263,6 +263,7 @@ echo "<li>✅ users (with profile_picture column)</li>";
 echo "<li>✅ event_registrations</li>";
 echo "<li>✅ user_papers</li>";
 echo "<li>✅ user_library</li>";
+echo "<li>✅ password_resets</li>";
 echo "</ul>";
 echo "<p><strong>Next Steps:</strong></p>";
 echo "<ul>";

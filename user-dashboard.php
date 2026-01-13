@@ -532,8 +532,8 @@ $profilePicture = $user['profile_picture'] ?? null;
                                     <input type="text" id="accountOrganization" name="organization" value="<?php echo htmlspecialchars($user['organization'] ?? ''); ?>">
                                 </div>
                                 <div class="form-group">
-                                    <label for="accountRole">Role</label>
-                                    <input type="text" id="accountRole" name="role" value="<?php echo htmlspecialchars($user['role'] ?? ''); ?>" placeholder="e.g., Director, Lawyer, Consultant">
+                                    <label for="accountRole">Profession</label>
+                                    <input type="text" id="accountRole" name="profession" value="<?php echo htmlspecialchars($user['role'] ?? ''); ?>" placeholder="e.g., Director, Lawyer, Consultant">
                                 </div>
                             </div>
                             <div class="form-row">

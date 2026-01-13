@@ -16,14 +16,7 @@ require_once 'config.php';
                 <div class="logo">
                     <a href="index.html"><img src="logo-header.png" alt="Corporate Governance Series CGS Logo" class="logo-header"></a>
                 </div>
-                <div class="nav-utility">
-                    <div class="header-search">
-                        <input type="text" placeholder="Search..." id="headerSearchInput">
-                        <button class="search-btn" id="searchBtn" style="display: none;">Search</button>
-                    </div>
-                    <a href="login.php" class="login-btn">Login</a>
-                    <a href="network.php" class="join-btn">Join the Network</a>
-                </div>
+                <?php include 'header-nav.php'; ?>
             </div>
         </div>
         <div class="nav-bottom">
@@ -94,7 +87,7 @@ require_once 'config.php';
                             <input type="checkbox" name="remember">
                             <span>Remember me</span>
                         </label>
-                        <a href="#" class="forgot-password">Forgot password?</a>
+                        <a href="forgot-password.php" class="forgot-password">Forgot password?</a>
                     </div>
                     <button type="submit" class="btn btn-primary btn-full">Sign In</button>
                 </form>
