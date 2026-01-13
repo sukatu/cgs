@@ -6,9 +6,9 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Database configuration
 define('DB_HOST', 'localhost');
-define('DB_USER', 'epbvrjuvca');
+define('DB_USER', 'rightgh24_cgs');
 define('DB_PASS', '86SwzU5UGh');
-define('DB_NAME', 'epbvrjuvca');
+define('DB_NAME', 'rightgh24_cgs');
 
 // Create database connection
 function getDBConnection() {

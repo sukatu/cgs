@@ -1,4 +1,17 @@
 <?php
+// Enable error reporting for debugging (remove in production)
+error_reporting(E_ALL);
+ini_set('display_errors', 0); // Don't display errors, but log them
+ini_set('log_errors', 1);
+
+// Start output buffering to prevent "headers already sent" errors
+ob_start();
+
+// Start session before any output
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once 'config.php';
 
 // User login
@@ -13,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     // Validation
     if (empty($email) || empty($password)) {
         $_SESSION['login_error'] = 'Please enter both email and password';
+        ob_end_clean();
         header('Location: ' . $redirectUrl);
         exit();
     }
@@ -23,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     } catch (Exception $e) {
         $_SESSION['login_error'] = 'Database connection error. Please try again later.';
         error_log("Database connection error: " . $e->getMessage());
+        ob_end_clean();
         header('Location: ' . $redirectUrl);
         exit();
     }
@@ -32,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     if ($tableCheck->num_rows === 0) {
         $_SESSION['login_error'] = 'Database not properly configured. Please contact administrator.';
         $conn->close();
+        ob_end_clean();
         header('Location: ' . $redirectUrl);
         exit();
     }
@@ -42,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $_SESSION['login_error'] = 'Database error. Please try again later.';
         error_log("Prepare failed: " . $conn->error);
         $conn->close();
+        ob_end_clean();
         header('Location: ' . $redirectUrl);
         exit();
     }
@@ -52,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         error_log("Execute failed: " . $stmt->error);
         $stmt->close();
         $conn->close();
+        ob_end_clean();
         header('Location: ' . $redirectUrl);
         exit();
     }
@@ -85,12 +103,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             $redirect = $_GET['redirect'] ?? 'user-dashboard.php';
             // Sanitize redirect URL to prevent open redirects
             $redirect = filter_var($redirect, FILTER_SANITIZE_URL);
-            if (!filter_var($redirect, FILTER_VALIDATE_URL) || parse_url($redirect, PHP_URL_HOST) === null) {
-                // Only allow relative URLs
-                header('Location: ' . $redirect);
-            } else {
-                header('Location: user-dashboard.php');
+            // Only allow relative URLs (no host)
+            if (filter_var($redirect, FILTER_VALIDATE_URL) && parse_url($redirect, PHP_URL_HOST) !== null) {
+                $redirect = 'user-dashboard.php';
             }
+            
+            // Clear output buffer before redirect
+            ob_end_clean();
+            header('Location: ' . $redirect);
             exit();
         } else {
             // Invalid password - be more specific
@@ -107,6 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $conn->close();
     
     // Redirect back to source page with error
+    ob_end_clean();
     header('Location: ' . $redirectUrl);
     exit();
 }
@@ -138,12 +159,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     // Validation
     if (empty($name)) {
         $_SESSION['register_error'] = 'Full name is required';
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
     
     if (empty($email)) {
         $_SESSION['register_error'] = 'Email address is required';
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
@@ -151,24 +174,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $_SESSION['register_error'] = 'Please enter a valid email address';
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
     
     if (empty($password)) {
         $_SESSION['register_error'] = 'Password is required';
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
     
     if (strlen($password) < 6) {
         $_SESSION['register_error'] = 'Password must be at least 6 characters long';
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
     
     if ($password !== $confirm_password) {
         $_SESSION['register_error'] = 'Passwords do not match';
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
@@ -176,18 +203,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     // Validate required fields
     if (empty($country)) {
         $_SESSION['register_error'] = 'Country is required';
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
     
     if (empty($city)) {
         $_SESSION['register_error'] = 'City is required';
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
     
     if (empty($role)) {
         $_SESSION['register_error'] = 'Please select your profession';
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
@@ -195,6 +225,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     // Validate LinkedIn URL if provided
     if (!empty($linkedin_url) && !filter_var($linkedin_url, FILTER_VALIDATE_URL)) {
         $_SESSION['register_error'] = 'Please enter a valid LinkedIn URL';
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
@@ -205,6 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     } catch (Exception $e) {
         $_SESSION['register_error'] = 'Database connection error. Please try again later.';
         error_log("Database connection error: " . $e->getMessage());
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
@@ -214,6 +246,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     if ($tableCheck->num_rows === 0) {
         $_SESSION['register_error'] = 'Database not properly configured. Please contact administrator.';
         $conn->close();
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
@@ -224,6 +257,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $_SESSION['register_error'] = 'Database error. Please try again later.';
         error_log("Prepare failed: " . $conn->error);
         $conn->close();
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
@@ -234,6 +268,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         error_log("Execute failed: " . $stmt->error);
         $stmt->close();
         $conn->close();
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
@@ -242,6 +277,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $_SESSION['register_error'] = 'This email is already registered. Please login instead.';
         $stmt->close();
         $conn->close();
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
@@ -252,6 +288,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     if ($password_hash === false) {
         $_SESSION['register_error'] = 'Password hashing failed. Please try again.';
         $conn->close();
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
@@ -262,6 +299,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $_SESSION['register_error'] = 'Database error. Please try again later.';
         error_log("Prepare failed: " . $conn->error);
         $conn->close();
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
@@ -285,12 +323,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             
             $conn->close();
             
-            // Redirect to dashboard
+            // Clear output buffer before redirect
+            ob_end_clean();
             header('Location: user-dashboard.php');
             exit();
         } else {
             $_SESSION['register_error'] = 'Registration failed. Could not create user account.';
             $conn->close();
+            ob_end_clean();
             header('Location: network.php');
             exit();
         }
@@ -299,6 +339,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         error_log("Registration insert failed: " . $stmt->error);
         $stmt->close();
         $conn->close();
+        ob_end_clean();
         header('Location: network.php');
         exit();
     }
@@ -318,6 +359,7 @@ if (isset($_GET['logout']) || (isset($_POST['action']) && $_POST['action'] === '
     session_destroy();
     
     // Redirect to home page
+    ob_end_clean();
     header('Location: index.html');
     exit();
 }
