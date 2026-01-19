@@ -19,6 +19,22 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']) && !isset($_GET['type'
     }
 }
 
+// Handle confirm registration
+if (isset($_GET['confirm_registration']) && is_numeric($_GET['confirm_registration'])) {
+    $id = intval($_GET['confirm_registration']);
+    $tableCheck = $conn->query("SHOW TABLES LIKE 'in_person_registrations'");
+    if ($tableCheck && $tableCheck->num_rows > 0) {
+        $stmt = $conn->prepare("UPDATE in_person_registrations SET status = 'confirmed' WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        if ($stmt->execute()) {
+            $alert = '<div class="alert alert-success">Registration confirmed successfully!</div>';
+        } else {
+            $alert = '<div class="alert alert-error">Error confirming registration.</div>';
+        }
+        $stmt->close();
+    }
+}
+
 // Handle delete image
 if (isset($_GET['delete']) && is_numeric($_GET['delete']) && isset($_GET['type']) && $_GET['type'] === 'image') {
     $id = intval($_GET['delete']);
@@ -62,6 +78,16 @@ if ($result) {
 $imagesResult = $conn->query("SELECT * FROM gallery_images ORDER BY display_order ASC, upload_date DESC");
 if ($imagesResult) {
     $images = $imagesResult->fetch_all(MYSQLI_ASSOC);
+}
+
+// Fetch in-person registrations
+$inPersonRegistrations = [];
+$tableCheck = $conn->query("SHOW TABLES LIKE 'in_person_registrations'");
+if ($tableCheck && $tableCheck->num_rows > 0) {
+    $registrationsResult = $conn->query("SELECT * FROM in_person_registrations ORDER BY registration_date DESC");
+    if ($registrationsResult) {
+        $inPersonRegistrations = $registrationsResult->fetch_all(MYSQLI_ASSOC);
+    }
 }
 
 // Get static gallery images from images/gallery/New folder
@@ -320,6 +346,7 @@ if (isset($_GET['success'])) {
             <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
                 <button class="btn btn-primary" onclick="showSection('events')" id="btnEvents">Events</button>
                 <button class="btn btn-secondary" onclick="showSection('users')" id="btnUsers">Users</button>
+                <button class="btn btn-secondary" onclick="showSection('registrations')" id="btnRegistrations">In-Person Registrations (<?php echo count($inPersonRegistrations); ?>)</button>
                 <button class="btn btn-secondary" onclick="showSection('images')" id="btnImages">Images (<?php echo $totalImageCount; ?>)</button>
             </div>
             <div style="display: flex; gap: 1rem;">
@@ -542,6 +569,71 @@ if (isset($_GET['success'])) {
                 </table>
             </div>
         </div>
+    </div>
+    
+    <!-- In-Person Registrations Section -->
+    <div id="registrationsSection" style="display: none;">
+        <div style="margin-bottom: 2rem;">
+            <h2 style="margin-bottom: 0.5rem;">In-Person Event Registrations</h2>
+            <p style="color: var(--text-light); margin: 0;">
+                Total Registrations: <strong><?php echo count($inPersonRegistrations); ?></strong>
+            </p>
+        </div>
+        
+        <?php if (empty($inPersonRegistrations)): ?>
+            <div style="text-align: center; padding: 3rem; background: var(--white); border-radius: 8px; box-shadow: var(--shadow);">
+                <p style="color: var(--text-light); font-size: 1.1rem;">No in-person registrations yet.</p>
+                <p style="color: var(--text-light); margin-top: 0.5rem;">Registrations will appear here once users submit the form.</p>
+            </div>
+        <?php else: ?>
+            <div style="overflow-x: auto;">
+                <table class="events-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Institution/Firm</th>
+                            <th>Address</th>
+                            <th>Event</th>
+                            <th>Status</th>
+                            <th>Registration Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($inPersonRegistrations as $reg): ?>
+                            <tr>
+                                <td><?php echo $reg['id']; ?></td>
+                                <td><strong><?php echo htmlspecialchars($reg['full_name']); ?></strong></td>
+                                <td><?php echo htmlspecialchars($reg['email']); ?></td>
+                                <td><?php echo htmlspecialchars($reg['phone']); ?></td>
+                                <td><?php echo htmlspecialchars($reg['institution_firm']); ?></td>
+                                <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="<?php echo htmlspecialchars($reg['address']); ?>">
+                                    <?php echo htmlspecialchars($reg['address']); ?>
+                                </td>
+                                <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="<?php echo htmlspecialchars($reg['event_title'] ?? 'N/A'); ?>">
+                                    <?php echo htmlspecialchars($reg['event_title'] ?? 'N/A'); ?>
+                                </td>
+                                <td>
+                                    <span class="status-badge status-<?php echo $reg['status']; ?>">
+                                        <?php echo ucfirst($reg['status']); ?>
+                                    </span>
+                                </td>
+                                <td><?php echo date('M d, Y H:i', strtotime($reg['registration_date'])); ?></td>
+                                <td>
+                                    <a href="?view_registration=<?php echo $reg['id']; ?>" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">View</a>
+                                    <?php if ($reg['status'] === 'pending'): ?>
+                                        <a href="?confirm_registration=<?php echo $reg['id']; ?>" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="return confirm('Confirm this registration?')">Confirm</a>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php endif; ?>
     </div>
     
     <!-- Add/Edit Event Modal -->
@@ -788,6 +880,7 @@ if (isset($_GET['success'])) {
             // Hide all sections
             document.getElementById('eventsSection').style.display = 'none';
             document.getElementById('usersSection').style.display = 'none';
+            document.getElementById('registrationsSection').style.display = 'none';
             document.getElementById('imagesSection').style.display = 'none';
             
             // Reset all buttons
@@ -795,6 +888,8 @@ if (isset($_GET['success'])) {
             document.getElementById('btnEvents').classList.add('btn-secondary');
             document.getElementById('btnUsers').classList.remove('btn-primary');
             document.getElementById('btnUsers').classList.add('btn-secondary');
+            document.getElementById('btnRegistrations').classList.remove('btn-primary');
+            document.getElementById('btnRegistrations').classList.add('btn-secondary');
             document.getElementById('btnImages').classList.remove('btn-primary');
             document.getElementById('btnImages').classList.add('btn-secondary');
             
@@ -807,6 +902,10 @@ if (isset($_GET['success'])) {
                 document.getElementById('usersSection').style.display = 'block';
                 document.getElementById('btnUsers').classList.add('btn-primary');
                 document.getElementById('btnUsers').classList.remove('btn-secondary');
+            } else if (section === 'registrations') {
+                document.getElementById('registrationsSection').style.display = 'block';
+                document.getElementById('btnRegistrations').classList.add('btn-primary');
+                document.getElementById('btnRegistrations').classList.remove('btn-secondary');
             } else if (section === 'images') {
                 document.getElementById('imagesSection').style.display = 'block';
                 document.getElementById('btnImages').classList.add('btn-primary');
