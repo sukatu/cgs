@@ -60,7 +60,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <button onclick="openCGSIIModal()" class="btn" style="background-color: var(--primary-navy); color: white; padding: 1rem 2rem; font-weight: 600; font-size: 1rem; border: none; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; flex: 1; min-width: 150px;">
                             View Details
                         </button>
-                        <a href="https://us06web.zoom.us/j/88502430789?pwd=e3a79VijbjKZTolGnhZDoaN4s7OIug.1" target="_blank" class="btn" style="background-color: white; color: var(--primary-navy); padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; transition: all 0.3s ease; flex: 1; min-width: 150px; border: 2px solid var(--primary-navy); text-align: center;">
+                        <a href="register-cgs-ii.php" class="btn" style="background-color: white; color: var(--primary-navy); padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; transition: all 0.3s ease; flex: 1; min-width: 150px; border: 2px solid var(--primary-navy); text-align: center;">
                             Register Now →
                         </a>
                     </div>
@@ -591,73 +591,10 @@ if (session_status() === PHP_SESSION_NONE) {
                     </div>
                 </div>
 
-                <!-- In-Person Registration Form -->
-                <div style="background-color: var(--white); border: 2px solid var(--accent-gold); border-radius: 8px; padding: 2rem; margin-top: 2rem; margin-bottom: 2rem;">
-                    <h2 style="font-size: 1.5rem; color: var(--primary-navy); margin-bottom: 1rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
-                        <span>📝</span> Register for In-Person Attendance
-                    </h2>
-                    <p style="color: var(--text-charcoal); margin-bottom: 1.5rem; font-size: 1rem;">
-                        Planning to attend in person? Please fill out the form below to register.
-                    </p>
-                    
-                    <?php if (isset($_SESSION['registration_success'])): ?>
-                        <div style="background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem; border: 1px solid #c3e6cb;">
-                            <?php echo htmlspecialchars($_SESSION['registration_success']); unset($_SESSION['registration_success']); ?>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <?php if (isset($_SESSION['registration_error'])): ?>
-                        <div style="background-color: #f8d7da; color: #721c24; padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem; border: 1px solid #f5c6cb;">
-                            <?php echo htmlspecialchars($_SESSION['registration_error']); unset($_SESSION['registration_error']); ?>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <form method="POST" action="register-inperson.php" id="inPersonRegistrationForm" style="display: grid; gap: 1.5rem;">
-                        <input type="hidden" name="event_id" value="999">
-                        <input type="hidden" name="event_title" value="CGS II Bank Corporate Governance and Financial Stability: The Role of Bank Boards">
-                        <input type="hidden" name="redirect_url" value="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>">
-                        
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                            <div>
-                                <label for="full_name" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-charcoal);">Full Name *</label>
-                                <input type="text" id="full_name" name="full_name" required style="width: 100%; padding: 0.75rem; border: 2px solid var(--divider-grey); border-radius: 4px; font-size: 1rem; box-sizing: border-box;">
-                            </div>
-                            
-                            <div>
-                                <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-charcoal);">Email Address *</label>
-                                <input type="email" id="email" name="email" required style="width: 100%; padding: 0.75rem; border: 2px solid var(--divider-grey); border-radius: 4px; font-size: 1rem; box-sizing: border-box;">
-                            </div>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                            <div>
-                                <label for="phone" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-charcoal);">Phone Number *</label>
-                                <input type="tel" id="phone" name="phone" required style="width: 100%; padding: 0.75rem; border: 2px solid var(--divider-grey); border-radius: 4px; font-size: 1rem; box-sizing: border-box;">
-                            </div>
-                            
-                            <div>
-                                <label for="institution_firm" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-charcoal);">Institution/Firm *</label>
-                                <input type="text" id="institution_firm" name="institution_firm" required style="width: 100%; padding: 0.75rem; border: 2px solid var(--divider-grey); border-radius: 4px; font-size: 1rem; box-sizing: border-box;">
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label for="address" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-charcoal);">Address *</label>
-                            <textarea id="address" name="address" required rows="3" style="width: 100%; padding: 0.75rem; border: 2px solid var(--divider-grey); border-radius: 4px; font-size: 1rem; box-sizing: border-box; resize: vertical;"></textarea>
-                        </div>
-                        
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                            <button type="submit" class="btn" style="background-color: var(--accent-gold); color: var(--primary-navy); padding: 1rem 2rem; font-weight: 600; font-size: 1rem; border: none; border-radius: 4px; cursor: pointer; transition: all 0.3s ease;">
-                                Submit Registration
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
                 <!-- Call to Action -->
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-                    <a href="https://us06web.zoom.us/j/88502430789?pwd=e3a79VijbjKZTolGnhZDoaN4s7OIug.1" target="_blank" class="btn" style="background-color: var(--accent-gold); color: var(--primary-navy); padding: 1rem 2rem; font-weight: 600; font-size: 1.1rem; text-decoration: none; border-radius: 4px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
-                        <span>Register & Join Zoom Meeting</span>
+                    <a href="register-cgs-ii.php" class="btn" style="background-color: var(--accent-gold); color: var(--primary-navy); padding: 1rem 2rem; font-weight: 600; font-size: 1.1rem; text-decoration: none; border-radius: 4px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <span>Register for Event</span>
                         <span>→</span>
                     </a>
                     <a href="series-diary.php" class="btn" style="background-color: var(--primary-navy); color: white; padding: 1rem 2rem; font-weight: 600; font-size: 1.1rem; text-decoration: none; border-radius: 4px; border: 2px solid var(--primary-navy); transition: all 0.3s ease;">

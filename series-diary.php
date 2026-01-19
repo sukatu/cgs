@@ -343,7 +343,9 @@ if (session_status() === PHP_SESSION_NONE) {
                             ` : ''}
                         </div>
                         <div class="event-list-actions">
-                            ${event.registration_link ? `
+                            ${event.title && event.title.includes('CGS II') ? `
+                                <a href="register-cgs-ii.php" class="btn btn-primary" onclick="event.stopPropagation();">Register</a>
+                            ` : event.registration_link ? `
                                 <a href="${escapeHtml(event.registration_link)}" target="_blank" class="btn btn-primary" onclick="event.stopPropagation();">Book now</a>
                             ` : ''}
                             <button class="event-list-toggle" aria-label="View event details">▶</button>
@@ -393,7 +395,9 @@ if (session_status() === PHP_SESSION_NONE) {
                 </div>
                 
                 <div class="event-detail-menu">
-                    ${event.registration_link ? `
+                    ${event.title && event.title.includes('CGS II') ? `
+                        <a href="register-cgs-ii.php" class="btn btn-primary event-book-btn">Register</a>
+                    ` : event.registration_link ? `
                         <a href="${escapeHtml(event.registration_link)}" target="_blank" class="btn btn-primary event-book-btn">Book now</a>
                     ` : ''}
                 </div>
@@ -496,7 +500,11 @@ if (session_status() === PHP_SESSION_NONE) {
                         </div>
                     ` : ''}
                     
-                    ${event.registration_link ? `
+                    ${event.title && event.title.includes('CGS II') ? `
+                        <div class="event-detail-cta">
+                            <a href="register-cgs-ii.php" class="btn btn-primary btn-large">Register Now</a>
+                        </div>
+                    ` : event.registration_link ? `
                         <div class="event-detail-cta">
                             <a href="${escapeHtml(event.registration_link)}" target="_blank" class="btn btn-primary btn-large">Register Now</a>
                         </div>
