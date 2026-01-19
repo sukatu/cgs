@@ -12,53 +12,7 @@ $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-top">
-            <div class="nav-top-container">
-                <div class="logo">
-                    <a href="index.html"><img src="logo-header.png" alt="Corporate Governance Series CGS Logo" class="logo-header"></a>
-                </div>
-                <?php include 'header-nav.php'; ?>
-            </div>
-        </div>
-        <div class="nav-bottom">
-            <div class="nav-bottom-container">
-                <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About CGS</a></li>
-                <li class="dropdown">
-                    <a href="events.html">Events</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="webinar-diary.html">Webinar Diary</a></li>
-                        <li><a href="series-diary.html">Series Diary</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="resources.html">Resources</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="governance-codes.html">Governance Codes in Africa</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="media.html" class="active">Media</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="videos.html">Videos</a></li>
-                        <li><a href="pictures.html">Pictures</a></li>
-                    </ul>
-                </li>
-                <li><a href="training.html">Training</a></li>
-                <li><a href="network.php">Network</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <?php include 'header-main.php'; ?>
 
     <main>
         <?php if (isset($_SESSION['success'])): ?>
@@ -111,7 +65,7 @@ $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
                             <div style="margin-top: 1rem; display: flex; gap: 0.5rem; align-items: center;">
                                 <a href="https://www.youtube.com/watch?v=1809paF4iuk" target="_blank" class="update-link" style="display: inline-block;">Watch on YouTube →</a>
                                 <?php if ($isLoggedIn): ?>
-                                    <a href="user-bookmark-handler.php?action=add&type=video&id=1809paF4iuk&title=<?php echo urlencode('LIVE: Strengthening Corporate Governance of State-Owned Entities in Ghana: Opportunities & Challenges'); ?>&description=<?php echo urlencode('An in-depth live discussion exploring the critical opportunities and challenges in strengthening corporate governance of State-Owned Entities (SOEs) in Ghana'); ?>&url=https://www.youtube.com/watch?v=1809paF4iuk&redirect=videos.html" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library">📚</a>
+                                    <a href="user-bookmark-handler.php?action=add&type=video&id=1809paF4iuk&title=<?php echo urlencode('LIVE: Strengthening Corporate Governance of State-Owned Entities in Ghana: Opportunities & Challenges'); ?>&description=<?php echo urlencode('An in-depth live discussion exploring the critical opportunities and challenges in strengthening corporate governance of State-Owned Entities (SOEs) in Ghana'); ?>&url=https://www.youtube.com/watch?v=1809paF4iuk&redirect=videos.php" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library">📚</a>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -135,7 +89,7 @@ $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
                             <div style="margin-top: 1rem; display: flex; gap: 0.5rem; align-items: center;">
                                 <a href="https://www.youtube.com/watch?v=bVH51cX7dhs" target="_blank" class="update-link" style="display: inline-block;">Watch on YouTube →</a>
                                 <?php if ($isLoggedIn): ?>
-                                    <a href="user-bookmark-handler.php?action=add&type=video&id=bVH51cX7dhs&title=<?php echo urlencode('Corporate Governance of SOEs in Ghana: Challenges & Recommendations | Panel Discussion'); ?>&description=<?php echo urlencode('A comprehensive panel discussion addressing the governance challenges facing State-Owned Enterprises in Ghana'); ?>&url=https://www.youtube.com/watch?v=bVH51cX7dhs&redirect=videos.html" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library">📚</a>
+                                    <a href="user-bookmark-handler.php?action=add&type=video&id=bVH51cX7dhs&title=<?php echo urlencode('Corporate Governance of SOEs in Ghana: Challenges & Recommendations | Panel Discussion'); ?>&description=<?php echo urlencode('A comprehensive panel discussion addressing the governance challenges facing State-Owned Enterprises in Ghana'); ?>&url=https://www.youtube.com/watch?v=bVH51cX7dhs&redirect=videos.php" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library">📚</a>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -159,7 +113,7 @@ $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
                             <div style="margin-top: 1rem; display: flex; gap: 0.5rem; align-items: center;">
                                 <a href="https://www.youtube.com/watch?v=RFs_7S6FCO0" target="_blank" class="update-link" style="display: inline-block;">Watch on YouTube →</a>
                                 <?php if ($isLoggedIn): ?>
-                                    <a href="user-bookmark-handler.php?action=add&type=video&id=RFs_7S6FCO0&title=<?php echo urlencode('Overview of State-Owned Enterprises in Ghana: Challenges and Recommendations | Mr. Joseph Sarpong'); ?>&description=<?php echo urlencode('An insightful presentation by Mr. Joseph Sarpong providing a comprehensive overview of State-Owned Enterprises in Ghana'); ?>&url=https://www.youtube.com/watch?v=RFs_7S6FCO0&redirect=videos.html" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library">📚</a>
+                                    <a href="user-bookmark-handler.php?action=add&type=video&id=RFs_7S6FCO0&title=<?php echo urlencode('Overview of State-Owned Enterprises in Ghana: Challenges and Recommendations | Mr. Joseph Sarpong'); ?>&description=<?php echo urlencode('An insightful presentation by Mr. Joseph Sarpong providing a comprehensive overview of State-Owned Enterprises in Ghana'); ?>&url=https://www.youtube.com/watch?v=RFs_7S6FCO0&redirect=videos.php" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library">📚</a>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -214,18 +168,18 @@ $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About CGS</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="training.html">Training</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about.php">About CGS</a></li>
+                        <li><a href="events.php">Events</a></li>
+                        <li><a href="training.php">Training</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="governance-codes.html">Governance Codes</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="media.html">Media</a></li>
+                        <li><a href="governance-codes.php">Governance Codes</a></li>
+                        <li><a href="blog.php">Blog</a></li>
+                        <li><a href="media.php">Media</a></li>
                         <li><a href="network.php">Network</a></li>
                     </ul>
                 </div>

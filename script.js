@@ -18,7 +18,7 @@ if (hamburger && navMenu) {
 }
 
 // Login Form Handler (only for simple login forms without backend handlers)
-// Network.php and login-user.html have their own handlers, so we skip them
+// Network.php and login-user.php have their own handlers, so we skip them
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     if (!loginForm) {
@@ -192,67 +192,67 @@ if (!searchModal && searchBtn) {
 const searchDatabase = [
     {
         title: 'Home',
-        url: 'index.html',
+        url: 'index.php',
         keywords: ['home', 'corporate governance series', 'cgs', 'africa', 'ghana', 'governance', 'elevating standards', 'premier platform'],
         snippet: 'Corporate Governance Series (CGS) is the premier platform for African stakeholders to debate, refine, and implement world-class governance frameworks.'
     },
     {
         title: 'About CGS',
-        url: 'about.html',
+        url: 'about.php',
         keywords: ['about', 'cgs', 'vision', 'mission', 'csts', 'platform', 'africa', 'governance', 'ethical leadership', 'sustainable growth'],
         snippet: 'A platform shaping ethical leadership, accountability, and sustainable growth across Africa.'
     },
     {
         title: 'Events - Webinar Diary',
-        url: 'webinar-diary.html',
+        url: 'webinar-diary.php',
         keywords: ['events', 'webinar', 'diary', 'monthly', 'virtual', 'directors', 'directorship', 'digital age', 'ai ethics', 'cybersecurity'],
         snippet: 'Monthly, high-signal virtual sessions built for directors, deal teams, in-house counsel, bankers, regulators, and students.'
     },
     {
         title: 'Events - Series Diary',
-        url: 'series-diary.html',
+        url: 'series-diary.php',
         keywords: ['events', 'series', 'diary', 'flagship', 'sessions', 'stakeholder', 'convenings', 'accra', 'soe', 'state owned entities'],
         snippet: 'The Corporate Governance Series is a structured roadmap of flagship discussions and stakeholder convenings.'
     },
     {
         title: 'Governance Codes in Africa',
-        url: 'governance-codes.html',
+        url: 'governance-codes.php',
         keywords: ['resources', 'governance codes', 'africa', 'codes', 'national', 'ghana', 'nigeria', 'kenya', 'download', 'pdf'],
         snippet: 'Search and download national corporate governance codes and key guidance across the continent.'
     },
     {
         title: 'CGS Blog',
-        url: 'blog.html',
+        url: 'blog.php',
         keywords: ['blog', 'resources', 'articles', 'insights', 'board effectiveness', 'compliance', 'esg', 'risk', 'digital', 'governance'],
         snippet: 'Executive summaries first. Deep-dive analysis when it matters. Expert insights on board effectiveness, compliance, ESG, risk, and digital governance.'
     },
     {
         title: 'Videos',
-        url: 'videos.html',
+        url: 'videos.php',
         keywords: ['media', 'videos', 'recordings', 'webinars', 'highlights', 'fireside chats', 'soe', 'state owned entities', 'governance'],
         snippet: 'Watch highlights, fireside chats, and full-length webinars from CGS events.'
     },
     {
         title: 'Pictures',
-        url: 'pictures.html',
+        url: 'pictures.php',
         keywords: ['media', 'pictures', 'photos', 'gallery', 'events', 'albums', 'networking', 'sessions'],
         snippet: 'Event albums with high-resolution images from CGS sessions and stakeholder convenings.'
     },
     {
         title: 'Training',
-        url: 'training.html',
+        url: 'training.php',
         keywords: ['training', 'capacity building', 'director induction', 'board evaluations', 'compliance', 'workshops', 'certification'],
         snippet: 'Capacity building that upgrades governance from policy to performance.'
     },
     {
         title: 'Network',
-        url: 'network.html',
+        url: 'network.php',
         keywords: ['network', 'membership', 'community', 'directors', 'lawyers', 'bankers', 'regulators', 'scholars', 'governance professionals'],
         snippet: 'Connect with Africa\'s governance elite. A curated network of directors, lawyers, bankers, regulators, scholars, and governance professionals.'
     },
     {
         title: 'Contact',
-        url: 'contact.html',
+        url: 'contact.php',
         keywords: ['contact', 'partnerships', 'speaking', 'training requests', 'enquiries', 'accra', 'kumasi', 'email', 'phone'],
         snippet: 'Partnerships, speaking opportunities, training requests, and general enquiries.'
     }

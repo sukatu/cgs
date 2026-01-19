@@ -221,5 +221,5 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 
 echo "<br><div class='success' style='font-size: 1.2em; font-weight: bold; padding: 20px;'>✅ Database setup complete! All necessary tables have been created.</div>";
-echo "<p><a href='user-dashboard.php'>Go to User Dashboard</a> | <a href='index.html'>Go to Home</a></p>";
+echo "<p><a href='user-dashboard.php'>Go to User Dashboard</a> | <a href='index.php'>Go to Home</a></p>";
 ?>

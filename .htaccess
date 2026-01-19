@@ -1,12 +1,10 @@
-# Enable error reporting (disable in production)
-php_flag display_errors On
-php_value error_reporting E_ALL
+# Enable PHP processing for .html files
+AddHandler application/x-httpd-php .html .htm
 
-# Prevent directory listing
-Options -Indexes
+# Alternative if above doesn't work (uncomment if needed):
+# AddType application/x-httpd-php .html .htm
 
-# Protect config files
-<FilesMatch "^(config\.php|database_setup\.php)$">
-    Order allow,deny
-    Deny from all
+# Ensure PHP files are processed
+<FilesMatch "\.(php|html|htm)$">
+    SetHandler application/x-httpd-php
 </FilesMatch>

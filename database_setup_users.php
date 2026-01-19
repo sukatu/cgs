@@ -59,5 +59,5 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 
 echo "<br><strong>User database setup complete!</strong><br>";
-echo "<a href='login.html'>Go to User Login</a> | <a href='admin-login.php'>Go to Admin Login</a>";
+echo "<a href='login.php'>Go to User Login</a> | <a href='admin-login.php'>Go to Admin Login</a>";
 ?>

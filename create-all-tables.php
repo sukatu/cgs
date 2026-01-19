@@ -270,7 +270,7 @@ echo "<ul>";
 echo "<li><a href='admin-login.php'>Go to Admin Login</a> (Username: admin, Password: cgs2025)</li>";
 echo "<li><a href='network.php'>Go to User Registration/Login</a></li>";
 echo "<li><a href='user-dashboard.php'>Go to User Dashboard</a></li>";
-echo "<li><a href='index.html'>Go to Homepage</a></li>";
+echo "<li><a href='index.php'>Go to Homepage</a></li>";
 echo "</ul>";
 ?>
 

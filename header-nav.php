@@ -96,7 +96,7 @@ if ($isLoggedIn && $userName) {
             </div>
         </div>
     <?php else: ?>
-        <a href="login-user.html" class="login-btn">Login</a>
+        <a href="login-user.php" class="login-btn">Login</a>
         <a href="network.php" class="join-btn">Join the Network</a>
     <?php endif; ?>
 </div>

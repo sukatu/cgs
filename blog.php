@@ -12,53 +12,7 @@ $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-top">
-            <div class="nav-top-container">
-                <div class="logo">
-                    <a href="index.html"><img src="logo-header.png" alt="Corporate Governance Series CGS Logo" class="logo-header"></a>
-                </div>
-                <?php include 'header-nav.php'; ?>
-            </div>
-        </div>
-        <div class="nav-bottom">
-            <div class="nav-bottom-container">
-                <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About CGS</a></li>
-                <li class="dropdown">
-                    <a href="events.html">Events</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="webinar-diary.html">Webinar Diary</a></li>
-                        <li><a href="series-diary.html">Series Diary</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="resources.html" class="active">Resources</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="governance-codes.html">Governance Codes in Africa</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="media.html">Media</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="videos.html">Videos</a></li>
-                        <li><a href="pictures.html">Pictures</a></li>
-                    </ul>
-                </li>
-                <li><a href="training.html">Training</a></li>
-                <li><a href="network.php">Network</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <?php include 'header-main.php'; ?>
 
     <main>
         <?php if (isset($_SESSION['success'])): ?>
@@ -96,7 +50,7 @@ $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
                 </div> -->
 
                 <div class="updates-grid">
-                    <article class="update-card" onclick="if(event.target.tagName !== 'A') window.location.href='blog-esg-ghana-perspective.html'" style="cursor: pointer;">
+                    <article class="update-card" onclick="if(event.target.tagName !== 'A') window.location.href='blog-esg-ghana-perspective.php'" style="cursor: pointer;">
                         <div class="update-content">
                             <span class="update-category">ESG • Sustainability • Ghana Legal Framework</span>
                             <h3>ESG: The Ghana Perspective</h3>
@@ -107,16 +61,16 @@ $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
                                     <strong>Read Time:</strong> 12 min
                                 </div>
                                 <div style="display: flex; gap: 0.5rem; align-items: center;">
-                                    <a href="blog-esg-ghana-perspective.html" class="update-link">Read Article →</a>
+                                    <a href="blog-esg-ghana-perspective.php" class="update-link">Read Article →</a>
                                     <?php if ($isLoggedIn): ?>
-                                        <a href="user-bookmark-handler.php?action=add&type=article&id=esg-ghana-perspective&title=<?php echo urlencode('ESG: The Ghana Perspective'); ?>&description=<?php echo urlencode('Understanding how Environmental, Social, and Governance factors integrate into Ghana\'s legal framework'); ?>&url=blog-esg-ghana-perspective.html&redirect=blog.html" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library" onclick="event.stopPropagation();">📚</a>
+                                        <a href="user-bookmark-handler.php?action=add&type=article&id=esg-ghana-perspective&title=<?php echo urlencode('ESG: The Ghana Perspective'); ?>&description=<?php echo urlencode('Understanding how Environmental, Social, and Governance factors integrate into Ghana\'s legal framework'); ?>&url=blog-esg-ghana-perspective.php&redirect=blog.php" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library" onclick="event.stopPropagation();">📚</a>
                                     <?php endif; ?>
                                 </div>
                             </div>
                         </div>
                     </article>
 
-                    <article class="update-card" onclick="if(event.target.tagName !== 'A') window.location.href='blog-principles-rules-africa.html'" style="cursor: pointer;">
+                    <article class="update-card" onclick="if(event.target.tagName !== 'A') window.location.href='blog-principles-rules-africa.php'" style="cursor: pointer;">
                         <div class="update-content">
                             <span class="update-category">Regulatory Framework • Compliance • Sub-Saharan Africa</span>
                             <h3>Neither Principles nor Rules: Making Corporate Governance Work in Sub-Saharan Africa</h3>
@@ -127,16 +81,16 @@ $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
                                     <strong>Read Time:</strong> 10 min
                                 </div>
                                 <div style="display: flex; gap: 0.5rem; align-items: center;">
-                                    <a href="blog-principles-rules-africa.html" class="update-link">Read Article →</a>
+                                    <a href="blog-principles-rules-africa.php" class="update-link">Read Article →</a>
                                     <?php if ($isLoggedIn): ?>
-                                        <a href="user-bookmark-handler.php?action=add&type=article&id=principles-rules-africa&title=<?php echo urlencode('Neither Principles nor Rules: Making Corporate Governance Work in Sub-Saharan Africa'); ?>&description=<?php echo urlencode('Research from Nigeria suggests African countries need an integrated approach combining rule-based and principle-based regulation'); ?>&url=blog-principles-rules-africa.html&redirect=blog.html" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library" onclick="event.stopPropagation();">📚</a>
+                                        <a href="user-bookmark-handler.php?action=add&type=article&id=principles-rules-africa&title=<?php echo urlencode('Neither Principles nor Rules: Making Corporate Governance Work in Sub-Saharan Africa'); ?>&description=<?php echo urlencode('Research from Nigeria suggests African countries need an integrated approach combining rule-based and principle-based regulation'); ?>&url=blog-principles-rules-africa.php&redirect=blog.php" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library" onclick="event.stopPropagation();">📚</a>
                                     <?php endif; ?>
                                 </div>
                             </div>
                         </div>
                     </article>
 
-                    <article class="update-card" onclick="if(event.target.tagName !== 'A') window.location.href='blog-soes-ghana.html'" style="cursor: pointer;">
+                    <article class="update-card" onclick="if(event.target.tagName !== 'A') window.location.href='blog-soes-ghana.php'" style="cursor: pointer;">
                         <div class="update-content">
                             <span class="update-category">State-Owned Enterprises • Board Structure • Ghana</span>
                             <h3>Corporate Governance and Performance of State-Owned Enterprises in Ghana</h3>
@@ -147,16 +101,16 @@ $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
                                     <strong>Read Time:</strong> 10 min
                                 </div>
                                 <div style="display: flex; gap: 0.5rem; align-items: center;">
-                                    <a href="blog-soes-ghana.html" class="update-link">Read Article →</a>
+                                    <a href="blog-soes-ghana.php" class="update-link">Read Article →</a>
                                     <?php if ($isLoggedIn): ?>
-                                        <a href="user-bookmark-handler.php?action=add&type=article&id=soes-ghana&title=<?php echo urlencode('Corporate Governance and Performance of State-Owned Enterprises in Ghana'); ?>&description=<?php echo urlencode('Research reveals that governance mechanisms alone don\'t directly improve SOE performance'); ?>&url=blog-soes-ghana.html&redirect=blog.html" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library" onclick="event.stopPropagation();">📚</a>
+                                        <a href="user-bookmark-handler.php?action=add&type=article&id=soes-ghana&title=<?php echo urlencode('Corporate Governance and Performance of State-Owned Enterprises in Ghana'); ?>&description=<?php echo urlencode('Research reveals that governance mechanisms alone don\'t directly improve SOE performance'); ?>&url=blog-soes-ghana.php&redirect=blog.php" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library" onclick="event.stopPropagation();">📚</a>
                                     <?php endif; ?>
                                 </div>
                             </div>
                         </div>
                     </article>
 
-                    <article class="update-card" onclick="if(event.target.tagName !== 'A') window.location.href='blog-agency-costs-ghana.html'" style="cursor: pointer;">
+                    <article class="update-card" onclick="if(event.target.tagName !== 'A') window.location.href='blog-agency-costs-ghana.php'" style="cursor: pointer;">
                         <div class="update-content">
                             <span class="update-category">Agency Theory • Board Structure • Ghana</span>
                             <h3>Agency Costs and Corporate Governance in Ghana: What Works and What Doesn't</h3>
@@ -167,9 +121,9 @@ $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
                                     <strong>Read Time:</strong> 10 min
                                 </div>
                                 <div style="display: flex; gap: 0.5rem; align-items: center;">
-                                    <a href="blog-agency-costs-ghana.html" class="update-link">Read Article →</a>
+                                    <a href="blog-agency-costs-ghana.php" class="update-link">Read Article →</a>
                                     <?php if ($isLoggedIn): ?>
-                                        <a href="user-bookmark-handler.php?action=add&type=article&id=agency-costs-ghana&title=<?php echo urlencode('Agency Costs and Corporate Governance in Ghana: What Works and What Doesn\'t'); ?>&description=<?php echo urlencode('Research examining Ghanaian companies reveals that smaller boards, audit committees, and higher ownership stakes effectively reduce agency costs'); ?>&url=blog-agency-costs-ghana.html&redirect=blog.html" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library" onclick="event.stopPropagation();">📚</a>
+                                        <a href="user-bookmark-handler.php?action=add&type=article&id=agency-costs-ghana&title=<?php echo urlencode('Agency Costs and Corporate Governance in Ghana: What Works and What Doesn\'t'); ?>&description=<?php echo urlencode('Research examining Ghanaian companies reveals that smaller boards, audit committees, and higher ownership stakes effectively reduce agency costs'); ?>&url=blog-agency-costs-ghana.php&redirect=blog.php" class="btn btn-outline" style="text-decoration: none; padding: 0.25rem 0.75rem; font-size: 0.85rem;" title="Add to Library" onclick="event.stopPropagation();">📚</a>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -217,18 +171,18 @@ $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About CGS</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="training.html">Training</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about.php">About CGS</a></li>
+                        <li><a href="events.php">Events</a></li>
+                        <li><a href="training.php">Training</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="governance-codes.html">Governance Codes</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="media.html">Media</a></li>
+                        <li><a href="governance-codes.php">Governance Codes</a></li>
+                        <li><a href="blog.php">Blog</a></li>
+                        <li><a href="media.php">Media</a></li>
                         <li><a href="network.php">Network</a></li>
                     </ul>
                 </div>

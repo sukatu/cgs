@@ -13,53 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-top">
-            <div class="nav-top-container">
-                <div class="logo">
-                    <a href="index.html"><img src="logo-header.png" alt="Corporate Governance Series CGS Logo" class="logo-header"></a>
-                </div>
-                <?php include 'header-nav.php'; ?>
-            </div>
-        </div>
-        <div class="nav-bottom">
-            <div class="nav-bottom-container">
-                <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About CGS</a></li>
-                <li class="dropdown">
-                    <a href="events.html">Events</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="webinar-diary.html">Webinar Diary</a></li>
-                        <li><a href="series-diary.html">Series Diary</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="resources.html" class="active">Resources</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="governance-codes.html">Governance Codes in Africa</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="media.html">Media</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="videos.html">Videos</a></li>
-                        <li><a href="pictures.html">Pictures</a></li>
-                    </ul>
-                </li>
-                <li><a href="training.html">Training</a></li>
-                <li><a href="network.php">Network</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <?php include 'header-main.php'; ?>
 
     <main>
         <section class="page-header">
@@ -197,13 +151,13 @@ if (session_status() === PHP_SESSION_NONE) {
 
                 <!-- Back to Blog and Bookmark -->
                 <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--divider-grey); display: flex; justify-content: center; gap: 1rem; align-items: center;">
-                    <a href="blog.html" class="btn btn-outline" style="text-decoration: none;">← Back to Blog</a>
+                    <a href="blog.php" class="btn btn-outline" style="text-decoration: none;">← Back to Blog</a>
                     <?php
                     require_once 'config.php';
                     session_start();
                     if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in']):
                     ?>
-                        <a href="user-bookmark-handler.php?action=add&type=article&id=esg-ghana-perspective&title=<?php echo urlencode('ESG: The Ghana Perspective'); ?>&description=<?php echo urlencode('Understanding how Environmental, Social, and Governance factors integrate into Ghana\'s legal framework and why implementing ESG is crucial for sustainable business success'); ?>&url=blog-esg-ghana-perspective.html&redirect=blog-esg-ghana-perspective.html" class="btn btn-primary" style="text-decoration: none;">📚 Add to Library</a>
+                        <a href="user-bookmark-handler.php?action=add&type=article&id=esg-ghana-perspective&title=<?php echo urlencode('ESG: The Ghana Perspective'); ?>&description=<?php echo urlencode('Understanding how Environmental, Social, and Governance factors integrate into Ghana\'s legal framework and why implementing ESG is crucial for sustainable business success'); ?>&url=blog-esg-ghana-perspective.php&redirect=blog-esg-ghana-perspective.php" class="btn btn-primary" style="text-decoration: none;">📚 Add to Library</a>
                     <?php endif; ?>
                 </div>
 
@@ -248,18 +202,18 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About CGS</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="training.html">Training</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about.php">About CGS</a></li>
+                        <li><a href="events.php">Events</a></li>
+                        <li><a href="training.php">Training</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="governance-codes.html">Governance Codes</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="media.html">Media</a></li>
+                        <li><a href="governance-codes.php">Governance Codes</a></li>
+                        <li><a href="blog.php">Blog</a></li>
+                        <li><a href="media.php">Media</a></li>
                         <li><a href="network.php">Network</a></li>
                     </ul>
                 </div>

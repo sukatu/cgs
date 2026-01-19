@@ -9,69 +9,17 @@ if (session_status() === PHP_SESSION_NONE) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neither Principles nor Rules: Making Corporate Governance Work in Sub-Saharan Africa | CGS Blog</title>
+    <title>Corporate Governance and Performance of State-Owned Enterprises in Ghana | CGS Blog</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-top">
-            <div class="nav-top-container">
-                <div class="logo">
-                    <a href="index.html"><img src="logo-header.png" alt="Corporate Governance Series CGS Logo" class="logo-header"></a>
-                </div>
-                <?php
-                require_once 'config.php';
-                if (session_status() === PHP_SESSION_NONE) {
-                    session_start();
-                }
-                include 'header-nav.php';
-                ?>
-            </div>
-        </div>
-        <div class="nav-bottom">
-            <div class="nav-bottom-container">
-                <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About CGS</a></li>
-                <li class="dropdown">
-                    <a href="events.html">Events</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="webinar-diary.html">Webinar Diary</a></li>
-                        <li><a href="series-diary.html">Series Diary</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="resources.html" class="active">Resources</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="governance-codes.html">Governance Codes in Africa</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="media.html">Media</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="videos.html">Videos</a></li>
-                        <li><a href="pictures.html">Pictures</a></li>
-                    </ul>
-                </li>
-                <li><a href="training.html">Training</a></li>
-                <li><a href="network.php">Network</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <?php include 'header-main.php'; ?>
 
     <main>
         <section class="page-header">
             <div class="container">
-                <h1>Neither Principles nor Rules: Making Corporate Governance Work in Sub-Saharan Africa</h1>
-                <p class="page-subtitle">Research from Nigeria suggests African countries need an integrated approach combining rule-based and principle-based regulation, supported by multi-stakeholder co-regulation.</p>
+                <h1>Corporate Governance and Performance of State-Owned Enterprises in Ghana</h1>
+                <p class="page-subtitle">Research reveals that governance mechanisms alone don't directly improve SOE performance—they need to interact with other factors to create meaningful change.</p>
             </div>
         </section>
 
@@ -84,27 +32,27 @@ if (session_status() === PHP_SESSION_NONE) {
                     <table style="width: 100%; border-collapse: collapse;">
                         <tr>
                             <td style="padding: 0.5rem; font-weight: 600; color: var(--text-charcoal); width: 200px;">Title of Original Work:</td>
-                            <td style="padding: 0.5rem; color: var(--text-charcoal);">Neither Principles nor Rules: Making Corporate Governance work in Sub-Saharan Africa</td>
+                            <td style="padding: 0.5rem; color: var(--text-charcoal);">Corporate Governance and Performance of State-Owned Enterprises in Ghana</td>
                         </tr>
                         <tr>
                             <td style="padding: 0.5rem; font-weight: 600; color: var(--text-charcoal);">Author(s):</td>
-                            <td style="padding: 0.5rem; color: var(--text-charcoal);">Nakpodia, F., Adegbite, E., Amaeshi, K., & Owolabi, A.</td>
+                            <td style="padding: 0.5rem; color: var(--text-charcoal);">Rev. Dr. Maxwell Dela Yao Gakpo, Ing. Dr. Kenneth Kwaku Ashigbey, Mercy Kwakye</td>
                         </tr>
                         <tr>
                             <td style="padding: 0.5rem; font-weight: 600; color: var(--text-charcoal);">Publication Source:</td>
-                            <td style="padding: 0.5rem; color: var(--text-charcoal);">Journal of Business Ethics</td>
+                            <td style="padding: 0.5rem; color: var(--text-charcoal);">International Academic Journal of Economics and Finance</td>
                         </tr>
                         <tr>
                             <td style="padding: 0.5rem; font-weight: 600; color: var(--text-charcoal);">Year:</td>
-                            <td style="padding: 0.5rem; color: var(--text-charcoal);">2018</td>
+                            <td style="padding: 0.5rem; color: var(--text-charcoal);">2021</td>
                         </tr>
                         <tr>
                             <td style="padding: 0.5rem; font-weight: 600; color: var(--text-charcoal); vertical-align: top;">Full Reference:</td>
-                            <td style="padding: 0.5rem; color: var(--text-charcoal);">Nakpodia, F., Adegbite, E., Amaeshi, K., & Owolabi, A. (2018). Neither principles nor rules: Making corporate governance work in Sub-Saharan Africa. <em>Journal of Business Ethics</em>, 151(2), 391-408. https://ssrn.com/abstract=3512771</td>
+                            <td style="padding: 0.5rem; color: var(--text-charcoal);">Gakpo, M. D. Y., Ashigbey, K. K., & Kwakye, M. (2021). Corporate governance and performance of state-owned enterprises in Ghana. <em>International Academic Journal of Economics and Finance</em>, 3(6), 333-344. https://ssrn.com/abstract=3790914</td>
                         </tr>
                         <tr>
                             <td style="padding: 0.5rem; font-weight: 600; color: var(--text-charcoal);">Governance Area:</td>
-                            <td style="padding: 0.5rem; color: var(--text-charcoal);">Regulatory Framework • Compliance • Sub-Saharan Africa • Institutional Theory</td>
+                            <td style="padding: 0.5rem; color: var(--text-charcoal);">State-Owned Enterprises • Board Structure • Performance Measurement</td>
                         </tr>
                     </table>
                 </div>
@@ -113,7 +61,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div style="margin-bottom: 3rem;">
                     <h2 style="color: var(--primary-navy); font-size: 1.75rem; margin-bottom: 1rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem;">The Core Thesis</h2>
                     <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text-charcoal); font-weight: 500;">
-                        The traditional debate between rule-based and principle-based corporate governance regulation doesn't apply well to Sub-Saharan Africa. Drawing from a case study of Nigeria, Africa's largest economy, the research finds that weak market economies need an integrated system combining both approaches, supported by multi-stakeholder co-regulation. This challenges the assumption that developed economy regulatory models can be directly transplanted to African contexts.
+                        Corporate governance mechanisms in Ghana's state-owned enterprises show mixed results. While some positive and negative relationships exist between governance characteristics and financial performance, most are not statistically significant. The research suggests that governance alone doesn't directly improve performance—it requires interaction with other organizational and environmental factors to achieve meaningful change.
                     </p>
                 </div>
 
@@ -121,7 +69,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div style="margin-bottom: 3rem;">
                     <h2 style="color: var(--primary-navy); font-size: 1.75rem; margin-bottom: 1rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem;">How the Research Was Conducted</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-charcoal);">
-                        The researchers used institutional theory and a case study approach focusing on Nigeria to explore the appropriateness of corporate governance regulatory frameworks in Sub-Saharan Africa. They examined how principle-based systems (voluntary, non-binding recommendations) and rule-based systems (mandatory legal requirements) function in weak market economies. The study analyzed Nigeria's regulatory environment, considering how different institutional configurations, their strengths, and complementarities affect governance outcomes. This qualitative approach allowed researchers to understand the complex interactions between regulatory approaches and local institutional contexts.
+                        The researchers used a quantitative approach to examine 22 state-owned enterprises in Ghana from 2012 to 2016. They measured financial performance using Return on Capital Employed (ROCE) as the key indicator. The study focused on four corporate governance characteristics: the presence of an audit committee, gender diversity on boards, board size, and the frequency of board meetings. These SOEs were selected purposefully to represent the state-owned sector, and the analysis looked at how these governance factors related to financial outcomes.
                     </p>
                 </div>
 
@@ -131,37 +79,37 @@ if (session_status() === PHP_SESSION_NONE) {
                     <ul style="list-style: none; padding: 0;">
                         <li style="margin-bottom: 2rem; padding-left: 1.5rem; position: relative;">
                             <span style="position: absolute; left: 0; color: var(--accent-gold); font-weight: bold; font-size: 1.5rem;">•</span>
-                            <h3 style="color: var(--primary-navy); font-size: 1.2rem; margin-bottom: 0.75rem;">The Traditional Split Doesn't Apply</h3>
+                            <h3 style="color: var(--primary-navy); font-size: 1.2rem; margin-bottom: 0.75rem;">Governance Doesn't Work in Isolation</h3>
                             <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-charcoal);">
-                                In developing and weak market economies like those in Sub-Saharan Africa, there is no explicit split between rule-based and principle-based regulation. The debates on corporate governance regulation have mainly focused on developed economies, leaving a gap in understanding how these approaches work in African contexts. The research found that Nigeria, like other Sub-Saharan African countries, doesn't fit neatly into either category and requires a different approach.
+                                The study found that corporate governance mechanisms did not directly improve firm performance. Instead, governance requires interaction with other factors to create meaningful change. This suggests that simply adding an audit committee or increasing board meetings won't automatically boost performance—these mechanisms need to work alongside proper management practices, adequate resources, and supportive organizational culture.
                             </p>
                         </li>
                         <li style="margin-bottom: 2rem; padding-left: 1.5rem; position: relative;">
                             <span style="position: absolute; left: 0; color: var(--accent-gold); font-weight: bold; font-size: 1.5rem;">•</span>
-                            <h3 style="color: var(--primary-navy); font-size: 1.2rem; margin-bottom: 0.75rem;">Integrated System Needed</h3>
+                            <h3 style="color: var(--primary-navy); font-size: 1.2rem; margin-bottom: 0.75rem;">Mixed Results on Governance Characteristics</h3>
                             <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-charcoal);">
-                                The research suggests that Nigeria needs an integrated system that combines elements of both rule-based and principle-based regulation. Neither approach alone is sufficient. Rule-based systems create more government intervention through stricter laws, while principle-based systems are voluntary and non-binding. In weak market economies, both are needed: rules provide minimum standards and enforcement, while principles allow flexibility for different contexts and encourage best practices beyond minimum requirements.
+                                The research revealed both positive and negative relationships between the four governance variables and accounting performance measures. However, most of these relationships were not statistically significant, meaning they could have occurred by chance. This indicates that the connection between governance structures and performance in SOEs is more complex than simple cause-and-effect.
                             </p>
                         </li>
                         <li style="margin-bottom: 2rem; padding-left: 1.5rem; position: relative;">
                             <span style="position: absolute; left: 0; color: var(--accent-gold); font-weight: bold; font-size: 1.5rem;">•</span>
-                            <h3 style="color: var(--primary-navy); font-size: 1.2rem; margin-bottom: 0.75rem;">Multi-Stakeholder Co-Regulation Essential</h3>
+                            <h3 style="color: var(--primary-navy); font-size: 1.2rem; margin-bottom: 0.75rem;">SOEs Have Different Objectives</h3>
                             <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-charcoal);">
-                                The integrated regulatory approach must be supported by a multi-stakeholder co-regulation strategy. This means government, regulators, business associations, professional bodies, and civil society must work together to develop, implement, and monitor governance standards. This collaborative approach is particularly important in African contexts where regulatory capacity may be limited and where different stakeholders have varying levels of influence and resources.
+                                The study highlights a critical insight: most state-owned enterprises in Ghana are not primarily profit-oriented. They exist to serve public purposes, deliver essential services, and achieve social objectives. This means traditional financial performance measures like ROCE may not fully capture whether these organizations are succeeding in their mission. The research recommends considering other dependent variables like impact on citizens and delivery of key performance indicators.
                             </p>
                         </li>
                         <li style="margin-bottom: 2rem; padding-left: 1.5rem; position: relative;">
                             <span style="position: absolute; left: 0; color: var(--accent-gold); font-weight: bold; font-size: 1.5rem;">•</span>
-                            <h3 style="color: var(--primary-navy); font-size: 1.2rem; margin-bottom: 0.75rem;">Good Practices Exist Despite Challenges</h3>
+                            <h3 style="color: var(--primary-navy); font-size: 1.2rem; margin-bottom: 0.75rem;">Need for Comprehensive Governance Research</h3>
                             <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-charcoal);">
-                                Despite the challenges, the research notes that there are sparks of good corporate governance practices in Sub-Saharan Africa. This suggests that effective governance is possible in the region, but it requires approaches tailored to local institutional contexts rather than copying models from developed economies. The presence of good practices indicates that the problem isn't a lack of capability, but rather the need for appropriate regulatory frameworks.
+                                The study recommends exploring other corporate governance factors and their interrelationships in future research. The four factors examined—audit committees, gender diversity, board size, and meeting frequency—represent only a portion of governance mechanisms. Understanding how these factors interact with each other and with organizational context is crucial for developing effective governance frameworks for SOEs.
                             </p>
                         </li>
                         <li style="margin-bottom: 2rem; padding-left: 1.5rem; position: relative;">
                             <span style="position: absolute; left: 0; color: var(--accent-gold); font-weight: bold; font-size: 1.5rem;">•</span>
-                            <h3 style="color: var(--primary-navy); font-size: 1.2rem; margin-bottom: 0.75rem;">New Perspective on Governance Regulation</h3>
+                            <h3 style="color: var(--primary-navy); font-size: 1.2rem; margin-bottom: 0.75rem;">Limited Research on SOE Governance</h3>
                             <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-charcoal);">
-                                This paper departs from mainstream categorizations by proposing new perspectives on corporate governance regulation, especially for weak market economies. Rather than choosing between rules or principles, African countries should develop hybrid systems that leverage the strengths of both approaches while addressing the specific challenges of their institutional environments. This represents a significant shift in thinking about how governance regulation should work in developing economies.
+                                The research notes that corporate governance studies in Africa still lag behind, with relatively less research in the area of state operations. Since the introduction of guidelines by the State Enterprises Commission in 1965, there had been no known research exploring the impact of recommended corporate governance mechanisms on financial performance and outcomes of SOEs. This study fills an important gap in understanding how governance works in the public sector context.
                             </p>
                         </li>
                     </ul>
@@ -171,15 +119,14 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div style="margin-bottom: 3rem; background: var(--bg-offwhite); padding: 2rem; border-radius: 8px; border-left: 4px solid var(--primary-navy);">
                     <h2 style="color: var(--primary-navy); font-size: 1.75rem; margin-bottom: 1rem;">Governance Implications</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-charcoal); margin-bottom: 1rem;">
-                        This research has important implications for boards, regulators, and policymakers across Africa:
+                        This research provides important guidance for boards and executives of state-owned enterprises:
                     </p>
                     <ul style="list-style: disc; padding-left: 2rem; color: var(--text-charcoal);">
-                        <li style="margin-bottom: 0.75rem; line-height: 1.7;"><strong>Don't copy developed economy models:</strong> Boards and regulators should avoid simply adopting governance frameworks from developed markets. Instead, they should develop integrated systems that combine mandatory rules with voluntary principles, tailored to local institutional contexts.</li>
-                        <li style="margin-bottom: 0.75rem; line-height: 1.7;"><strong>Build multi-stakeholder partnerships:</strong> Effective governance requires collaboration between government, regulators, business associations, professional bodies, and civil society. Boards should actively engage with these stakeholders to develop and implement governance standards.</li>
-                        <li style="margin-bottom: 0.75rem; line-height: 1.7;"><strong>Use rules for minimum standards:</strong> Mandatory rules should establish minimum acceptable standards and provide enforcement mechanisms. These are essential in weak market economies where voluntary compliance may be limited.</li>
-                        <li style="margin-bottom: 0.75rem; line-height: 1.7;"><strong>Use principles for best practices:</strong> Voluntary principles should encourage companies to go beyond minimum requirements and adopt best practices appropriate to their context. This allows flexibility while promoting continuous improvement.</li>
-                        <li style="margin-bottom: 0.75rem; line-height: 1.7;"><strong>Recognize local institutional strengths:</strong> Boards should understand and leverage the strengths of their local institutional configurations rather than trying to replicate systems from other contexts.</li>
-                        <li style="margin-bottom: 0.75rem; line-height: 1.7;"><strong>Support co-regulation initiatives:</strong> Companies should actively participate in industry associations and multi-stakeholder initiatives that develop and promote governance standards, rather than waiting for government mandates alone.</li>
+                        <li style="margin-bottom: 0.75rem; line-height: 1.7;"><strong>Don't rely solely on governance structures:</strong> Simply establishing audit committees or diversifying boards won't guarantee better performance. Boards must ensure these mechanisms are properly resourced, have clear mandates, and are integrated with management systems.</li>
+                        <li style="margin-bottom: 0.75rem; line-height: 1.7;"><strong>Focus on interactions, not just structures:</strong> Boards should understand how governance mechanisms interact with organizational culture, management practices, and external factors. Effective governance requires a systems approach.</li>
+                        <li style="margin-bottom: 0.75rem; line-height: 1.7;"><strong>Define success appropriately:</strong> For SOEs that aren't profit-oriented, boards should develop performance measures that reflect their actual mission—service delivery, citizen impact, and social objectives—not just financial returns.</li>
+                        <li style="margin-bottom: 0.75rem; line-height: 1.7;"><strong>Consider the full governance picture:</strong> Boards should evaluate multiple governance factors together, not in isolation. How do board size, diversity, committee structure, and meeting frequency work together?</li>
+                        <li style="margin-bottom: 0.75rem; line-height: 1.7;"><strong>Ensure proper implementation:</strong> Having governance structures on paper isn't enough. Boards must ensure mechanisms are actively used, have real authority, and are monitored for effectiveness.</li>
                     </ul>
                 </div>
 
@@ -187,25 +134,25 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div style="margin-bottom: 3rem; background: linear-gradient(135deg, var(--primary-navy) 0%, #0d2f7a 100%); padding: 2.5rem; border-radius: 8px; color: white;">
                     <h2 style="color: white; font-size: 1.75rem; margin-bottom: 1rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem;">Our Take: Why This Matters for SMEs in Africa</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: rgba(255, 255, 255, 0.95); margin-bottom: 1rem;">
-                        This research is crucial for African companies because it validates what many practitioners have observed: governance frameworks from developed economies often don't work well in African contexts. The finding that an integrated approach is needed suggests that African countries should develop their own governance models rather than importing foreign systems. This is particularly important for SMEs, which may struggle to comply with complex rule-based systems designed for large, well-resourced companies.
+                        This research is particularly relevant for African companies because it challenges the assumption that governance structures automatically lead to better performance. Many African businesses, especially SMEs, struggle with limited resources and may implement governance mechanisms without proper support systems. The finding that governance needs to interact with other factors suggests that companies should focus on building comprehensive governance systems, not just adding individual components.
                     </p>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: rgba(255, 255, 255, 0.95); margin-bottom: 1rem;">
-                        The emphasis on multi-stakeholder co-regulation is especially relevant for African contexts where government capacity may be limited. By involving business associations, professional bodies, and civil society in governance development, countries can leverage diverse expertise and resources. This approach also builds ownership and commitment to governance standards, which is essential for effective implementation.
+                        For state-owned enterprises across Africa, this research highlights the importance of defining success beyond financial metrics. Many SOEs exist to provide essential services, build infrastructure, or achieve social goals. Their boards should develop performance frameworks that reflect these objectives, not just profit maximization. This is especially important as African governments continue to rely on SOEs for economic development and service delivery.
                     </p>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: rgba(255, 255, 255, 0.95);">
-                        However, we note that the research focuses on Nigeria, which, while being Africa's largest economy, may have different institutional characteristics than smaller or less developed African countries. The integrated approach may need further adaptation for countries with even weaker market institutions. Additionally, the research doesn't fully explore how cultural factors, which are particularly important in African contexts, interact with regulatory approaches. Future research should examine how traditional governance practices and cultural norms can be integrated with modern corporate governance frameworks to create truly effective systems for African businesses.
+                        However, we note that the study's focus on only four governance characteristics and its relatively short time period (2012-2016) means there's much more to learn. Future research should examine how governance mechanisms interact with political interference, resource constraints, and organizational culture—factors that are particularly relevant in African contexts. Additionally, the study's finding that most relationships weren't statistically significant suggests that governance in SOEs may require different approaches than in private companies, warranting further investigation.
                     </p>
                 </div>
 
                 <!-- Back to Blog and Bookmark -->
                 <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--divider-grey); display: flex; justify-content: center; gap: 1rem; align-items: center;">
-                    <a href="blog.html" class="btn btn-outline" style="text-decoration: none;">← Back to Blog</a>
+                    <a href="blog.php" class="btn btn-outline" style="text-decoration: none;">← Back to Blog</a>
                     <?php
                     require_once 'config.php';
                     session_start();
                     if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in']):
                     ?>
-                        <a href="user-bookmark-handler.php?action=add&type=article&id=principles-rules-africa&title=<?php echo urlencode('Neither Principles nor Rules: Making Corporate Governance Work in Sub-Saharan Africa'); ?>&description=<?php echo urlencode('Research from Nigeria suggests African countries need an integrated approach combining rule-based and principle-based regulation'); ?>&url=blog-principles-rules-africa.html&redirect=blog-principles-rules-africa.html" class="btn btn-primary" style="text-decoration: none;">📚 Add to Library</a>
+                        <a href="user-bookmark-handler.php?action=add&type=article&id=soes-ghana&title=<?php echo urlencode('Corporate Governance and Performance of State-Owned Enterprises in Ghana'); ?>&description=<?php echo urlencode('Research reveals that governance mechanisms alone don\'t directly improve SOE performance—they need to interact with other factors to create meaningful change'); ?>&url=blog-soes-ghana.php&redirect=blog-soes-ghana.php" class="btn btn-primary" style="text-decoration: none;">📚 Add to Library</a>
                     <?php endif; ?>
                 </div>
 
@@ -250,18 +197,18 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About CGS</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="training.html">Training</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about.php">About CGS</a></li>
+                        <li><a href="events.php">Events</a></li>
+                        <li><a href="training.php">Training</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="governance-codes.html">Governance Codes</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="media.html">Media</a></li>
+                        <li><a href="governance-codes.php">Governance Codes</a></li>
+                        <li><a href="blog.php">Blog</a></li>
+                        <li><a href="media.php">Media</a></li>
                         <li><a href="network.php">Network</a></li>
                     </ul>
                 </div>

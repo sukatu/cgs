@@ -117,7 +117,7 @@ require_once 'config.php';
             </form>
             
             <div style="margin-top: 2rem; text-align: center;">
-                <a href="index.html" style="color: var(--text-light); text-decoration: none;">← Back to Website</a>
+                <a href="index.php" style="color: var(--text-light); text-decoration: none;">← Back to Website</a>
             </div>
         </div>
     </div>

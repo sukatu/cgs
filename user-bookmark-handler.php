@@ -5,8 +5,8 @@ session_start();
 // Check if user is logged in
 if (!isset($_SESSION['user_logged_in']) || !$_SESSION['user_logged_in']) {
     $_SESSION['error'] = 'Please log in to add items to your library.';
-    $redirectUrl = $_GET['redirect'] ?? 'blog.html';
-    header('Location: login-user.html?redirect=' . urlencode($redirectUrl));
+    $redirectUrl = $_GET['redirect'] ?? 'blog.php';
+    header('Location: login-user.php?redirect=' . urlencode($redirectUrl));
     exit();
 }
 
@@ -51,7 +51,7 @@ if ($action === 'add' && $resourceType && $resourceId) {
         $conn->close();
         
         // Redirect back to source page
-        $redirectUrl = $_GET['redirect'] ?? ($resourceType === 'article' ? 'blog.html' : 'videos.html');
+        $redirectUrl = $_GET['redirect'] ?? ($resourceType === 'article' ? 'blog.php' : 'videos.php');
         header('Location: ' . $redirectUrl);
         exit();
     }
@@ -74,7 +74,7 @@ if ($action === 'add' && $resourceType && $resourceId) {
     $conn->close();
     
     // Redirect back to source page
-    $redirectUrl = $_GET['redirect'] ?? ($resourceType === 'article' ? 'blog.html' : 'videos.html');
+    $redirectUrl = $_GET['redirect'] ?? ($resourceType === 'article' ? 'blog.php' : 'videos.php');
     header('Location: ' . $redirectUrl);
     exit();
     

@@ -255,34 +255,7 @@ $profilePicture = $user['profile_picture'] ?? null;
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-top">
-            <div class="nav-top-container">
-                <div class="logo">
-                    <a href="index.html"><img src="logo-header.png" alt="Corporate Governance Series CGS Logo" class="logo-header"></a>
-                </div>
-                <div class="nav-utility">
-                    <div class="header-search">
-                        <input type="text" placeholder="Search..." id="headerSearchInput">
-                        <button class="search-btn" id="searchBtn" style="display: none;">Search</button>
-                    </div>
-                    <span style="color: var(--text-charcoal); margin-right: 1rem;"><?php echo htmlspecialchars($user['name']); ?></span>
-                    <a href="user-auth.php?logout=1" class="login-btn">Logout</a>
-                </div>
-            </div>
-        </div>
-        <div class="nav-bottom">
-            <div class="nav-bottom-container">
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About CGS</a></li>
-                    <li><a href="events.html">Events</a></li>
-                    <li><a href="user-dashboard.php" class="active">My Dashboard</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php $activePage = 'network'; include 'header-main.php'; ?>
 
     <div class="dashboard-header">
         <div class="container">
@@ -430,8 +403,8 @@ $profilePicture = $user['profile_picture'] ?? null;
                             <p style="color: var(--text-light); margin-bottom: 1.5rem;">Your library is empty.</p>
                             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                                 <a href="user-dashboard.php?section=papers" class="btn btn-primary">Submit a Paper</a>
-                                <a href="blog.html" class="btn btn-outline" style="text-decoration: none;">Browse Articles</a>
-                                <a href="videos.html" class="btn btn-outline" style="text-decoration: none;">Browse Videos</a>
+                                <a href="blog.php" class="btn btn-outline" style="text-decoration: none;">Browse Articles</a>
+                                <a href="videos.php" class="btn btn-outline" style="text-decoration: none;">Browse Videos</a>
                             </div>
                         </div>
                     <?php else: ?>
@@ -600,7 +573,7 @@ $profilePicture = $user['profile_picture'] ?? null;
                 <?php if (empty($registrations)): ?>
                     <div class="card" style="padding: 3rem; text-align: center;">
                         <p style="color: var(--text-light); margin-bottom: 1.5rem;">You haven't registered for any events yet.</p>
-                        <a href="events.html" class="btn btn-primary">Browse Events</a>
+                        <a href="events.php" class="btn btn-primary">Browse Events</a>
                     </div>
                 <?php else: ?>
                     <?php foreach ($registrations as $reg): ?>

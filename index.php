@@ -11,55 +11,21 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corporate Governance Series (CGS) | Elevating Governance Standards in Africa</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CGS II Banner Responsive Styles */
+        @media (max-width: 768px) {
+            #cgsIIBanner h2 {
+                font-size: 1.4rem !important;
+            }
+            #cgsIIBanner .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-top">
-            <div class="nav-top-container">
-                <div class="logo">
-                    <a href="index.html"><img src="logo-header.png" alt="Corporate Governance Series CGS Logo" class="logo-header"></a>
-                </div>
-                <?php include 'header-nav.php'; ?>
-            </div>
-        </div>
-        <div class="nav-bottom">
-            <div class="nav-bottom-container">
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="about.html">About CGS</a></li>
-                    <li class="dropdown">
-                        <a href="events.html">Events</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="webinar-diary.html">Webinar Diary</a></li>
-                            <li><a href="series-diary.html">Series Diary</a></li>
-                        </ul>
-                    </li>
-                <li class="dropdown">
-                    <a href="resources.html">Resources</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="governance-codes.html">Governance Codes in Africa</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="media.html">Media</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="videos.html">Videos</a></li>
-                        <li><a href="pictures.html">Pictures</a></li>
-                    </ul>
-                </li>
-                    <li><a href="training.html">Training</a></li>
-                    <li><a href="network.php">Network</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <?php include 'header-main.php'; ?>
 
     <main>
         <section class="hero">
@@ -67,8 +33,37 @@ if (session_status() === PHP_SESSION_NONE) {
                 <h1 class="hero-title">Elevating the Standard of Corporate Governance in Africa</h1>
                 <p class="hero-subtitle">Corporate Governance Series (CGS) is the premier platform for African stakeholders to debate, refine, and implement world-class governance frameworks, with Ghana as a strategic launchpad.</p>
                 <div class="hero-buttons">
-                    <a href="events.html" class="btn btn-primary">Explore the Series</a>
+                    <a href="events.php" class="btn btn-primary">Explore the Series</a>
                     <a href="network.php" class="btn btn-secondary">Join the Network</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CGS II Event Announcement Banner -->
+        <section id="cgsIIBanner" class="section" style="padding: 2rem 0; background: linear-gradient(135deg, var(--accent-gold) 0%, #d4a017 100%); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px); opacity: 0.3; z-index: 0;"></div>
+            <div class="container" style="position: relative; z-index: 1;">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem; max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem;">
+                    <div style="flex: 1; min-width: 300px;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
+                            <span style="background-color: var(--primary-navy); color: white; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">New Event</span>
+                            <span style="color: var(--primary-navy); font-weight: 600; font-size: 0.9rem;">Series Event</span>
+                        </div>
+                        <h2 style="font-size: 1.75rem; color: var(--primary-navy); margin-bottom: 0.5rem; font-weight: 700; line-height: 1.3;">
+                            CGS II: Bank Corporate Governance and Financial Stability
+                        </h2>
+                        <p style="color: var(--primary-navy); font-size: 1rem; margin-bottom: 0; opacity: 0.9; font-weight: 500;">
+                            Thursday, February 12, 2026 at 5:00 PM (Africa/Accra) | Online via Zoom
+                        </p>
+                    </div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; width: 100%; max-width: 400px;">
+                        <button onclick="openCGSIIModal()" class="btn" style="background-color: var(--primary-navy); color: white; padding: 1rem 2rem; font-weight: 600; font-size: 1rem; border: none; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; flex: 1; min-width: 150px;">
+                            View Details
+                        </button>
+                        <a href="https://us06web.zoom.us/j/88502430789?pwd=e3a79VijbjKZTolGnhZDoaN4s7OIug.1" target="_blank" class="btn" style="background-color: white; color: var(--primary-navy); padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; transition: all 0.3s ease; flex: 1; min-width: 150px; border: 2px solid var(--primary-navy); text-align: center;">
+                            Register Now →
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -84,7 +79,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-charcoal); margin-bottom: 2rem;">
                                 The foremost platform for African governance stakeholders. CGS was born out of the conviction that we can contribute to sustainable business growth across Africa through the promotion and protection of corporate governance excellence.
                             </p>
-                            <a href="about.html" style="color: var(--primary-navy); text-decoration: none; font-weight: 600;">Read more →</a>
+                            <a href="about.php" style="color: var(--primary-navy); text-decoration: none; font-weight: 600;">Read more →</a>
                         </div>
                         <div style="margin-top: 2rem;">
                             <a href="network.php" class="btn" style="background-color: var(--primary-navy); color: white; padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; display: inline-flex; align-items: center; gap: 0.5rem; transition: background-color 0.3s ease;">
@@ -116,7 +111,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <a id="featuredEventButton" href="https://us06web.zoom.us/meeting/register/hp6S9ygwQzqLvZFJrhSR8A" target="_blank" class="btn" style="background-color: var(--accent-gold); color: var(--primary-navy); padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
                                 <span>Register Now</span> <span>→</span>
                             </a>
-                            <a href="events.html" class="btn" style="background-color: rgba(255, 255, 255, 0.1); color: white; padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; border: 2px solid rgba(255, 255, 255, 0.3); transition: all 0.3s ease;">
+                            <a href="events.php" class="btn" style="background-color: rgba(255, 255, 255, 0.1); color: white; padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; border: 2px solid rgba(255, 255, 255, 0.3); transition: all 0.3s ease;">
                                 All events
                             </a>
                         </div>
@@ -193,7 +188,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             </div>
                             <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                                 <a href="https://www.youtube.com/watch?v=1809paF4iuk" target="_blank" class="btn btn-primary">Watch on YouTube</a>
-                                <a href="videos.html" class="btn btn-outline">View All Videos</a>
+                                <a href="videos.php" class="btn btn-outline">View All Videos</a>
                             </div>
                         </div>
                     </div>
@@ -210,7 +205,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <span class="update-category">From the Blog</span>
                             <h3>The 2025 Boardroom: Navigating AI Ethics under the New Ghana Companies Act</h3>
                             <p>Exploring how boards must adapt their oversight frameworks to address artificial intelligence governance, data ethics, and algorithmic accountability in an evolving regulatory landscape.</p>
-                            <a href="blog.html" class="update-link">Read Article →</a>
+                            <a href="blog.php" class="update-link">Read Article →</a>
                         </div>
                     </article>
                     <article class="update-card">
@@ -218,7 +213,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <span class="update-category">From the Codes Vault</span>
                             <h3>Ghana: National Corporate Governance Code (Latest)</h3>
                             <p>The most recent edition of Ghana's national corporate governance code, providing comprehensive guidance for boards, directors, and governance professionals across all sectors.</p>
-                            <a href="governance-codes.html" class="update-link">View Code →</a>
+                            <a href="governance-codes.php" class="update-link">View Code →</a>
                         </div>
                     </article>
                     <article class="update-card">
@@ -226,7 +221,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <span class="update-category">Next Webinar</span>
                             <h3>Directorship in the Digital Age (Monthly Series)</h3>
                             <p>Join our monthly series exploring practical governance in an era of AI, cyber risk, data governance, ESG, and increased stakeholder scrutiny. Register now for the next session.</p>
-                            <a href="webinar-diary.html" class="update-link">Register →</a>
+                            <a href="webinar-diary.php" class="update-link">Register →</a>
                         </div>
                     </article>
                 </div>
@@ -306,7 +301,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Build your governance advantage.</h2>
                     <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
                         <a href="network.php" class="btn btn-primary">Join the Network</a>
-                        <a href="contact.html" class="btn btn-outline">Contact CGS</a>
+                        <a href="contact.php" class="btn btn-outline">Contact CGS</a>
                     </div>
                 </div>
             </div>
@@ -350,18 +345,18 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About CGS</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="training.html">Training</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about.php">About CGS</a></li>
+                        <li><a href="events.php">Events</a></li>
+                        <li><a href="training.php">Training</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="governance-codes.html">Governance Codes</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="media.html">Media</a></li>
+                        <li><a href="governance-codes.php">Governance Codes</a></li>
+                        <li><a href="blog.php">Blog</a></li>
+                        <li><a href="media.php">Media</a></li>
                         <li><a href="network.php">Network</a></li>
                     </ul>
                 </div>
@@ -449,7 +444,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         if (event.registration_link) {
                             button.href = event.registration_link;
                         } else {
-                            button.href = 'events.html';
+                            button.href = 'events.php';
                         }
                     }
                 } else {
@@ -491,6 +486,123 @@ if (session_status() === PHP_SESSION_NONE) {
             div.textContent = text;
             return div.innerHTML;
         }
+
+        // CGS II Event Modal Functions
+        function openCGSIIModal() {
+            const modal = document.getElementById('cgsIIModal');
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeCGSIIModal() {
+            const modal = document.getElementById('cgsIIModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('cgsIIModal');
+            if (event.target === modal) {
+                closeCGSIIModal();
+            }
+        });
     </script>
+
+    <!-- CGS II Event Modal Popup -->
+    <div id="cgsIIModal" class="event-modal" style="display: none;">
+        <div class="event-modal-content">
+            <span class="event-modal-close" onclick="closeCGSIIModal()">&times;</span>
+            <div style="padding: 3rem; max-width: 800px; margin: 0 auto;">
+                <!-- Event Header -->
+                <div style="margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <span style="background-color: var(--primary-navy); color: white; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">CGS II</span>
+                        <span style="background-color: var(--accent-gold); color: var(--primary-navy); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">Series Event</span>
+                        <span style="color: var(--text-light); font-size: 0.9rem;">Upcoming</span>
+                    </div>
+                    <h1 style="font-size: 2.5rem; color: var(--primary-navy); margin-bottom: 1.5rem; font-weight: 700; line-height: 1.3;">
+                        Bank Corporate Governance and Financial Stability: The Role of Bank Boards
+                    </h1>
+                    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="font-size: 1.5rem;">📅</span>
+                            <div>
+                                <div style="font-weight: 600; color: var(--text-charcoal);">Date</div>
+                                <div style="color: var(--text-light);">Thursday, February 12, 2026</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="font-size: 1.5rem;">🕐</span>
+                            <div>
+                                <div style="font-weight: 600; color: var(--text-charcoal);">Time</div>
+                                <div style="color: var(--text-light);">5:00 PM (Africa/Accra / GMT)</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="font-size: 1.5rem;">💻</span>
+                            <div>
+                                <div style="font-weight: 600; color: var(--text-charcoal);">Format</div>
+                                <div style="color: var(--text-light);">Online (Zoom)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Description -->
+                <div style="margin-bottom: 2rem;">
+                    <h2 style="font-size: 1.5rem; color: var(--primary-navy); margin-bottom: 1rem; font-weight: 700;">About This Event</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-charcoal); margin-bottom: 1rem;">
+                        Join us for CGS II, a critical discussion on bank corporate governance and financial stability, focusing on the essential role of bank boards in ensuring robust governance frameworks and financial stability in the banking sector.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-charcoal);">
+                        This session will explore how effective board governance contributes to financial stability, risk management, and sustainable banking practices across Africa.
+                    </p>
+                </div>
+
+                <!-- Zoom Meeting Details -->
+                <div style="background-color: var(--bg-offwhite); padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <h2 style="font-size: 1.5rem; color: var(--primary-navy); margin-bottom: 1rem; font-weight: 700;">Zoom Meeting Details</h2>
+                    <div style="display: grid; gap: 1rem;">
+                        <div>
+                            <strong style="color: var(--text-charcoal);">Meeting ID:</strong>
+                            <span style="color: var(--text-light); margin-left: 0.5rem;">885 0243 0789</span>
+                        </div>
+                        <div>
+                            <strong style="color: var(--text-charcoal);">Passcode:</strong>
+                            <span style="color: var(--text-light); margin-left: 0.5rem;">822412</span>
+                        </div>
+                        <div>
+                            <strong style="color: var(--text-charcoal);">Join Link:</strong>
+                            <a href="https://us06web.zoom.us/j/88502430789?pwd=e3a79VijbjKZTolGnhZDoaN4s7OIug.1" target="_blank" style="color: var(--primary-navy); text-decoration: underline; margin-left: 0.5rem; word-break: break-all;">
+                                https://us06web.zoom.us/j/88502430789?pwd=e3a79VijbjKZTolGnhZDoaN4s7OIug.1
+                            </a>
+                        </div>
+                        <div>
+                            <strong style="color: var(--text-charcoal);">Join Instructions:</strong>
+                            <a href="https://us06web.zoom.us/meetings/88502430789/invitations?signature=jv3kLZCqPxnGY0kOXjKJ-j_yX8d2Rbww5hhLcVJeOWA" target="_blank" style="color: var(--primary-navy); text-decoration: underline; margin-left: 0.5rem; word-break: break-all;">
+                                View detailed join instructions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
+                    <a href="https://us06web.zoom.us/j/88502430789?pwd=e3a79VijbjKZTolGnhZDoaN4s7OIug.1" target="_blank" class="btn" style="background-color: var(--accent-gold); color: var(--primary-navy); padding: 1rem 2rem; font-weight: 600; font-size: 1.1rem; text-decoration: none; border-radius: 4px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <span>Register & Join Zoom Meeting</span>
+                        <span>→</span>
+                    </a>
+                    <a href="series-diary.php" class="btn" style="background-color: var(--primary-navy); color: white; padding: 1rem 2rem; font-weight: 600; font-size: 1.1rem; text-decoration: none; border-radius: 4px; border: 2px solid var(--primary-navy); transition: all 0.3s ease;">
+                        View All Series Events
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

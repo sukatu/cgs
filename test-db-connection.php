@@ -165,7 +165,7 @@ header('Content-Type: text/html; charset=utf-8');
             <li>If all tests pass, your database is ready for login and registration</li>
             <li>If users table is missing, run: <a href="create-all-tables.php">create-all-tables.php</a></li>
             <li>Test registration at: <a href="network.php">network.php</a></li>
-            <li>Test login at: <a href="login-user.html">login-user.html</a></li>
+            <li>Test login at: <a href="login-user.php">login-user.php</a></li>
         </ul>
     </div>
 </body>

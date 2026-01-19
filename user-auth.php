@@ -360,7 +360,7 @@ if (isset($_GET['logout']) || (isset($_POST['action']) && $_POST['action'] === '
     
     // Redirect to home page
     ob_end_clean();
-    header('Location: index.html');
+    header('Location: index.php');
     exit();
 }
 ?>

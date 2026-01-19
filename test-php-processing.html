@@ -1,0 +1,16 @@
+<?php
+// Test file to check if PHP is processing in .html files
+echo "PHP is working in .html files!<br>";
+echo "Current time: " . date('Y-m-d H:i:s') . "<br>";
+echo "PHP Version: " . phpversion() . "<br>";
+
+// Test include
+if (file_exists('header-main.php')) {
+    echo "header-main.php exists<br>";
+    echo "Testing include...<br>";
+    $activePage = 'home';
+    include 'header-main.php';
+} else {
+    echo "ERROR: header-main.php NOT FOUND<br>";
+}
+?>

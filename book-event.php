@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if ($checkStmt->get_result()->num_rows > 0) {
             $_SESSION['booking_error'] = 'You are already registered for this event.';
-            header('Location: ' . ($_POST['redirect'] ?? 'events.html'));
+            header('Location: ' . ($_POST['redirect'] ?? 'events.php'));
             exit();
         }
         
@@ -33,11 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['booking_error'] = 'Registration failed. Please try again.';
         }
         
-        header('Location: ' . ($_POST['redirect'] ?? 'events.html'));
+        header('Location: ' . ($_POST['redirect'] ?? 'events.php'));
         exit();
     }
 }
 
-header('Location: events.html');
+header('Location: events.php');
 exit();
 ?>
