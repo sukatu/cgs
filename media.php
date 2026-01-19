@@ -30,7 +30,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <div class="card" style="height: 100%; padding: 3rem; text-align: center;">
                             <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary-navy);">Videos</h2>
                             <p style="font-size: 1.2rem; color: var(--text-charcoal); line-height: 1.8; margin-bottom: 2rem;">
-                                Highlights by city/event, fireside chats, and full-length webinar recordings. Access insights from Africa's leading governance experts.
+                                Highlights by city/event, fireside chats, and full-length event recordings. Access insights from Africa's leading governance experts.
                             </p>
                             <div style="color: var(--accent-gold); font-weight: 600; font-size: 1.1rem;">Watch Videos →</div>
                         </div>

@@ -53,7 +53,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             CGS II: Bank Corporate Governance and Financial Stability
                         </h2>
                         <p style="color: var(--primary-navy); font-size: 1rem; margin-bottom: 0; opacity: 0.9; font-weight: 500;">
-                            Thursday, February 12, 2026 at 5:00 PM (Africa/Accra) | Online via Zoom
+                            Thursday, February 12, 2026 at 5:00 PM (Africa/Accra) | Hybrid (Online & In-Person)
                         </p>
                     </div>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap; width: 100%; max-width: 400px;">
@@ -96,7 +96,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <!-- Event Content -->
                         <div style="position: relative; z-index: 1;">
                             <div style="background-color: rgba(255, 255, 255, 0.2); color: white; padding: 0.5rem 1rem; border-radius: 4px; display: inline-block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; font-weight: 600;">
-                                Upcoming Event: Webinar
+                                Upcoming Event
                             </div>
                             <h2 id="featuredEventTitle" style="font-size: 2rem; margin-bottom: 1.5rem; color: white; line-height: 1.3; font-weight: 700;">
                                 Directors' Duties and Corporate Misconduct: Comparative Insights on Liability Regimes
@@ -108,7 +108,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         </div>
                         
                         <div style="position: relative; z-index: 1; display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-                            <a id="featuredEventButton" href="https://us06web.zoom.us/meeting/register/hp6S9ygwQzqLvZFJrhSR8A" target="_blank" class="btn" style="background-color: var(--accent-gold); color: var(--primary-navy); padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+                            <a id="featuredEventButton" href="register-cgs-ii.php" class="btn" style="background-color: var(--accent-gold); color: var(--primary-navy); padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
                                 <span>Register Now</span> <span>→</span>
                             </a>
                             <a href="events.php" class="btn" style="background-color: rgba(255, 255, 255, 0.1); color: white; padding: 1rem 2rem; font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 4px; border: 2px solid rgba(255, 255, 255, 0.3); transition: all 0.3s ease;">
@@ -218,7 +218,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     </article>
                     <article class="update-card">
                         <div class="update-content">
-                            <span class="update-category">Next Webinar</span>
+                            <span class="update-category">Upcoming Event</span>
                             <h3>Directorship in the Digital Age (Monthly Series)</h3>
                             <p>Join our monthly series exploring practical governance in an era of AI, cyber risk, data governance, ESG, and increased stakeholder scrutiny. Register now for the next session.</p>
                             <a href="webinar-diary.php" class="update-link">Register →</a>
@@ -547,7 +547,14 @@ if (session_status() === PHP_SESSION_NONE) {
                             <span style="font-size: 1.5rem;">💻</span>
                             <div>
                                 <div style="font-weight: 600; color: var(--text-charcoal);">Format</div>
-                                <div style="color: var(--text-light);">Online (Zoom)</div>
+                                <div style="color: var(--text-light);">Hybrid (Online & In-Person)</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="font-size: 1.5rem;">📍</span>
+                            <div>
+                                <div style="font-weight: 600; color: var(--text-charcoal);">Location</div>
+                                <div style="color: var(--text-light);">Dr. Daniel McKorley Moot Court Room, GIMPA Law School</div>
                             </div>
                         </div>
                     </div>

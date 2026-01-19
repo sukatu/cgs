@@ -217,7 +217,11 @@ if (session_status() === PHP_SESSION_NONE) {
                         </div>
                         <div class="event-details-item">
                             <span>💻</span>
-                            <span><strong>Format:</strong> Online via Zoom</span>
+                            <span><strong>Format:</strong> Hybrid (Online & In-Person)</span>
+                        </div>
+                        <div class="event-details-item">
+                            <span>📍</span>
+                            <span><strong>Location:</strong> Dr. Daniel McKorley Moot Court Room, GIMPA Law School</span>
                         </div>
                     </div>
 

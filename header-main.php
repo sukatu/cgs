@@ -112,7 +112,7 @@ try {
                 <li class="dropdown">
                     <a href="events.php" <?php echo ($activePage === 'events') ? 'class="active"' : ''; ?>>Events</a>
                     <ul class="dropdown-menu">
-                        <li><a href="webinar-diary.php">Webinar Diary</a></li>
+                        <li><a href="webinar-diary.php">Upcoming Events</a></li>
                         <li><a href="series-diary.php">Series Diary</a></li>
                     </ul>
                 </li>

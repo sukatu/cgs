@@ -28,11 +28,11 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div class="card-grid" style="grid-template-columns: 1fr 1fr; gap: 3rem;">
                     <a href="webinar-diary.php" style="text-decoration: none;">
                         <div class="card" style="height: 100%; text-align: center; padding: 3rem;">
-                            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary-navy);">Webinar Diary</h2>
+                            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary-navy);">Upcoming Events</h2>
                             <p style="font-size: 1.2rem; color: var(--text-charcoal); line-height: 1.8; margin-bottom: 2rem;">
                                 Monthly, high-signal virtual sessions built for directors, deal teams, in-house counsel, bankers, regulators, and students.
                             </p>
-                            <div style="color: var(--accent-gold); font-weight: 600; font-size: 1.1rem;">Explore Webinars →</div>
+                            <div style="color: var(--accent-gold); font-weight: 600; font-size: 1.1rem;">Explore Events →</div>
                         </div>
                     </a>
                     <a href="series-diary.php" style="text-decoration: none;">

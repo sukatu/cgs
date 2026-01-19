@@ -27,8 +27,8 @@ $title = "CGS II Bank Corporate Governance and Financial Stability: The Role of 
 $description = "Join us for CGS II, a critical discussion on bank corporate governance and financial stability, focusing on the essential role of bank boards in ensuring robust governance frameworks and financial stability in the banking sector.";
 $eventType = 'series';
 $eventDate = '2026-02-12 17:00:00'; // February 12, 2026 at 5:00 PM (17:00) GMT (Africa/Accra timezone)
-$location = "Online (Zoom)";
-$format = 'online';
+$location = "Dr. Daniel McKorley Moot Court Room, GIMPA Law School";
+$format = 'hybrid';
 $registrationLink = "https://us06web.zoom.us/j/88502430789?pwd=e3a79VijbjKZTolGnhZDoaN4s7OIug.1";
 $status = 'upcoming';
 

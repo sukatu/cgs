@@ -226,7 +226,7 @@ require_once 'config.php';
                     </div>
                     <div class="deliver-card">
                         <h3>First-to-Know Invitations</h3>
-                        <p>Receive priority registration and early access to CGS events, webinars, and flagship sessions.</p>
+                        <p>Receive priority registration and early access to CGS events and flagship sessions.</p>
                     </div>
                     <div class="deliver-card">
                         <h3>Private Discussions</h3>

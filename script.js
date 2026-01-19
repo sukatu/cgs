@@ -203,7 +203,7 @@ const searchDatabase = [
         snippet: 'A platform shaping ethical leadership, accountability, and sustainable growth across Africa.'
     },
     {
-        title: 'Events - Webinar Diary',
+        title: 'Events - Upcoming Events',
         url: 'webinar-diary.php',
         keywords: ['events', 'webinar', 'diary', 'monthly', 'virtual', 'directors', 'directorship', 'digital age', 'ai ethics', 'cybersecurity'],
         snippet: 'Monthly, high-signal virtual sessions built for directors, deal teams, in-house counsel, bankers, regulators, and students.'
@@ -229,8 +229,8 @@ const searchDatabase = [
     {
         title: 'Videos',
         url: 'videos.php',
-        keywords: ['media', 'videos', 'recordings', 'webinars', 'highlights', 'fireside chats', 'soe', 'state owned entities', 'governance'],
-        snippet: 'Watch highlights, fireside chats, and full-length webinars from CGS events.'
+        keywords: ['media', 'videos', 'recordings', 'events', 'highlights', 'fireside chats', 'soe', 'state owned entities', 'governance'],
+        snippet: 'Watch highlights, fireside chats, and full-length event recordings from CGS events.'
     },
     {
         title: 'Pictures',

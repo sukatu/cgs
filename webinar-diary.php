@@ -9,7 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webinar Diary | Corporate Governance Series</title>
+    <title>Upcoming Events | Corporate Governance Series</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -18,14 +18,14 @@ if (session_status() === PHP_SESSION_NONE) {
     <main>
         <section class="page-header">
             <div class="container">
-                <h1>Webinar Diary</h1>
+                <h1>Upcoming Events</h1>
                 <p class="page-subtitle">Monthly, high-signal virtual sessions built for directors, deal teams, in-house counsel, bankers, regulators, and students.</p>
             </div>
         </section>
 
         <section class="section content-section">
             <div class="container">
-                <h2 class="section-title">Upcoming Webinars</h2>
+                <h2 class="section-title">Upcoming Events</h2>
                 
                 <!-- Static Featured Webinar -->
                 <div class="event-card">
@@ -36,7 +36,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         </div>
                     </div>
                     <div class="event-description">
-                        <strong>About this webinar:</strong> This webinar brings together experts to discuss the role of directors' duties in preventing corporate misconduct and promoting accountability. The discussion is to provide practical insights on directors' duties and corporate misconduct, while exploring liability regimes across different jurisdictions.
+                        <strong>About this event:</strong> This event brings together experts to discuss the role of directors' duties in preventing corporate misconduct and promoting accountability. The discussion is to provide practical insights on directors' duties and corporate misconduct, while exploring liability regimes across different jurisdictions.
                     </div>
                     <div style="margin: 2rem 0;">
                         <div style="display: grid; grid-template-columns: 1fr 3fr; gap: 2rem; align-items: start;">
@@ -181,7 +181,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
         <section class="section content-section-alt">
             <div class="container">
-                <h2 class="section-title">Past Webinars</h2>
+                <h2 class="section-title">Past Events</h2>
                 
                 <div id="pastWebinars" style="display: none;">
                     <!-- Events will be loaded here dynamically -->
@@ -333,12 +333,12 @@ if (session_status() === PHP_SESSION_NONE) {
     <script src="script.js"></script>
     <script src="events-loader.js"></script>
     <script>
-        // Load webinars when page loads
+        // Load events when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            // Load upcoming webinars
+            // Load upcoming events
             loadUpcomingEvents('webinar', 'upcomingWebinars');
             
-            // Load past/completed webinars
+            // Load past/completed events
             loadCompletedEvents('webinar', 'pastWebinars');
         });
     </script>

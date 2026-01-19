@@ -149,7 +149,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div style="margin-bottom: 2rem;">
                         <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem; color: var(--primary-navy);">Are CGS events open to the public?</h3>
                         <p style="color: var(--text-charcoal); line-height: 1.7;">
-                            Many of our webinars are open for public registration, while flagship series sessions may have limited capacity. Network members receive priority registration. Check our <a href="events.php" style="color: var(--accent-gold); font-weight: 600;">Events page</a> for details.
+                            Many of our events are open for public registration, while flagship series sessions may have limited capacity. Network members receive priority registration. Check our <a href="events.php" style="color: var(--accent-gold); font-weight: 600;">Events page</a> for details.
                         </p>
                     </div>
                     <div style="margin-bottom: 2rem;">

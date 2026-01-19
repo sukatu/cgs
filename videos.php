@@ -33,7 +33,7 @@ $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
         <section class="page-header">
             <div class="container">
                 <h1>Videos</h1>
-                <p class="page-subtitle">Watch highlights, fireside chats, and full-length webinars from CGS events.</p>
+                <p class="page-subtitle">Watch highlights, fireside chats, and full-length event recordings from CGS events.</p>
             </div>
         </section>
 
@@ -43,7 +43,7 @@ $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
                     <button class="btn btn-outline" style="padding: 0.625rem 1.25rem; font-size: 0.9rem;">All Videos</button>
                     <button class="btn btn-outline" style="padding: 0.625rem 1.25rem; font-size: 0.9rem;">Event Highlights</button>
                     <button class="btn btn-outline" style="padding: 0.625rem 1.25rem; font-size: 0.9rem;">Fireside Chats</button>
-                    <button class="btn btn-outline" style="padding: 0.625rem 1.25rem; font-size: 0.9rem;">Full Webinars</button>
+                    <button class="btn btn-outline" style="padding: 0.625rem 1.25rem; font-size: 0.9rem;">Full Events</button>
                 </div> -->
 
                 <div class="updates-grid">
