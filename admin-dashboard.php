@@ -1,8 +1,28 @@
 <?php
+// Start output buffering to prevent headers already sent errors
+ob_start();
+
+// Start session if not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once 'config.php';
+
+// Enable error reporting for debugging (remove in production)
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+error_reporting(E_ALL);
+
 requireAdminLogin();
 
-$conn = getDBConnection();
+try {
+    $conn = getDBConnection();
+} catch (Exception $e) {
+    error_log("Admin dashboard database error: " . $e->getMessage());
+    die("Database connection error. Please check server logs.");
+}
+
 $events = [];
 $images = [];
 $alert = '';
