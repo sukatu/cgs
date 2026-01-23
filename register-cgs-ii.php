@@ -15,7 +15,17 @@ if (session_status() === PHP_SESSION_NONE) {
         .registration-container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 2rem 4rem;
+        }
+        @media (max-width: 768px) {
+            .registration-container {
+                padding: 2rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .registration-container {
+                padding: 1.5rem;
+            }
         }
         .registration-header {
             text-align: center;

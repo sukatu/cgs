@@ -71,33 +71,38 @@ if (isset($_GET['delete_inperson_reg']) && is_numeric($_GET['delete_inperson_reg
 if (isset($_GET['delete']) && is_numeric($_GET['delete']) && isset($_GET['type']) && $_GET['type'] === 'image') {
     $id = intval($_GET['delete']);
     
-    // Get filename before deleting
-    $stmt = $conn->prepare("SELECT filename FROM gallery_images WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $filename = $row['filename'];
-        $filePath = 'images/uploads/' . $filename;
+    $tableCheck = $conn->query("SHOW TABLES LIKE 'gallery_images'");
+    if ($tableCheck && $tableCheck->num_rows > 0) {
+        // Get filename before deleting
+        $stmt = $conn->prepare("SELECT filename FROM gallery_images WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
         
-        // Delete from database
-        $deleteStmt = $conn->prepare("DELETE FROM gallery_images WHERE id = ?");
-        $deleteStmt->bind_param("i", $id);
-        
-        if ($deleteStmt->execute()) {
-            // Delete file
-            if (file_exists($filePath)) {
-                unlink($filePath);
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $filename = $row['filename'];
+            $filePath = 'images/uploads/' . $filename;
+            
+            // Delete from database
+            $deleteStmt = $conn->prepare("DELETE FROM gallery_images WHERE id = ?");
+            $deleteStmt->bind_param("i", $id);
+            
+            if ($deleteStmt->execute()) {
+                // Delete file
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
+                $alert = '<div class="alert alert-success">Image deleted successfully!</div>';
+            } else {
+                $alert = '<div class="alert alert-error">Error deleting image.</div>';
             }
-            $alert = '<div class="alert alert-success">Image deleted successfully!</div>';
-        } else {
-            $alert = '<div class="alert alert-error">Error deleting image.</div>';
+            $deleteStmt->close();
         }
-        $deleteStmt->close();
+        $stmt->close();
+    } else {
+        $alert = '<div class="alert alert-error">Gallery images table does not exist.</div>';
     }
-    $stmt->close();
 }
 
 // Fetch events
@@ -107,9 +112,33 @@ if ($result) {
 }
 
 // Fetch uploaded images from database
-$imagesResult = $conn->query("SELECT * FROM gallery_images ORDER BY display_order ASC, upload_date DESC");
-if ($imagesResult) {
-    $images = $imagesResult->fetch_all(MYSQLI_ASSOC);
+$images = [];
+$tableCheck = $conn->query("SHOW TABLES LIKE 'gallery_images'");
+if ($tableCheck && $tableCheck->num_rows > 0) {
+    $imagesResult = $conn->query("SELECT * FROM gallery_images ORDER BY display_order ASC, upload_date DESC");
+    if ($imagesResult) {
+        $images = $imagesResult->fetch_all(MYSQLI_ASSOC);
+    }
+} else {
+    // Create gallery_images table if it doesn't exist
+    $createTableSql = "CREATE TABLE IF NOT EXISTS gallery_images (
+        id INT(11) AUTO_INCREMENT PRIMARY KEY,
+        filename VARCHAR(255) NOT NULL,
+        original_filename VARCHAR(255),
+        alt_text VARCHAR(500),
+        category VARCHAR(100),
+        display_order INT(11) DEFAULT 0,
+        is_active BOOLEAN DEFAULT 1,
+        upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        INDEX idx_category (category),
+        INDEX idx_display_order (display_order)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+    
+    if ($conn->query($createTableSql)) {
+        // Table created, images array remains empty
+    } else {
+        error_log("Error creating gallery_images table: " . $conn->error);
+    }
 }
 
 // Fetch in-person registrations
@@ -207,6 +236,12 @@ if (isset($_GET['success'])) {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .admin-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
         }
         .admin-content {
             max-width: 1400px;
@@ -214,6 +249,55 @@ if (isset($_GET['success'])) {
             padding: 2rem;
             width: 100%;
             box-sizing: border-box;
+        }
+        #usersSection,
+        #registrationsSection,
+        #onlineRegistrationsSection {
+            max-width: 100%;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        #usersSection > div,
+        #registrationsSection > div,
+        #onlineRegistrationsSection > div {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        #usersSection .card,
+        #registrationsSection .card,
+        #onlineRegistrationsSection .card {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        #usersSection table,
+        #registrationsSection table,
+        #onlineRegistrationsSection table {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        @media (max-width: 768px) {
+            .admin-header {
+                padding: 1rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .admin-header h2 {
+                font-size: 1.25rem;
+            }
+            .admin-content {
+                padding: 1rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .admin-header {
+                padding: 0.75rem;
+            }
+            .admin-header h2 {
+                font-size: 1.1rem;
+            }
+            .admin-content {
+                padding: 0.75rem;
+            }
         }
         
         .images-grid-container {
@@ -240,6 +324,32 @@ if (isset($_GET['success'])) {
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .dashboard-header > div {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            .dashboard-header .btn {
+                flex: 1;
+                min-width: calc(50% - 0.25rem);
+                font-size: 0.85rem;
+                padding: 0.625rem 1rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .dashboard-header .btn {
+                min-width: 100%;
+                font-size: 0.8rem;
+                padding: 0.5rem 0.75rem;
+            }
         }
         .btn {
             padding: 0.75rem 1.5rem;
@@ -275,6 +385,7 @@ if (isset($_GET['success'])) {
         }
         .events-table {
             width: 100%;
+            max-width: 100%;
             border-collapse: collapse;
             background: white;
             box-shadow: var(--shadow);
@@ -291,9 +402,56 @@ if (isset($_GET['success'])) {
             background-color: var(--bg-offwhite);
             font-weight: 600;
             color: var(--primary-navy);
+            white-space: nowrap;
+        }
+        .events-table td {
+            white-space: normal;
+        }
+        .events-table td:first-child,
+        .events-table th:first-child {
+            white-space: nowrap;
         }
         .events-table tr:hover {
             background-color: var(--bg-offwhite);
+        }
+        @media (max-width: 768px) {
+            .events-table {
+                font-size: 0.9rem;
+            }
+            .events-table th,
+            .events-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .events-table {
+                font-size: 0.85rem;
+            }
+            .events-table th,
+            .events-table td {
+                padding: 0.5rem;
+            }
+        }
+        /* Section headers responsive */
+        #registrationsSection > div:first-child,
+        #onlineRegistrationsSection > div:first-child {
+            margin-bottom: 1.5rem;
+        }
+        #registrationsSection h2,
+        #onlineRegistrationsSection h2 {
+            font-size: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            #registrationsSection h2,
+            #onlineRegistrationsSection h2 {
+                font-size: 1.25rem;
+            }
+        }
+        @media (max-width: 600px) {
+            #registrationsSection h2,
+            #onlineRegistrationsSection h2 {
+                font-size: 1.1rem;
+            }
         }
         .status-badge {
             padding: 0.25rem 0.75rem;
@@ -636,36 +794,86 @@ if (isset($_GET['success'])) {
     <div id="registrationsSection" style="display: none;">
         <div style="margin-bottom: 2rem;">
             <h2 style="margin-bottom: 0.5rem;">In-Person Event Registrations</h2>
-            <p style="color: var(--text-light); margin: 0;">
-                Total Registrations: <strong><?php echo count($inPersonRegistrations); ?></strong>
-            </p>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <p style="color: var(--text-light); margin: 0;">
+                    Total Registrations: <strong id="totalInPersonCount"><?php echo count($inPersonRegistrations); ?></strong>
+                    | Showing: <strong id="showingInPersonCount"><?php echo count($inPersonRegistrations); ?></strong>
+                </p>
+            </div>
         </div>
         
-        <?php if (empty($inPersonRegistrations)): ?>
-            <div style="text-align: center; padding: 3rem; background: var(--white); border-radius: 8px; box-shadow: var(--shadow);">
-                <p style="color: var(--text-light); font-size: 1.1rem;">No in-person registrations yet.</p>
-                <p style="color: var(--text-light); margin-top: 0.5rem;">Registrations will appear here once users submit the form.</p>
+        <!-- Advanced Search and Filter Panel -->
+        <div class="card" style="padding: 1.5rem; margin-bottom: 2rem; background: var(--white); box-shadow: var(--shadow);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="font-size: 1.25rem; color: var(--primary-navy); margin: 0;">Search & Filter</h3>
+                <button class="btn btn-secondary" onclick="resetInPersonFilters()" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Reset</button>
             </div>
-        <?php else: ?>
-            <div style="overflow-x: auto;">
-                <table class="events-table">
-                    <thead>
+            
+            <!-- Search Bar -->
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-charcoal);">Search Registrations</label>
+                <input type="text" id="inPersonSearchInput" placeholder="Search by name, email, institution..." 
+                       style="width: 100%; padding: 0.75rem; border: 2px solid var(--divider-grey); border-radius: 4px; font-size: 1rem;"
+                       onkeyup="filterInPersonRegistrations()">
+            </div>
+            
+            <!-- Filters Row -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-charcoal); font-size: 0.9rem;">Filter by Status</label>
+                    <select id="filterInPersonStatus" onchange="filterInPersonRegistrations()" 
+                            style="width: 100%; padding: 0.75rem; border: 2px solid var(--divider-grey); border-radius: 4px; font-size: 0.95rem;">
+                        <option value="">All Statuses</option>
+                        <option value="pending">Pending</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-charcoal); font-size: 0.9rem;">Sort By</label>
+                    <select id="sortInPerson" onchange="filterInPersonRegistrations()" 
+                            style="width: 100%; padding: 0.75rem; border: 2px solid var(--divider-grey); border-radius: 4px; font-size: 0.95rem;">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="name-asc">Name (A-Z)</option>
+                        <option value="name-desc">Name (Z-A)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div style="overflow-x: auto;">
+            <table class="events-table" id="inPersonTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Institution/Firm</th>
+                        <th>Address</th>
+                        <th>Event</th>
+                        <th>Status</th>
+                        <th>Registration Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (empty($inPersonRegistrations)): ?>
                         <tr>
-                            <th>ID</th>
-                            <th>Full Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Institution/Firm</th>
-                            <th>Address</th>
-                            <th>Event</th>
-                            <th>Status</th>
-                            <th>Registration Date</th>
-                            <th>Actions</th>
+                            <td colspan="10" style="text-align: center; padding: 2rem; color: var(--text-light);">
+                                No in-person registrations yet.
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
+                    <?php else: ?>
                         <?php foreach ($inPersonRegistrations as $reg): ?>
-                            <tr>
+                            <tr class="inperson-row" 
+                                data-name="<?php echo strtolower(htmlspecialchars($reg['full_name'])); ?>"
+                                data-email="<?php echo strtolower(htmlspecialchars($reg['email'])); ?>"
+                                data-institution="<?php echo strtolower(htmlspecialchars($reg['institution_firm'] ?? '')); ?>"
+                                data-status="<?php echo strtolower($reg['status']); ?>"
+                                data-date="<?php echo strtotime($reg['registration_date']); ?>">
                                 <td><?php echo $reg['id']; ?></td>
                                 <td><strong><?php echo htmlspecialchars($reg['full_name']); ?></strong></td>
                                 <td><?php echo htmlspecialchars($reg['email']); ?></td>
@@ -691,47 +899,97 @@ if (isset($_GET['success'])) {
                                 </td>
                             </tr>
                         <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        <?php endif; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
     
     <!-- Online Registrations Section -->
     <div id="onlineRegistrationsSection" style="display: none;">
         <div style="margin-bottom: 2rem;">
             <h2 style="margin-bottom: 0.5rem;">Online Event Registrations</h2>
-            <p style="color: var(--text-light); margin: 0;">
-                Total Online Registrations: <strong><?php echo count($onlineRegistrations); ?></strong>
-            </p>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <p style="color: var(--text-light); margin: 0;">
+                    Total Online Registrations: <strong id="totalOnlineCount"><?php echo count($onlineRegistrations); ?></strong>
+                    | Showing: <strong id="showingOnlineCount"><?php echo count($onlineRegistrations); ?></strong>
+                </p>
+            </div>
         </div>
         
-        <?php if (empty($onlineRegistrations)): ?>
-            <div style="text-align: center; padding: 3rem; background: var(--white); border-radius: 8px; box-shadow: var(--shadow);">
-                <p style="color: var(--text-light); font-size: 1.1rem;">No online registrations yet.</p>
-                <p style="color: var(--text-light); margin-top: 0.5rem;">Registrations will appear here once users register for events through the website.</p>
+        <!-- Advanced Search and Filter Panel -->
+        <div class="card" style="padding: 1.5rem; margin-bottom: 2rem; background: var(--white); box-shadow: var(--shadow);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="font-size: 1.25rem; color: var(--primary-navy); margin: 0;">Search & Filter</h3>
+                <button class="btn btn-secondary" onclick="resetOnlineFilters()" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Reset</button>
             </div>
-        <?php else: ?>
-            <div style="overflow-x: auto;">
-                <table class="events-table">
-                    <thead>
+            
+            <!-- Search Bar -->
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-charcoal);">Search Registrations</label>
+                <input type="text" id="onlineSearchInput" placeholder="Search by name, email, organization..." 
+                       style="width: 100%; padding: 0.75rem; border: 2px solid var(--divider-grey); border-radius: 4px; font-size: 1rem;"
+                       onkeyup="filterOnlineRegistrations()">
+            </div>
+            
+            <!-- Filters Row -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-charcoal); font-size: 0.9rem;">Filter by Status</label>
+                    <select id="filterOnlineStatus" onchange="filterOnlineRegistrations()" 
+                            style="width: 100%; padding: 0.75rem; border: 2px solid var(--divider-grey); border-radius: 4px; font-size: 0.95rem;">
+                        <option value="">All Statuses</option>
+                        <option value="pending">Pending</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-charcoal); font-size: 0.9rem;">Sort By</label>
+                    <select id="sortOnline" onchange="filterOnlineRegistrations()" 
+                            style="width: 100%; padding: 0.75rem; border: 2px solid var(--divider-grey); border-radius: 4px; font-size: 0.95rem;">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="name-asc">Name (A-Z)</option>
+                        <option value="name-desc">Name (Z-A)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div style="overflow-x: auto;">
+            <table class="events-table" id="onlineTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Organization</th>
+                        <th>Event</th>
+                        <th>Event Date</th>
+                        <th>Status</th>
+                        <th>Registration Date</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (empty($onlineRegistrations)): ?>
                         <tr>
-                            <th>ID</th>
-                            <th>User Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Organization</th>
-                            <th>Event</th>
-                            <th>Event Date</th>
-                            <th>Status</th>
-                            <th>Registration Date</th>
-                            <th>Notes</th>
-                            <th>Actions</th>
+                            <td colspan="11" style="text-align: center; padding: 2rem; color: var(--text-light);">
+                                No online registrations yet.
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
+                    <?php else: ?>
                         <?php foreach ($onlineRegistrations as $reg): ?>
-                            <tr>
+                            <tr class="online-row" 
+                                data-name="<?php echo strtolower(htmlspecialchars($reg['user_name'] ?? '')); ?>"
+                                data-email="<?php echo strtolower(htmlspecialchars($reg['user_email'] ?? '')); ?>"
+                                data-organization="<?php echo strtolower(htmlspecialchars($reg['user_organization'] ?? '')); ?>"
+                                data-status="<?php echo strtolower($reg['status']); ?>"
+                                data-date="<?php echo strtotime($reg['registration_date']); ?>">
                                 <td><?php echo $reg['id']; ?></td>
                                 <td><strong><?php echo htmlspecialchars($reg['user_name'] ?? 'N/A'); ?></strong></td>
                                 <td><?php echo htmlspecialchars($reg['user_email'] ?? 'N/A'); ?></td>
@@ -764,10 +1022,10 @@ if (isset($_GET['success'])) {
                                 </td>
                             </tr>
                         <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        <?php endif; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
     
     <!-- Add/Edit Event Modal -->
@@ -1159,6 +1417,134 @@ if (isset($_GET['success'])) {
             document.getElementById('filterRegistrations').value = '';
             document.getElementById('sortUsers').value = 'newest';
             filterUsers();
+        }
+        
+        // Filter In-Person Registrations
+        function filterInPersonRegistrations() {
+            const searchTerm = document.getElementById('inPersonSearchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('filterInPersonStatus').value.toLowerCase();
+            const sortBy = document.getElementById('sortInPerson').value;
+            
+            const rows = document.querySelectorAll('.inperson-row');
+            let visibleCount = 0;
+            
+            rows.forEach(row => {
+                const name = row.dataset.name || '';
+                const email = row.dataset.email || '';
+                const institution = row.dataset.institution || '';
+                const status = row.dataset.status || '';
+                
+                const matchesSearch = !searchTerm || 
+                    name.includes(searchTerm) || 
+                    email.includes(searchTerm) || 
+                    institution.includes(searchTerm);
+                
+                const matchesStatus = !statusFilter || status === statusFilter;
+                
+                if (matchesSearch && matchesStatus) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            
+            document.getElementById('showingInPersonCount').textContent = visibleCount;
+            sortInPersonRows(sortBy);
+        }
+        
+        function sortInPersonRows(sortBy) {
+            const table = document.getElementById('inPersonTable');
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('.inperson-row:not([style*="display: none"])'));
+            
+            rows.sort((a, b) => {
+                switch(sortBy) {
+                    case 'newest':
+                        return parseInt(b.dataset.date) - parseInt(a.dataset.date);
+                    case 'oldest':
+                        return parseInt(a.dataset.date) - parseInt(b.dataset.date);
+                    case 'name-asc':
+                        return a.dataset.name.localeCompare(b.dataset.name);
+                    case 'name-desc':
+                        return b.dataset.name.localeCompare(a.dataset.name);
+                    default:
+                        return 0;
+                }
+            });
+            
+            rows.forEach(row => tbody.appendChild(row));
+        }
+        
+        function resetInPersonFilters() {
+            document.getElementById('inPersonSearchInput').value = '';
+            document.getElementById('filterInPersonStatus').value = '';
+            document.getElementById('sortInPerson').value = 'newest';
+            filterInPersonRegistrations();
+        }
+        
+        // Filter Online Registrations
+        function filterOnlineRegistrations() {
+            const searchTerm = document.getElementById('onlineSearchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('filterOnlineStatus').value.toLowerCase();
+            const sortBy = document.getElementById('sortOnline').value;
+            
+            const rows = document.querySelectorAll('.online-row');
+            let visibleCount = 0;
+            
+            rows.forEach(row => {
+                const name = row.dataset.name || '';
+                const email = row.dataset.email || '';
+                const organization = row.dataset.organization || '';
+                const status = row.dataset.status || '';
+                
+                const matchesSearch = !searchTerm || 
+                    name.includes(searchTerm) || 
+                    email.includes(searchTerm) || 
+                    organization.includes(searchTerm);
+                
+                const matchesStatus = !statusFilter || status === statusFilter;
+                
+                if (matchesSearch && matchesStatus) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            
+            document.getElementById('showingOnlineCount').textContent = visibleCount;
+            sortOnlineRows(sortBy);
+        }
+        
+        function sortOnlineRows(sortBy) {
+            const table = document.getElementById('onlineTable');
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('.online-row:not([style*="display: none"])'));
+            
+            rows.sort((a, b) => {
+                switch(sortBy) {
+                    case 'newest':
+                        return parseInt(b.dataset.date) - parseInt(a.dataset.date);
+                    case 'oldest':
+                        return parseInt(a.dataset.date) - parseInt(b.dataset.date);
+                    case 'name-asc':
+                        return a.dataset.name.localeCompare(b.dataset.name);
+                    case 'name-desc':
+                        return b.dataset.name.localeCompare(a.dataset.name);
+                    default:
+                        return 0;
+                }
+            });
+            
+            rows.forEach(row => tbody.appendChild(row));
+        }
+        
+        function resetOnlineFilters() {
+            document.getElementById('onlineSearchInput').value = '';
+            document.getElementById('filterOnlineStatus').value = '';
+            document.getElementById('sortOnline').value = 'newest';
+            filterOnlineRegistrations();
         }
         
         // Export users to CSV
