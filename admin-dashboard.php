@@ -71,6 +71,52 @@ if (isset($_GET['confirm_online_registration']) && is_numeric($_GET['confirm_onl
     }
 }
 
+// Handle view in-person registration
+$viewInPersonRegistration = null;
+if (isset($_GET['view_registration']) && is_numeric($_GET['view_registration'])) {
+    $id = intval($_GET['view_registration']);
+    $tableCheck = $conn->query("SHOW TABLES LIKE 'in_person_registrations'");
+    if ($tableCheck && $tableCheck->num_rows > 0) {
+        $stmt = $conn->prepare("SELECT * FROM in_person_registrations WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows === 1) {
+            $viewInPersonRegistration = $result->fetch_assoc();
+        }
+        $stmt->close();
+    }
+}
+
+// Handle view online registration
+$viewOnlineRegistration = null;
+if (isset($_GET['view_online_registration']) && is_numeric($_GET['view_online_registration'])) {
+    $id = intval($_GET['view_online_registration']);
+    $tableCheck = $conn->query("SHOW TABLES LIKE 'event_registrations'");
+    if ($tableCheck && $tableCheck->num_rows > 0) {
+        $viewQuery = "SELECT 
+            er.*,
+            u.name as user_name,
+            u.email as user_email,
+            u.phone as user_phone,
+            u.organization as user_organization,
+            e.title as event_title,
+            e.event_date as event_date
+        FROM event_registrations er
+        LEFT JOIN users u ON er.user_id = u.id
+        LEFT JOIN events e ON er.event_id = e.id
+        WHERE er.id = ?";
+        $stmt = $conn->prepare($viewQuery);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows === 1) {
+            $viewOnlineRegistration = $result->fetch_assoc();
+        }
+        $stmt->close();
+    }
+}
+
 // Handle delete in-person registration
 if (isset($_GET['delete_inperson_reg']) && is_numeric($_GET['delete_inperson_reg'])) {
     $id = intval($_GET['delete_inperson_reg']);
@@ -1047,6 +1093,122 @@ if (isset($_GET['success'])) {
             </table>
         </div>
     </div>
+    
+    <!-- View In-Person Registration Modal -->
+    <?php if ($viewInPersonRegistration): ?>
+    <div id="viewInPersonModal" class="modal active">
+        <div class="modal-content" style="max-width: 700px;">
+            <button onclick="closeModal('viewInPersonModal')" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-charcoal);">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--primary-navy);">In-Person Registration Details</h2>
+            
+            <div style="display: grid; gap: 1.5rem;">
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Full Name:</strong>
+                    <p style="margin: 0; color: var(--text-light);"><?php echo htmlspecialchars($viewInPersonRegistration['full_name']); ?></p>
+                </div>
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Email:</strong>
+                    <p style="margin: 0; color: var(--text-light);"><?php echo htmlspecialchars($viewInPersonRegistration['email']); ?></p>
+                </div>
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Phone:</strong>
+                    <p style="margin: 0; color: var(--text-light);"><?php echo htmlspecialchars($viewInPersonRegistration['phone']); ?></p>
+                </div>
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Institution/Firm:</strong>
+                    <p style="margin: 0; color: var(--text-light);"><?php echo htmlspecialchars($viewInPersonRegistration['institution_firm']); ?></p>
+                </div>
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Address:</strong>
+                    <p style="margin: 0; color: var(--text-light);"><?php echo htmlspecialchars($viewInPersonRegistration['address']); ?></p>
+                </div>
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Event:</strong>
+                    <p style="margin: 0; color: var(--text-light);"><?php echo htmlspecialchars($viewInPersonRegistration['event_title'] ?? 'N/A'); ?></p>
+                </div>
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Status:</strong>
+                    <span class="status-badge status-<?php echo $viewInPersonRegistration['status']; ?>">
+                        <?php echo ucfirst($viewInPersonRegistration['status']); ?>
+                    </span>
+                </div>
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Registration Date:</strong>
+                    <p style="margin: 0; color: var(--text-light);"><?php echo date('M d, Y H:i', strtotime($viewInPersonRegistration['registration_date'])); ?></p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                <a href="admin-dashboard.php" class="btn btn-secondary">Close</a>
+                <?php if ($viewInPersonRegistration['status'] === 'pending'): ?>
+                    <a href="?confirm_registration=<?php echo $viewInPersonRegistration['id']; ?>" class="btn btn-primary" onclick="return confirm('Confirm this registration?')">Confirm Registration</a>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+    
+    <!-- View Online Registration Modal -->
+    <?php if ($viewOnlineRegistration): ?>
+    <div id="viewOnlineModal" class="modal active">
+        <div class="modal-content" style="max-width: 700px;">
+            <button onclick="closeModal('viewOnlineModal')" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-charcoal);">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--primary-navy);">Online Registration Details</h2>
+            
+            <div style="display: grid; gap: 1.5rem;">
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">User Name:</strong>
+                    <p style="margin: 0; color: var(--text-light);"><?php echo htmlspecialchars($viewOnlineRegistration['user_name'] ?? 'N/A'); ?></p>
+                </div>
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Email:</strong>
+                    <p style="margin: 0; color: var(--text-light);"><?php echo htmlspecialchars($viewOnlineRegistration['user_email'] ?? 'N/A'); ?></p>
+                </div>
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Phone:</strong>
+                    <p style="margin: 0; color: var(--text-light);"><?php echo htmlspecialchars($viewOnlineRegistration['user_phone'] ?? 'N/A'); ?></p>
+                </div>
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Organization:</strong>
+                    <p style="margin: 0; color: var(--text-light);"><?php echo htmlspecialchars($viewOnlineRegistration['user_organization'] ?? 'N/A'); ?></p>
+                </div>
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Event:</strong>
+                    <p style="margin: 0; color: var(--text-light);"><?php echo htmlspecialchars($viewOnlineRegistration['event_title'] ?? 'N/A'); ?></p>
+                </div>
+                <?php if ($viewOnlineRegistration['event_date']): ?>
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Event Date:</strong>
+                    <p style="margin: 0; color: var(--text-light);"><?php echo date('M d, Y H:i', strtotime($viewOnlineRegistration['event_date'])); ?></p>
+                </div>
+                <?php endif; ?>
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Status:</strong>
+                    <span class="status-badge status-<?php echo $viewOnlineRegistration['status']; ?>">
+                        <?php echo ucfirst($viewOnlineRegistration['status']); ?>
+                    </span>
+                </div>
+                <?php if (!empty($viewOnlineRegistration['notes'])): ?>
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Notes:</strong>
+                    <p style="margin: 0; color: var(--text-light);"><?php echo htmlspecialchars($viewOnlineRegistration['notes']); ?></p>
+                </div>
+                <?php endif; ?>
+                <div>
+                    <strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Registration Date:</strong>
+                    <p style="margin: 0; color: var(--text-light);"><?php echo date('M d, Y H:i', strtotime($viewOnlineRegistration['registration_date'])); ?></p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                <a href="admin-dashboard.php" class="btn btn-secondary">Close</a>
+                <?php if ($viewOnlineRegistration['status'] === 'pending'): ?>
+                    <a href="?confirm_online_registration=<?php echo $viewOnlineRegistration['id']; ?>" class="btn btn-primary" onclick="return confirm('Confirm this registration?')">Confirm Registration</a>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
     
     <!-- Add/Edit Event Modal -->
     <div id="eventModal" class="modal">
