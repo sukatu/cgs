@@ -19,7 +19,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']) && !isset($_GET['type'
     }
 }
 
-// Handle confirm registration
+// Handle confirm in-person registration
 if (isset($_GET['confirm_registration']) && is_numeric($_GET['confirm_registration'])) {
     $id = intval($_GET['confirm_registration']);
     $tableCheck = $conn->query("SHOW TABLES LIKE 'in_person_registrations'");
@@ -27,9 +27,41 @@ if (isset($_GET['confirm_registration']) && is_numeric($_GET['confirm_registrati
         $stmt = $conn->prepare("UPDATE in_person_registrations SET status = 'confirmed' WHERE id = ?");
         $stmt->bind_param("i", $id);
         if ($stmt->execute()) {
-            $alert = '<div class="alert alert-success">Registration confirmed successfully!</div>';
+            $alert = '<div class="alert alert-success">In-person registration confirmed successfully!</div>';
         } else {
             $alert = '<div class="alert alert-error">Error confirming registration.</div>';
+        }
+        $stmt->close();
+    }
+}
+
+// Handle confirm online registration
+if (isset($_GET['confirm_online_registration']) && is_numeric($_GET['confirm_online_registration'])) {
+    $id = intval($_GET['confirm_online_registration']);
+    $tableCheck = $conn->query("SHOW TABLES LIKE 'event_registrations'");
+    if ($tableCheck && $tableCheck->num_rows > 0) {
+        $stmt = $conn->prepare("UPDATE event_registrations SET status = 'confirmed' WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        if ($stmt->execute()) {
+            $alert = '<div class="alert alert-success">Online registration confirmed successfully!</div>';
+        } else {
+            $alert = '<div class="alert alert-error">Error confirming registration.</div>';
+        }
+        $stmt->close();
+    }
+}
+
+// Handle delete in-person registration
+if (isset($_GET['delete_inperson_reg']) && is_numeric($_GET['delete_inperson_reg'])) {
+    $id = intval($_GET['delete_inperson_reg']);
+    $tableCheck = $conn->query("SHOW TABLES LIKE 'in_person_registrations'");
+    if ($tableCheck && $tableCheck->num_rows > 0) {
+        $stmt = $conn->prepare("DELETE FROM in_person_registrations WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        if ($stmt->execute()) {
+            $alert = '<div class="alert alert-success">In-person registration deleted successfully!</div>';
+        } else {
+            $alert = '<div class="alert alert-error">Error deleting registration.</div>';
         }
         $stmt->close();
     }
@@ -87,6 +119,34 @@ if ($tableCheck && $tableCheck->num_rows > 0) {
     $registrationsResult = $conn->query("SELECT * FROM in_person_registrations ORDER BY registration_date DESC");
     if ($registrationsResult) {
         $inPersonRegistrations = $registrationsResult->fetch_all(MYSQLI_ASSOC);
+    }
+}
+
+// Fetch online registrations (from event_registrations table)
+$onlineRegistrations = [];
+$tableCheck = $conn->query("SHOW TABLES LIKE 'event_registrations'");
+if ($tableCheck && $tableCheck->num_rows > 0) {
+    $onlineRegQuery = "SELECT 
+        er.id,
+        er.registration_date,
+        er.status,
+        er.notes,
+        u.id as user_id,
+        u.name as user_name,
+        u.email as user_email,
+        u.phone as user_phone,
+        u.organization as user_organization,
+        e.id as event_id,
+        e.title as event_title,
+        e.event_date as event_date
+    FROM event_registrations er
+    LEFT JOIN users u ON er.user_id = u.id
+    LEFT JOIN events e ON er.event_id = e.id
+    ORDER BY er.registration_date DESC";
+    
+    $onlineRegResult = $conn->query($onlineRegQuery);
+    if ($onlineRegResult) {
+        $onlineRegistrations = $onlineRegResult->fetch_all(MYSQLI_ASSOC);
     }
 }
 
@@ -346,6 +406,7 @@ if (isset($_GET['success'])) {
             <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
                 <button class="btn btn-primary" onclick="showSection('events')" id="btnEvents">Events</button>
                 <button class="btn btn-secondary" onclick="showSection('users')" id="btnUsers">Users</button>
+                <button class="btn btn-secondary" onclick="showSection('onlineRegistrations')" id="btnOnlineRegistrations">Online Registrations (<?php echo count($onlineRegistrations); ?>)</button>
                 <button class="btn btn-secondary" onclick="showSection('registrations')" id="btnRegistrations">In-Person Registrations (<?php echo count($inPersonRegistrations); ?>)</button>
                 <button class="btn btn-secondary" onclick="showSection('images')" id="btnImages">Images (<?php echo $totalImageCount; ?>)</button>
             </div>
@@ -636,6 +697,79 @@ if (isset($_GET['success'])) {
         <?php endif; ?>
     </div>
     
+    <!-- Online Registrations Section -->
+    <div id="onlineRegistrationsSection" style="display: none;">
+        <div style="margin-bottom: 2rem;">
+            <h2 style="margin-bottom: 0.5rem;">Online Event Registrations</h2>
+            <p style="color: var(--text-light); margin: 0;">
+                Total Online Registrations: <strong><?php echo count($onlineRegistrations); ?></strong>
+            </p>
+        </div>
+        
+        <?php if (empty($onlineRegistrations)): ?>
+            <div style="text-align: center; padding: 3rem; background: var(--white); border-radius: 8px; box-shadow: var(--shadow);">
+                <p style="color: var(--text-light); font-size: 1.1rem;">No online registrations yet.</p>
+                <p style="color: var(--text-light); margin-top: 0.5rem;">Registrations will appear here once users register for events through the website.</p>
+            </div>
+        <?php else: ?>
+            <div style="overflow-x: auto;">
+                <table class="events-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Organization</th>
+                            <th>Event</th>
+                            <th>Event Date</th>
+                            <th>Status</th>
+                            <th>Registration Date</th>
+                            <th>Notes</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($onlineRegistrations as $reg): ?>
+                            <tr>
+                                <td><?php echo $reg['id']; ?></td>
+                                <td><strong><?php echo htmlspecialchars($reg['user_name'] ?? 'N/A'); ?></strong></td>
+                                <td><?php echo htmlspecialchars($reg['user_email'] ?? 'N/A'); ?></td>
+                                <td><?php echo htmlspecialchars($reg['user_phone'] ?? 'N/A'); ?></td>
+                                <td><?php echo htmlspecialchars($reg['user_organization'] ?? 'N/A'); ?></td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="<?php echo htmlspecialchars($reg['event_title'] ?? 'N/A'); ?>">
+                                    <?php echo htmlspecialchars($reg['event_title'] ?? 'N/A'); ?>
+                                </td>
+                                <td>
+                                    <?php if ($reg['event_date']): ?>
+                                        <?php echo date('M d, Y H:i', strtotime($reg['event_date'])); ?>
+                                    <?php else: ?>
+                                        N/A
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <span class="status-badge status-<?php echo $reg['status']; ?>">
+                                        <?php echo ucfirst($reg['status']); ?>
+                                    </span>
+                                </td>
+                                <td><?php echo date('M d, Y H:i', strtotime($reg['registration_date'])); ?></td>
+                                <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="<?php echo htmlspecialchars($reg['notes'] ?? ''); ?>">
+                                    <?php echo htmlspecialchars($reg['notes'] ?? ''); ?>
+                                </td>
+                                <td>
+                                    <a href="?view_online_registration=<?php echo $reg['id']; ?>" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">View</a>
+                                    <?php if ($reg['status'] === 'pending'): ?>
+                                        <a href="?confirm_online_registration=<?php echo $reg['id']; ?>" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="return confirm('Confirm this registration?')">Confirm</a>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php endif; ?>
+    </div>
+    
     <!-- Add/Edit Event Modal -->
     <div id="eventModal" class="modal">
         <div class="modal-content">
@@ -880,6 +1014,7 @@ if (isset($_GET['success'])) {
             // Hide all sections
             document.getElementById('eventsSection').style.display = 'none';
             document.getElementById('usersSection').style.display = 'none';
+            document.getElementById('onlineRegistrationsSection').style.display = 'none';
             document.getElementById('registrationsSection').style.display = 'none';
             document.getElementById('imagesSection').style.display = 'none';
             
@@ -888,6 +1023,8 @@ if (isset($_GET['success'])) {
             document.getElementById('btnEvents').classList.add('btn-secondary');
             document.getElementById('btnUsers').classList.remove('btn-primary');
             document.getElementById('btnUsers').classList.add('btn-secondary');
+            document.getElementById('btnOnlineRegistrations').classList.remove('btn-primary');
+            document.getElementById('btnOnlineRegistrations').classList.add('btn-secondary');
             document.getElementById('btnRegistrations').classList.remove('btn-primary');
             document.getElementById('btnRegistrations').classList.add('btn-secondary');
             document.getElementById('btnImages').classList.remove('btn-primary');
@@ -902,6 +1039,10 @@ if (isset($_GET['success'])) {
                 document.getElementById('usersSection').style.display = 'block';
                 document.getElementById('btnUsers').classList.add('btn-primary');
                 document.getElementById('btnUsers').classList.remove('btn-secondary');
+            } else if (section === 'onlineRegistrations') {
+                document.getElementById('onlineRegistrationsSection').style.display = 'block';
+                document.getElementById('btnOnlineRegistrations').classList.add('btn-primary');
+                document.getElementById('btnOnlineRegistrations').classList.remove('btn-secondary');
             } else if (section === 'registrations') {
                 document.getElementById('registrationsSection').style.display = 'block';
                 document.getElementById('btnRegistrations').classList.add('btn-primary');
