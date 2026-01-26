@@ -517,7 +517,12 @@ if (session_status() === PHP_SESSION_NONE) {
     <div id="cgsIIModal" class="event-modal" style="display: none;">
         <div class="event-modal-content">
             <span class="event-modal-close" onclick="closeCGSIIModal()">&times;</span>
-            <div style="padding: 3rem; max-width: 800px; margin: 0 auto;">
+            <div style="padding: 3rem; max-width: 900px; margin: 0 auto;">
+                <!-- Event Image -->
+                <div style="width: 100%; margin-bottom: 2rem; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow);">
+                    <img src="images/bank-corporate-governance.jpeg" alt="CGS II: Bank Corporate Governance and Financial Stability" style="width: 100%; height: auto; display: block; object-fit: cover;">
+                </div>
+
                 <!-- Event Header -->
                 <div style="margin-bottom: 2rem;">
                     <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">

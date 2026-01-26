@@ -208,6 +208,11 @@ if (session_status() === PHP_SESSION_NONE) {
         <section class="section" style="padding: 4rem 0;">
             <div class="container">
                 <div class="registration-container">
+                    <!-- Event Image -->
+                    <div style="width: 100%; margin-bottom: 2rem; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow);">
+                        <img src="images/bank-corporate-governance.jpeg" alt="CGS II: Bank Corporate Governance and Financial Stability" style="width: 100%; height: auto; display: block; object-fit: cover;">
+                    </div>
+
                     <!-- Header -->
                     <div class="registration-header">
                         <h1>CGS II Registration</h1>

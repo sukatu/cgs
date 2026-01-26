@@ -1534,8 +1534,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: auto;
     display: block;
-    max-height: 500px;
-    object-fit: cover;
+    max-height: none;
+    object-fit: contain;
 }
 
 /* Responsive adjustments */

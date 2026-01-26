@@ -333,6 +333,9 @@ if (session_status() === PHP_SESSION_NONE) {
             
             let html = `
                 <div class="event-list-item" data-event-id="${uniqueId}">
+                    <div class="event-list-image-thumbnail-top">
+                        <img src="images/bank-corporate-governance.jpeg" alt="${escapeHtml(event.title)}" class="event-list-thumbnail-img">
+                    </div>
                     <div class="event-list-header" onclick="openEventDetails(${index}, '${prefix}')">
                         <div class="event-list-header-content">
                             <h3 class="event-list-title">${escapeHtml(event.title)}</h3>
@@ -393,6 +396,14 @@ if (session_status() === PHP_SESSION_NONE) {
                         <span class="event-type-badge-large ${eventType.toLowerCase()}">${typeLabel}</span>
                     </div>
                 </div>
+                
+                ${event.title && event.title.includes('CGS II') ? `
+                    <div class="event-detail-section" style="margin-top: 0;">
+                        <div class="event-image-container">
+                            <img src="images/bank-corporate-governance.jpeg" alt="${escapeHtml(event.title)}" class="event-detail-image" style="width: 100%; height: auto; max-height: none; border-radius: 8px; box-shadow: var(--shadow); object-fit: contain;">
+                        </div>
+                    </div>
+                ` : ''}
                 
                 <div class="event-detail-menu">
                     ${event.title && event.title.includes('CGS II') ? `
