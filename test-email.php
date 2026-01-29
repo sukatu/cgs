@@ -19,27 +19,23 @@ if (!file_exists(__DIR__ . '/email-config.php')) {
     require_once __DIR__ . '/email-config.php';
     require_once __DIR__ . '/vendor/autoload.php';
 
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-    use PHPMailer\PHPMailer\SMTP;
-
     $to = $testEmail ?: EMAIL_FROM_ADDRESS;
     if (empty($to) || !filter_var($to, FILTER_VALIDATE_EMAIL)) {
         $result['message'] = 'Add ?to=your@email.com to the URL to send a test email, or set a valid FROM in email-config.php.';
     } else {
         try {
-            $mail = new PHPMailer(true);
+            $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
             $debug = [];
             $mail->Debugoutput = function ($str) use (&$debug) {
                 $debug[] = $str;
             };
-            $mail->SMTPDebug = SMTP::DEBUG_CLIENT;
+            $mail->SMTPDebug = \PHPMailer\PHPMailer\SMTP::DEBUG_CLIENT;
             $mail->isSMTP();
             $mail->Host       = EMAIL_HOST;
             $mail->SMTPAuth   = true;
             $mail->Username   = EMAIL_USERNAME;
             $mail->Password   = EMAIL_PASSWORD;
-            $mail->SMTPSecure = defined('EMAIL_SMTP_SECURE') ? constant('EMAIL_SMTP_SECURE') : PHPMailer::ENCRYPTION_SMTPS;
+            $mail->SMTPSecure = defined('EMAIL_SMTP_SECURE') ? constant('EMAIL_SMTP_SECURE') : \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port       = EMAIL_SMTP_PORT;
             $mail->CharSet    = 'UTF-8';
             $mail->SMTPOptions = [
@@ -58,7 +54,7 @@ if (!file_exists(__DIR__ . '/email-config.php')) {
             $result['success'] = true;
             $result['message'] = 'Test email sent to ' . htmlspecialchars($to) . '. Check inbox and spam.';
             $result['detail'] = implode("\n", $debug);
-        } catch (Exception $e) {
+        } catch (\PHPMailer\PHPMailer\Exception $e) {
             $result['message'] = 'Send failed: ' . $e->getMessage();
             $result['detail'] = isset($mail) ? $mail->ErrorInfo : '';
             if (!empty($debug)) {
