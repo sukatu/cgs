@@ -9,7 +9,18 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 if (!defined('EMAIL_CONFIG_LOADED')) {
-    require_once __DIR__ . '/email-config.php';
+    if (file_exists(__DIR__ . '/email-config.php')) {
+        require_once __DIR__ . '/email-config.php';
+    } else {
+        define('EMAIL_CONFIG_LOADED', true);
+        define('EMAIL_HOST', '');
+        define('EMAIL_SMTP_PORT', 465);
+        define('EMAIL_USERNAME', '');
+        define('EMAIL_PASSWORD', '');
+        define('EMAIL_FROM_ADDRESS', '');
+        define('EMAIL_FROM_NAME', 'CGS');
+        define('EMAIL_SMTP_SECURE', 'ssl');
+    }
 }
 
 /**

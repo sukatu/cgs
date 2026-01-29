@@ -3,18 +3,24 @@
  * Handler for online (Zoom) event registrations.
  * Saves to online_zoom_registrations and sends Zoom link via email.
  */
-
-require_once 'config.php';
-require_once 'send-zoom-email.php';
-
 ob_start();
+
+require_once __DIR__ . '/config.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+$redirectUrl = 'register-cgs-ii.php';
+if (!empty($_POST['redirect_url'])) {
+    $r = trim((string) $_POST['redirect_url']);
+    if (preg_match('#^/?[a-zA-Z0-9_./?-]+$#', $r) && strpos($r, '..') === false) {
+        $redirectUrl = $r;
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    ob_end_clean();
-    header('Location: register-cgs-ii.php');
+    if (ob_get_level()) ob_end_clean();
+    header('Location: ' . $redirectUrl);
     exit();
 }
 
@@ -24,7 +30,6 @@ $phone = trim($_POST['phone'] ?? '');
 $eventId = isset($_POST['event_id']) ? intval($_POST['event_id']) : null;
 $eventTitle = trim($_POST['event_title'] ?? 'CGS II Bank Corporate Governance and Financial Stability: The Role of Bank Boards');
 $eventDate = trim($_POST['event_date'] ?? 'Thursday, February 12, 2026 at 5:00 PM (Africa/Accra)');
-$redirectUrl = $_POST['redirect_url'] ?? 'register-cgs-ii.php';
 
 $errors = [];
 if (empty($fullName)) $errors[] = 'Full name is required.';
@@ -32,7 +37,7 @@ if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'Va
 
 if (!empty($errors)) {
     $_SESSION['registration_error'] = implode(' ', $errors);
-    ob_end_clean();
+    if (ob_get_level()) ob_end_clean();
     header('Location: ' . $redirectUrl);
     exit();
 }
@@ -74,7 +79,7 @@ try {
         $checkStmt->close();
         $conn->close();
         $_SESSION['registration_error'] = 'You have already registered for this event with this email address.';
-        ob_end_clean();
+        if (ob_get_level()) ob_end_clean();
         header('Location: ' . $redirectUrl);
         exit();
     }
@@ -90,10 +95,15 @@ try {
     $stmt->close();
 
     $result = ['success' => false, 'message' => ''];
-    try {
-        $result = sendZoomLinkEmail($email, $fullName, $eventTitle, $eventDate);
-    } catch (Throwable $e) {
-        error_log('Zoom email send error: ' . $e->getMessage());
+    if (file_exists(__DIR__ . '/send-zoom-email.php')) {
+        try {
+            require_once __DIR__ . '/send-zoom-email.php';
+            if (function_exists('sendZoomLinkEmail')) {
+                $result = sendZoomLinkEmail($email, $fullName, $eventTitle, $eventDate);
+            }
+        } catch (Throwable $e) {
+            error_log('Zoom email send error: ' . $e->getMessage());
+        }
     }
     $emailSent = $result['success'] ? 1 : 0;
     $zoomSentAt = $result['success'] ? date('Y-m-d H:i:s') : null;
@@ -117,6 +127,6 @@ try {
     $_SESSION['registration_error_detail'] = $e->getMessage();
 }
 
-ob_end_clean();
+if (ob_get_level()) ob_end_clean();
 header('Location: ' . $redirectUrl);
 exit();
