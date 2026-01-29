@@ -99,6 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 if ($stmt->execute()) {
                     $_SESSION['registration_success'] = 'Thank you! Your registration has been submitted successfully. We will contact you with further details.';
+                    $_SESSION['registration_type'] = 'inperson';
                 } else {
                     throw new Exception("Registration failed: " . $stmt->error);
                 }
@@ -118,14 +119,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['registration_error'] = implode(' ', $errors);
     }
     
-    // Redirect back
-    ob_end_clean();
-    header('Location: ' . $redirectUrl . '#cgsIIModal');
+    $targetUrl = isset($_SESSION['registration_success']) ? 'registration-complete.php' : ($redirectUrl . '#cgsIIModal');
+    if (ob_get_level()) ob_end_clean();
+    header('Location: ' . $targetUrl);
     exit();
 }
 
 // If not POST, redirect to home
-ob_end_clean();
+if (ob_get_level()) ob_end_clean();
 header('Location: index.php');
 exit();
 ?>
