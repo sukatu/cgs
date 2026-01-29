@@ -1,0 +1,6 @@
+{
+    "name": "cgs/corporate-governance-series",
+    "require": {
+        "phpmailer/phpmailer": "^7.0"
+    }
+}

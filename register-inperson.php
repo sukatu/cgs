@@ -53,6 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // Check if table exists, create if not
             $tableCheck = $conn->query("SHOW TABLES LIKE 'in_person_registrations'");
+            if (!$tableCheck) {
+                throw new Exception("Database error: " . $conn->error);
+            }
             if ($tableCheck->num_rows === 0) {
                 $createTableSQL = "CREATE TABLE IF NOT EXISTS in_person_registrations (
                     id INT(11) AUTO_INCREMENT PRIMARY KEY,
@@ -107,8 +110,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $conn->close();
             
         } catch (Exception $e) {
-            error_log("Registration error: " . $e->getMessage());
+            error_log("In-person registration error: " . $e->getMessage());
             $_SESSION['registration_error'] = 'Registration failed. Please try again or contact us directly.';
+            $_SESSION['registration_error_detail'] = $e->getMessage();
         }
     } else {
         $_SESSION['registration_error'] = implode(' ', $errors);

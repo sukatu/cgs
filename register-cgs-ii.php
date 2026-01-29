@@ -250,6 +250,9 @@ if (session_status() === PHP_SESSION_NONE) {
                     <?php if (isset($_SESSION['registration_error'])): ?>
                         <div class="alert alert-error">
                             <?php echo htmlspecialchars($_SESSION['registration_error']); unset($_SESSION['registration_error']); ?>
+                            <?php if (isset($_SESSION['registration_error_detail'])): ?>
+                                <p style="margin-top: 0.75rem; font-size: 0.9rem; opacity: 0.9;">Technical detail: <?php echo htmlspecialchars($_SESSION['registration_error_detail']); unset($_SESSION['registration_error_detail']); ?></p>
+                            <?php endif; ?>
                         </div>
                     <?php endif; ?>
 
@@ -271,23 +274,40 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="registration-form-section active" id="section-online">
                         <h2 style="color: var(--primary-navy); margin-bottom: 1rem;">Join via Zoom</h2>
                         <p style="color: var(--text-charcoal); margin-bottom: 1.5rem;">
-                            Click the button below to register and join the Zoom meeting. You'll be redirected to Zoom where you can complete your registration.
+                            Register below with your name and email. We will save your registration and send the Zoom meeting link to your email so you can join on the day.
                         </p>
-                        <div style="background: var(--bg-offwhite); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                        <form method="POST" action="register-online.php" id="onlineRegistrationForm">
+                            <input type="hidden" name="event_id" value="999">
+                            <input type="hidden" name="event_title" value="CGS II Bank Corporate Governance and Financial Stability: The Role of Bank Boards">
+                            <input type="hidden" name="event_date" value="Thursday, February 12, 2026 at 5:00 PM (Africa/Accra)">
+                            <input type="hidden" name="redirect_url" value="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="online_full_name">Full Name *</label>
+                                    <input type="text" id="online_full_name" name="full_name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="online_email">Email Address *</label>
+                                    <input type="email" id="online_email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="online_phone">Phone (optional)</label>
+                                <input type="tel" id="online_phone" name="phone">
+                            </div>
+                            <button type="submit" class="btn-register">Register &amp; Get Zoom Link by Email</button>
+                        </form>
+                        <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--divider-grey);">
                             <h3 style="color: var(--primary-navy); margin-bottom: 1rem; font-size: 1.1rem;">Zoom Meeting Details</h3>
-                            <div class="event-details-item">
-                                <strong>Meeting ID:</strong> 885 0243 0789
-                            </div>
-                            <div class="event-details-item">
-                                <strong>Passcode:</strong> 822412
-                            </div>
+                            <div class="event-details-item"><strong>Meeting ID:</strong> 885 0243 0789</div>
+                            <div class="event-details-item"><strong>Passcode:</strong> 822412</div>
+                            <a href="https://us06web.zoom.us/j/88502430789?pwd=e3a79VijbjKZTolGnhZDoaN4s7OIug.1" target="_blank" class="btn-zoom" style="margin-top: 1rem;">
+                                Join Zoom Meeting →
+                            </a>
+                            <p style="text-align: center; margin-top: 1rem; color: var(--text-light); font-size: 0.9rem;">
+                                <a href="https://us06web.zoom.us/meetings/88502430789/invitations?signature=jv3kLZCqPxnGY0kOXjKJ-j_yX8d2Rbww5hhLcVJeOWA" target="_blank" style="color: var(--primary-navy);">View detailed join instructions</a>
+                            </p>
                         </div>
-                        <a href="https://us06web.zoom.us/j/88502430789?pwd=e3a79VijbjKZTolGnhZDoaN4s7OIug.1" target="_blank" class="btn-zoom">
-                            Register & Join Zoom Meeting →
-                        </a>
-                        <p style="text-align: center; margin-top: 1rem; color: var(--text-light); font-size: 0.9rem;">
-                            <a href="https://us06web.zoom.us/meetings/88502430789/invitations?signature=jv3kLZCqPxnGY0kOXjKJ-j_yX8d2Rbww5hhLcVJeOWA" target="_blank" style="color: var(--primary-navy);">View detailed join instructions</a>
-                        </p>
                     </div>
 
                     <!-- In-Person Registration Section -->

@@ -88,7 +88,7 @@ if (isset($_GET['view_registration']) && is_numeric($_GET['view_registration']))
     }
 }
 
-// Handle view online registration
+// Handle view online registration (event_registrations - user bookings)
 $viewOnlineRegistration = null;
 if (isset($_GET['view_online_registration']) && is_numeric($_GET['view_online_registration'])) {
     $id = intval($_GET['view_online_registration']);
@@ -112,6 +112,23 @@ if (isset($_GET['view_online_registration']) && is_numeric($_GET['view_online_re
         $result = $stmt->get_result();
         if ($result->num_rows === 1) {
             $viewOnlineRegistration = $result->fetch_assoc();
+        }
+        $stmt->close();
+    }
+}
+
+// Handle view Zoom (guest) registration
+$viewZoomRegistration = null;
+if (isset($_GET['view_zoom_registration']) && is_numeric($_GET['view_zoom_registration'])) {
+    $id = intval($_GET['view_zoom_registration']);
+    $tableCheck = $conn->query("SHOW TABLES LIKE 'online_zoom_registrations'");
+    if ($tableCheck && $tableCheck->num_rows > 0) {
+        $stmt = $conn->prepare("SELECT * FROM online_zoom_registrations WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows === 1) {
+            $viewZoomRegistration = $result->fetch_assoc();
         }
         $stmt->close();
     }
@@ -244,6 +261,17 @@ if ($tableCheck && $tableCheck->num_rows > 0) {
         $onlineRegistrations = $onlineRegResult->fetch_all(MYSQLI_ASSOC);
     }
 }
+
+// Fetch Zoom (guest) registrations from online_zoom_registrations
+$zoomRegistrations = [];
+$tableCheckZoom = $conn->query("SHOW TABLES LIKE 'online_zoom_registrations'");
+if ($tableCheckZoom && $tableCheckZoom->num_rows > 0) {
+    $zoomResult = $conn->query("SELECT * FROM online_zoom_registrations ORDER BY registration_date DESC");
+    if ($zoomResult) {
+        $zoomRegistrations = $zoomResult->fetch_all(MYSQLI_ASSOC);
+    }
+}
+$totalOnlineCount = count($onlineRegistrations) + count($zoomRegistrations);
 
 // Get static gallery images from images/gallery/New folder
 $staticImages = [];
@@ -630,7 +658,7 @@ if (isset($_GET['success'])) {
             <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
                 <button class="btn btn-primary" onclick="showSection('events')" id="btnEvents">Events</button>
                 <button class="btn btn-secondary" onclick="showSection('users')" id="btnUsers">Users</button>
-                <button class="btn btn-secondary" onclick="showSection('onlineRegistrations')" id="btnOnlineRegistrations">Online Registrations (<?php echo count($onlineRegistrations); ?>)</button>
+                <button class="btn btn-secondary" onclick="showSection('onlineRegistrations')" id="btnOnlineRegistrations">Online Registrations (<?php echo $totalOnlineCount; ?>)</button>
                 <button class="btn btn-secondary" onclick="showSection('registrations')" id="btnRegistrations">In-Person Registrations (<?php echo count($inPersonRegistrations); ?>)</button>
                 <button class="btn btn-secondary" onclick="showSection('images')" id="btnImages">Images (<?php echo $totalImageCount; ?>)</button>
             </div>
@@ -977,8 +1005,9 @@ if (isset($_GET['success'])) {
             <h2 style="margin-bottom: 0.5rem;">Online Event Registrations</h2>
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
                 <p style="color: var(--text-light); margin: 0;">
-                    Total Online Registrations: <strong id="totalOnlineCount"><?php echo count($onlineRegistrations); ?></strong>
-                    | Showing: <strong id="showingOnlineCount"><?php echo count($onlineRegistrations); ?></strong>
+                    Total Online Registrations: <strong id="totalOnlineCount"><?php echo $totalOnlineCount; ?></strong>
+                    (User bookings: <?php echo count($onlineRegistrations); ?> | Zoom guests: <?php echo count($zoomRegistrations); ?>)
+                    | Showing: <strong id="showingOnlineCount"><?php echo $totalOnlineCount; ?></strong>
                 </p>
             </div>
         </div>
@@ -1085,6 +1114,50 @@ if (isset($_GET['success'])) {
                                     <?php if ($reg['status'] === 'pending'): ?>
                                         <a href="?confirm_online_registration=<?php echo $reg['id']; ?>" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="return confirm('Confirm this registration?')">Confirm</a>
                                     <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+        
+        <h3 style="margin: 2.5rem 0 1rem; color: var(--primary-navy);">Zoom (Guest) Registrations</h3>
+        <div style="overflow-x: auto;">
+            <table class="events-table" id="zoomTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Event</th>
+                        <th>Status</th>
+                        <th>Email Sent</th>
+                        <th>Registration Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (empty($zoomRegistrations)): ?>
+                        <tr>
+                            <td colspan="9" style="text-align: center; padding: 2rem; color: var(--text-light);">
+                                No Zoom guest registrations yet.
+                            </td>
+                        </tr>
+                    <?php else: ?>
+                        <?php foreach ($zoomRegistrations as $z): ?>
+                            <tr>
+                                <td><?php echo (int)$z['id']; ?></td>
+                                <td><strong><?php echo htmlspecialchars($z['full_name']); ?></strong></td>
+                                <td><?php echo htmlspecialchars($z['email']); ?></td>
+                                <td><?php echo htmlspecialchars($z['phone'] ?? '—'); ?></td>
+                                <td style="max-width: 220px;" title="<?php echo htmlspecialchars($z['event_title'] ?? ''); ?>"><?php echo htmlspecialchars($z['event_title'] ?? 'N/A'); ?></td>
+                                <td><span class="status-badge status-<?php echo $z['status']; ?>"><?php echo ucfirst($z['status']); ?></span></td>
+                                <td><?php echo !empty($z['email_sent']) ? 'Yes' : 'No'; ?></td>
+                                <td><?php echo date('M d, Y H:i', strtotime($z['registration_date'])); ?></td>
+                                <td>
+                                    <a href="?view_zoom_registration=<?php echo (int)$z['id']; ?>" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">View</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -1206,6 +1279,29 @@ if (isset($_GET['success'])) {
                     <a href="?confirm_online_registration=<?php echo $viewOnlineRegistration['id']; ?>" class="btn btn-primary" onclick="return confirm('Confirm this registration?')">Confirm Registration</a>
                 <?php endif; ?>
             </div>
+        </div>
+    </div>
+    <?php endif; ?>
+    
+    <!-- View Zoom (Guest) Registration Modal -->
+    <?php if ($viewZoomRegistration): ?>
+    <div id="viewZoomModal" class="modal active">
+        <div class="modal-content" style="max-width: 700px;">
+            <button onclick="closeModal('viewZoomModal')" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-charcoal);">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--primary-navy);">Zoom (Guest) Registration Details</h2>
+            <div style="display: grid; gap: 1.5rem;">
+                <div><strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Full Name:</strong><p style="margin: 0; color: var(--text-light);"><?php echo htmlspecialchars($viewZoomRegistration['full_name']); ?></p></div>
+                <div><strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Email:</strong><p style="margin: 0; color: var(--text-light);"><?php echo htmlspecialchars($viewZoomRegistration['email']); ?></p></div>
+                <div><strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Phone:</strong><p style="margin: 0; color: var(--text-light);"><?php echo htmlspecialchars($viewZoomRegistration['phone'] ?? '—'); ?></p></div>
+                <div><strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Event:</strong><p style="margin: 0; color: var(--text-light);"><?php echo htmlspecialchars($viewZoomRegistration['event_title'] ?? 'N/A'); ?></p></div>
+                <div><strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Status:</strong><span class="status-badge status-<?php echo $viewZoomRegistration['status']; ?>"><?php echo ucfirst($viewZoomRegistration['status']); ?></span></div>
+                <div><strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Zoom link email sent:</strong><p style="margin: 0; color: var(--text-light);"><?php echo !empty($viewZoomRegistration['email_sent']) ? 'Yes' : 'No'; ?></p></div>
+                <?php if (!empty($viewZoomRegistration['zoom_link_sent_at'])): ?>
+                <div><strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Sent at:</strong><p style="margin: 0; color: var(--text-light);"><?php echo date('M d, Y H:i', strtotime($viewZoomRegistration['zoom_link_sent_at'])); ?></p></div>
+                <?php endif; ?>
+                <div><strong style="color: var(--text-charcoal); display: block; margin-bottom: 0.5rem;">Registration Date:</strong><p style="margin: 0; color: var(--text-light);"><?php echo date('M d, Y H:i', strtotime($viewZoomRegistration['registration_date'])); ?></p></div>
+            </div>
+            <div style="margin-top: 2rem;"><a href="admin-dashboard.php" class="btn btn-secondary">Close</a></div>
         </div>
     </div>
     <?php endif; ?>
