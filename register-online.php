@@ -117,10 +117,11 @@ try {
     $conn->close();
 
     if ($result['success']) {
-        $_SESSION['registration_success'] = 'Thank you! Your registration has been saved. We have sent the Zoom meeting link to your email (' . htmlspecialchars($email) . '). Please check your inbox (and spam folder).';
+        $_SESSION['registration_success'] = 'Thank you! Your registration has been saved. We have sent the Zoom meeting link to your email (' . htmlspecialchars($email) . '). Please check your inbox and spam/junk folder.';
     } else {
-        $_SESSION['registration_success'] = 'Thank you! Your registration has been saved. We could not send the Zoom link by email; please use the link on this page to join: Join Zoom Meeting (Meeting ID: 885 0243 0789, Passcode: 822412).';
+        $_SESSION['registration_success'] = 'Thank you! Your registration has been saved. We could not send the Zoom link by email; please use the link below to join on the day.';
     }
+    $_SESSION['registration_show_zoom_link'] = true;
 } catch (Exception $e) {
     error_log('Online registration error: ' . $e->getMessage());
     $_SESSION['registration_error'] = 'Registration failed. Please try again or contact us.';

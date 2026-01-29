@@ -64,6 +64,13 @@ function sendZoomLinkEmail($toEmail, $toName, $eventTitle = 'CGS II: Bank Corpor
         $mail->SMTPSecure = defined('EMAIL_SMTP_SECURE') ? constant('EMAIL_SMTP_SECURE') : PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port       = EMAIL_SMTP_PORT;
         $mail->CharSet    = 'UTF-8';
+        $mail->SMTPOptions = [
+            'ssl' => [
+                'verify_peer'       => false,
+                'verify_peer_name'  => false,
+                'allow_self_signed' => true,
+            ],
+        ];
         $mail->setFrom(EMAIL_FROM_ADDRESS, defined('EMAIL_FROM_NAME') ? EMAIL_FROM_NAME : 'CGS');
         $mail->addAddress($toEmail, $toName);
         $mail->isHTML(true);

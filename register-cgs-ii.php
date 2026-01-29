@@ -245,6 +245,13 @@ if (session_status() === PHP_SESSION_NONE) {
                         <div class="alert alert-success">
                             <?php echo htmlspecialchars($_SESSION['registration_success']); unset($_SESSION['registration_success']); ?>
                         </div>
+                        <?php if (!empty($_SESSION['registration_show_zoom_link'])): unset($_SESSION['registration_show_zoom_link']); ?>
+                        <div style="background: var(--bg-offwhite); padding: 1.5rem; border-radius: 8px; margin-top: 1rem; border: 2px solid var(--accent-gold);">
+                            <h3 style="color: var(--primary-navy); margin-bottom: 0.75rem; font-size: 1.1rem;">Your Zoom link (save this – use if email doesn’t arrive)</h3>
+                            <p style="margin-bottom: 0.5rem; color: var(--text-charcoal);"><strong>Meeting ID:</strong> 885 0243 0789 &nbsp;|&nbsp; <strong>Passcode:</strong> 822412</p>
+                            <a href="https://us06web.zoom.us/j/88502430789?pwd=e3a79VijbjKZTolGnhZDoaN4s7OIug.1" target="_blank" class="btn-zoom" style="display: inline-block; margin-top: 0.5rem;">Join Zoom Meeting →</a>
+                        </div>
+                        <?php endif; ?>
                     <?php endif; ?>
                     
                     <?php if (isset($_SESSION['registration_error'])): ?>
