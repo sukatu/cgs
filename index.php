@@ -50,10 +50,10 @@ if (session_status() === PHP_SESSION_NONE) {
                             <span style="color: var(--primary-navy); font-weight: 600; font-size: 0.9rem;">Series Event</span>
                         </div>
                         <h2 style="font-size: 1.75rem; color: var(--primary-navy); margin-bottom: 0.5rem; font-weight: 700; line-height: 1.3;">
-                            CGS II: Bank Corporate Governance and Financial Stability
+                            CGS Webinar: Corporate Governance as a Tool in Ensuring Effective AML/CFT Regulatory Compliance
                         </h2>
                         <p style="color: var(--primary-navy); font-size: 1rem; margin-bottom: 0; opacity: 0.9; font-weight: 500;">
-                            Thursday, February 12, 2026 at 5:00 PM (Africa/Accra) | Hybrid (Online & In-Person)
+                            Thursday, 19th March 2026 at 3:00 PM (London) | Online (Zoom)
                         </p>
                     </div>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap; width: 100%; max-width: 400px;">
@@ -99,11 +99,11 @@ if (session_status() === PHP_SESSION_NONE) {
                                 Upcoming Event
                             </div>
                             <h2 id="featuredEventTitle" style="font-size: 2rem; margin-bottom: 1.5rem; color: white; line-height: 1.3; font-weight: 700;">
-                                Directors' Duties and Corporate Misconduct: Comparative Insights on Liability Regimes
+                                Corporate Governance as a Tool in Ensuring Effective AML/CFT Regulatory Compliance
                             </h2>
                             <div id="featuredEventMeta" style="margin-bottom: 1.5rem; font-size: 1rem; opacity: 0.95; display: flex; flex-direction: column; gap: 0.75rem;">
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.2rem;">📅</span> <span><strong>Date:</strong> 15th January 2026</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.2rem;">🕐</span> <span><strong>Time:</strong> 3pm GMT</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.2rem;">📅</span> <span><strong>Date:</strong> 19th March 2026</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><span style="font-size: 1.2rem;">🕐</span> <span><strong>Time:</strong> 3:00 PM London</span></div>
                             </div>
                         </div>
                         
@@ -520,7 +520,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <div style="padding: 3rem; max-width: 900px; margin: 0 auto;">
                 <!-- Event Image -->
                 <div style="width: 100%; margin-bottom: 2rem; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow);">
-                    <img src="images/bank-corporate-governance.jpeg" alt="CGS II: Bank Corporate Governance and Financial Stability" style="width: 100%; height: auto; display: block; object-fit: cover;">
+                    <img src="new meeting flyer March 2026.jpeg" alt="CGS Webinar: Corporate Governance as a Tool in Ensuring Effective AML/CFT Regulatory Compliance" style="width: 100%; height: auto; display: block; object-fit: cover;">
                 </div>
 
                 <!-- Event Header -->
@@ -531,35 +531,35 @@ if (session_status() === PHP_SESSION_NONE) {
                         <span style="color: var(--text-light); font-size: 0.9rem;">Upcoming</span>
                     </div>
                     <h1 style="font-size: 2.5rem; color: var(--primary-navy); margin-bottom: 1.5rem; font-weight: 700; line-height: 1.3;">
-                        Bank Corporate Governance and Financial Stability: The Role of Bank Boards
+                        Corporate Governance as a Tool in Ensuring Effective Anti-Money Laundering (AML) and Combating the Financing of Terrorism (CFT) Regulatory Compliance
                     </h1>
                     <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
                             <span style="font-size: 1.5rem;">📅</span>
                             <div>
                                 <div style="font-weight: 600; color: var(--text-charcoal);">Date</div>
-                                <div style="color: var(--text-light);">Thursday, February 12, 2026</div>
+                                <div style="color: var(--text-light);">Thursday, 19th March 2026</div>
                             </div>
                         </div>
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
                             <span style="font-size: 1.5rem;">🕐</span>
                             <div>
                                 <div style="font-weight: 600; color: var(--text-charcoal);">Time</div>
-                                <div style="color: var(--text-light);">5:00 PM (Africa/Accra / GMT)</div>
+                                <div style="color: var(--text-light);">3:00 PM (London)</div>
                             </div>
                         </div>
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
                             <span style="font-size: 1.5rem;">💻</span>
                             <div>
                                 <div style="font-weight: 600; color: var(--text-charcoal);">Format</div>
-                                <div style="color: var(--text-light);">Hybrid (Online & In-Person)</div>
+                                <div style="color: var(--text-light);">Online (Zoom)</div>
                             </div>
                         </div>
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
                             <span style="font-size: 1.5rem;">📍</span>
                             <div>
                                 <div style="font-weight: 600; color: var(--text-charcoal);">Location</div>
-                                <div style="color: var(--text-light);">Dr. Daniel McKorley Moot Court Room, GIMPA Law School</div>
+                                <div style="color: var(--text-light);">Zoom Meeting</div>
                             </div>
                         </div>
                     </div>
@@ -569,10 +569,13 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div style="margin-bottom: 2rem;">
                     <h2 style="font-size: 1.5rem; color: var(--primary-navy); margin-bottom: 1rem; font-weight: 700;">About This Event</h2>
                     <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-charcoal); margin-bottom: 1rem;">
-                        Join us for CGS II, a critical discussion on bank corporate governance and financial stability, focusing on the essential role of bank boards in ensuring robust governance frameworks and financial stability in the banking sector.
+                        This 19th March 2026, join us for our second CGS Webinar on “Corporate Governance as a Tool in Ensuring Effective Anti-Money Laundering (AML) and Combating the Financing of Terrorism (CFT) Regulatory Compliance”.
                     </p>
                     <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-charcoal);">
-                        This session will explore how effective board governance contributes to financial stability, risk management, and sustainable banking practices across Africa.
+                        Our expert panelist will share practical insights on board oversight, risk management, fostering a culture of compliance, and adopting best practices to strengthen organizations.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-charcoal); margin-top: 1rem;">
+                        Don&apos;t miss this!
                     </p>
                 </div>
 
@@ -580,23 +583,43 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div style="background-color: var(--bg-offwhite); padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
                     <h2 style="font-size: 1.5rem; color: var(--primary-navy); margin-bottom: 1rem; font-weight: 700;">Zoom Meeting Details</h2>
                     <div style="display: grid; gap: 1rem;">
+                        <div style="color: var(--text-charcoal); font-weight: 600;">CSTS Ghana is inviting you to a scheduled Zoom meeting.</div>
+                        <div>
+                            <strong style="color: var(--text-charcoal);">Topic:</strong>
+                            <span style="color: var(--text-light); margin-left: 0.5rem;">Corporate Governance as a tool in ensuring effective AML/CFT Regulatory Compliance</span>
+                        </div>
+                        <div>
+                            <strong style="color: var(--text-charcoal);">Time:</strong>
+                            <span style="color: var(--text-light); margin-left: 0.5rem;">Mar 19, 2026 03:00 PM London</span>
+                        </div>
                         <div>
                             <strong style="color: var(--text-charcoal);">Meeting ID:</strong>
-                            <span style="color: var(--text-light); margin-left: 0.5rem;">885 0243 0789</span>
+                            <span style="color: var(--text-light); margin-left: 0.5rem;">869 9540 8931</span>
                         </div>
                         <div>
                             <strong style="color: var(--text-charcoal);">Passcode:</strong>
-                            <span style="color: var(--text-light); margin-left: 0.5rem;">822412</span>
+                            <span style="color: var(--text-light); margin-left: 0.5rem;">038545</span>
                         </div>
                         <div>
                             <strong style="color: var(--text-charcoal);">Join Link:</strong>
-                            <a href="https://us06web.zoom.us/j/88502430789?pwd=e3a79VijbjKZTolGnhZDoaN4s7OIug.1" target="_blank" style="color: var(--primary-navy); text-decoration: underline; margin-left: 0.5rem; word-break: break-all;">
-                                https://us06web.zoom.us/j/88502430789?pwd=e3a79VijbjKZTolGnhZDoaN4s7OIug.1
+                            <a href="https://us06web.zoom.us/j/86995408931?pwd=F9a59pGIoE9Kez4dtmrOhgNy7bs1Ka.1" target="_blank" style="color: var(--primary-navy); text-decoration: underline; margin-left: 0.5rem; word-break: break-all;">
+                                https://us06web.zoom.us/j/86995408931?pwd=F9a59pGIoE9Kez4dtmrOhgNy7bs1Ka.1
                             </a>
                         </div>
                         <div>
+                            <strong style="color: var(--text-charcoal);">Zoom AI Companion:</strong>
+                            <a href="https://us06web.zoom.us/launch/edl?muid=81dc382e-d346-4a62-bfbb-19702dde46a7" target="_blank" style="color: var(--primary-navy); text-decoration: underline; margin-left: 0.5rem; word-break: break-all;">
+                                View meeting insights with Zoom AI Companion
+                            </a>
+                        </div>
+                        <div>
+                            <strong style="color: var(--text-charcoal);">One Tap Mobile:</strong>
+                            <div style="color: var(--text-light); margin-top: 0.25rem;">+12532158782,,86995408931#,,,,*038545# US (Tacoma)</div>
+                            <div style="color: var(--text-light);">+13017158592,,86995408931#,,,,*038545# US (Washington DC)</div>
+                        </div>
+                        <div>
                             <strong style="color: var(--text-charcoal);">Join Instructions:</strong>
-                            <a href="https://us06web.zoom.us/meetings/88502430789/invitations?signature=jv3kLZCqPxnGY0kOXjKJ-j_yX8d2Rbww5hhLcVJeOWA" target="_blank" style="color: var(--primary-navy); text-decoration: underline; margin-left: 0.5rem; word-break: break-all;">
+                            <a href="https://us06web.zoom.us/meetings/86995408931/invitations?signature=WoTv2yAvWEe0kX1YTmxBipUTYWNPFTaHNn84UZ4C0AI" target="_blank" style="color: var(--primary-navy); text-decoration: underline; margin-left: 0.5rem; word-break: break-all;">
                                 View detailed join instructions
                             </a>
                         </div>
