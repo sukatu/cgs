@@ -28,8 +28,8 @@ $fullName = trim($_POST['full_name'] ?? '');
 $email = trim($_POST['email'] ?? '');
 $phone = trim($_POST['phone'] ?? '');
 $eventId = isset($_POST['event_id']) ? intval($_POST['event_id']) : null;
-$eventTitle = trim($_POST['event_title'] ?? 'CGS II Bank Corporate Governance and Financial Stability: The Role of Bank Boards');
-$eventDate = trim($_POST['event_date'] ?? 'Thursday, February 12, 2026 at 5:00 PM (Africa/Accra)');
+$eventTitle = trim($_POST['event_title'] ?? 'Corporate Governance as a tool in ensuring effective AML/CFT Regulatory Compliance');
+$eventDate = trim($_POST['event_date'] ?? 'Mar 19, 2026 03:00 PM London');
 
 $errors = [];
 if (empty($fullName)) $errors[] = 'Full name is required.';

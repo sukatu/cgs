@@ -9,7 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register for CGS II | Corporate Governance Series</title>
+    <title>Register for CGS Webinar | Corporate Governance Series</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         .registration-container {
@@ -44,52 +44,12 @@ if (session_status() === PHP_SESSION_NONE) {
             font-size: 1.1rem;
             opacity: 0.95;
         }
-        .registration-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        .registration-option {
-            background: var(--white);
-            border: 3px solid var(--divider-grey);
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .registration-option:hover {
-            border-color: var(--accent-gold);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .registration-option.active {
-            border-color: var(--accent-gold);
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
-        }
-        .registration-option-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        .registration-option h2 {
-            font-size: 1.5rem;
-            color: var(--primary-navy);
-            margin-bottom: 1rem;
-        }
-        .registration-option p {
-            color: var(--text-charcoal);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
         .registration-form-section {
-            display: none;
+            display: block;
             background: var(--white);
             border-radius: 8px;
             padding: 2.5rem;
             box-shadow: var(--shadow);
-        }
-        .registration-form-section.active {
-            display: block;
         }
         .form-group {
             margin-bottom: 1.5rem;
@@ -189,9 +149,6 @@ if (session_status() === PHP_SESSION_NONE) {
             color: var(--text-charcoal);
         }
         @media (max-width: 768px) {
-            .registration-options {
-                grid-template-columns: 1fr;
-            }
             .form-row {
                 grid-template-columns: 1fr;
             }
@@ -210,13 +167,13 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div class="registration-container">
                     <!-- Event Image -->
                     <div style="width: 100%; margin-bottom: 2rem; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow);">
-                        <img src="images/bank-corporate-governance.jpeg" alt="CGS II: Bank Corporate Governance and Financial Stability" style="width: 100%; height: auto; display: block; object-fit: cover;">
+                        <img src="new meeting flyer March 2026.jpeg" alt="CGS Webinar: Corporate Governance as a Tool in Ensuring Effective AML/CFT Regulatory Compliance" style="width: 100%; height: auto; display: block; object-fit: cover;">
                     </div>
 
                     <!-- Header -->
                     <div class="registration-header">
-                        <h1>CGS II Registration</h1>
-                        <p>Bank Corporate Governance and Financial Stability: The Role of Bank Boards</p>
+                        <h1>CGS Webinar Registration</h1>
+                        <p>Corporate Governance as a Tool in Ensuring Effective AML/CFT Regulatory Compliance</p>
                     </div>
 
                     <!-- Event Details -->
@@ -224,19 +181,19 @@ if (session_status() === PHP_SESSION_NONE) {
                         <h3>Event Information</h3>
                         <div class="event-details-item">
                             <span>📅</span>
-                            <span><strong>Date:</strong> Thursday, February 12, 2026</span>
+                            <span><strong>Date:</strong> Thursday, 19th March 2026</span>
                         </div>
                         <div class="event-details-item">
                             <span>🕐</span>
-                            <span><strong>Time:</strong> 5:00 PM (Africa/Accra / GMT)</span>
+                            <span><strong>Time:</strong> 3:00 PM (London)</span>
                         </div>
                         <div class="event-details-item">
                             <span>💻</span>
-                            <span><strong>Format:</strong> Hybrid (Online & In-Person)</span>
+                            <span><strong>Format:</strong> Online (Zoom)</span>
                         </div>
                         <div class="event-details-item">
                             <span>📍</span>
-                            <span><strong>Location:</strong> Dr. Daniel McKorley Moot Court Room, GIMPA Law School</span>
+                            <span><strong>Location:</strong> Zoom Meeting</span>
                         </div>
                     </div>
 
@@ -248,8 +205,8 @@ if (session_status() === PHP_SESSION_NONE) {
                         <?php if (!empty($_SESSION['registration_show_zoom_link'])): unset($_SESSION['registration_show_zoom_link']); ?>
                         <div style="background: var(--bg-offwhite); padding: 1.5rem; border-radius: 8px; margin-top: 1rem; border: 2px solid var(--accent-gold);">
                             <h3 style="color: var(--primary-navy); margin-bottom: 0.75rem; font-size: 1.1rem;">Your Zoom link (save this – use if email doesn’t arrive)</h3>
-                            <p style="margin-bottom: 0.5rem; color: var(--text-charcoal);"><strong>Meeting ID:</strong> 885 0243 0789 &nbsp;|&nbsp; <strong>Passcode:</strong> 822412</p>
-                            <a href="https://us06web.zoom.us/j/88502430789?pwd=e3a79VijbjKZTolGnhZDoaN4s7OIug.1" target="_blank" class="btn-zoom" style="display: inline-block; margin-top: 0.5rem;">Join Zoom Meeting →</a>
+                            <p style="margin-bottom: 0.5rem; color: var(--text-charcoal);"><strong>Meeting ID:</strong> 869 9540 8931 &nbsp;|&nbsp; <strong>Passcode:</strong> 038545</p>
+                            <a href="https://us06web.zoom.us/j/86995408931?pwd=F9a59pGIoE9Kez4dtmrOhgNy7bs1Ka.1" target="_blank" class="btn-zoom" style="display: inline-block; margin-top: 0.5rem;">Join Zoom Meeting →</a>
                         </div>
                         <?php endif; ?>
                     <?php endif; ?>
@@ -263,30 +220,16 @@ if (session_status() === PHP_SESSION_NONE) {
                         </div>
                     <?php endif; ?>
 
-                    <!-- Registration Options -->
-                    <div class="registration-options">
-                        <div class="registration-option active" onclick="selectOption('online')" id="option-online">
-                            <div class="registration-option-icon">💻</div>
-                            <h2>Online Attendance</h2>
-                            <p>Join the event via Zoom from anywhere in the world. Perfect for remote participation.</p>
-                        </div>
-                        <div class="registration-option" onclick="selectOption('inperson')" id="option-inperson">
-                            <div class="registration-option-icon">👥</div>
-                            <h2>In-Person Attendance</h2>
-                            <p>Register to attend the event in person. Fill out the form below to complete your registration.</p>
-                        </div>
-                    </div>
-
                     <!-- Online Registration Section -->
-                    <div class="registration-form-section active" id="section-online">
+                    <div class="registration-form-section" id="section-online">
                         <h2 style="color: var(--primary-navy); margin-bottom: 1rem;">Join via Zoom</h2>
                         <p style="color: var(--text-charcoal); margin-bottom: 1.5rem;">
                             Register below with your name and email. We will save your registration and send the Zoom meeting link to your email so you can join on the day.
                         </p>
                         <form method="POST" action="register-online.php" id="onlineRegistrationForm">
                             <input type="hidden" name="event_id" value="999">
-                            <input type="hidden" name="event_title" value="CGS II Bank Corporate Governance and Financial Stability: The Role of Bank Boards">
-                            <input type="hidden" name="event_date" value="Thursday, February 12, 2026 at 5:00 PM (Africa/Accra)">
+                            <input type="hidden" name="event_title" value="Corporate Governance as a tool in ensuring effective AML/CFT Regulatory Compliance">
+                            <input type="hidden" name="event_date" value="Mar 19, 2026 03:00 PM London">
                             <input type="hidden" name="redirect_url" value="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>">
                             <div class="form-row">
                                 <div class="form-group">
@@ -306,62 +249,18 @@ if (session_status() === PHP_SESSION_NONE) {
                         </form>
                         <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--divider-grey);">
                             <h3 style="color: var(--primary-navy); margin-bottom: 1rem; font-size: 1.1rem;">Zoom Meeting Details</h3>
-                            <div class="event-details-item"><strong>Meeting ID:</strong> 885 0243 0789</div>
-                            <div class="event-details-item"><strong>Passcode:</strong> 822412</div>
-                            <a href="https://us06web.zoom.us/j/88502430789?pwd=e3a79VijbjKZTolGnhZDoaN4s7OIug.1" target="_blank" class="btn-zoom" style="margin-top: 1rem;">
+                            <div class="event-details-item"><strong>Topic:</strong> Corporate Governance as a tool in ensuring effective AML/CFT Regulatory Compliance</div>
+                            <div class="event-details-item"><strong>Meeting ID:</strong> 869 9540 8931</div>
+                            <div class="event-details-item"><strong>Passcode:</strong> 038545</div>
+                            <a href="https://us06web.zoom.us/j/86995408931?pwd=F9a59pGIoE9Kez4dtmrOhgNy7bs1Ka.1" target="_blank" class="btn-zoom" style="margin-top: 1rem;">
                                 Join Zoom Meeting →
                             </a>
                             <p style="text-align: center; margin-top: 1rem; color: var(--text-light); font-size: 0.9rem;">
-                                <a href="https://us06web.zoom.us/meetings/88502430789/invitations?signature=jv3kLZCqPxnGY0kOXjKJ-j_yX8d2Rbww5hhLcVJeOWA" target="_blank" style="color: var(--primary-navy);">View detailed join instructions</a>
+                                <a href="https://us06web.zoom.us/meetings/86995408931/invitations?signature=WoTv2yAvWEe0kX1YTmxBipUTYWNPFTaHNn84UZ4C0AI" target="_blank" style="color: var(--primary-navy);">View detailed join instructions</a>
                             </p>
                         </div>
                     </div>
 
-                    <!-- In-Person Registration Section -->
-                    <div class="registration-form-section" id="section-inperson">
-                        <h2 style="color: var(--primary-navy); margin-bottom: 1rem;">In-Person Registration Form</h2>
-                        <p style="color: var(--text-charcoal); margin-bottom: 1.5rem;">
-                            Please fill out the form below to register for in-person attendance. All fields are required.
-                        </p>
-                        <form method="POST" action="register-inperson.php" id="inPersonRegistrationForm">
-                            <input type="hidden" name="event_id" value="999">
-                            <input type="hidden" name="event_title" value="CGS II Bank Corporate Governance and Financial Stability: The Role of Bank Boards">
-                            <input type="hidden" name="redirect_url" value="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>">
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="full_name">Full Name *</label>
-                                    <input type="text" id="full_name" name="full_name" required>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="email">Email Address *</label>
-                                    <input type="email" id="email" name="email" required>
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="phone">Phone Number *</label>
-                                    <input type="tel" id="phone" name="phone" required>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="institution_firm">Institution/Firm *</label>
-                                    <input type="text" id="institution_firm" name="institution_firm" required>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="address">Address *</label>
-                                <textarea id="address" name="address" required rows="3"></textarea>
-                            </div>
-                            
-                            <button type="submit" class="btn-register">
-                                Submit Registration
-                            </button>
-                        </form>
-                    </div>
                 </div>
             </div>
         </section>
@@ -399,21 +298,6 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
     </footer>
 
-    <script>
-        function selectOption(type) {
-            // Update option buttons
-            document.querySelectorAll('.registration-option').forEach(opt => {
-                opt.classList.remove('active');
-            });
-            document.getElementById('option-' + type).classList.add('active');
-            
-            // Update form sections
-            document.querySelectorAll('.registration-form-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            document.getElementById('section-' + type).classList.add('active');
-        }
-    </script>
     <script src="script.js"></script>
 </body>
 </html>

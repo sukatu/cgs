@@ -245,6 +245,19 @@ if (session_status() === PHP_SESSION_NONE) {
         document.addEventListener('DOMContentLoaded', function() {
             loadCurrentAndUpcomingEvents('series');
         });
+
+        function getFeaturedMarchEvent() {
+            return {
+                title: 'Corporate Governance as a Tool in Ensuring Effective AML/CFT Regulatory Compliance',
+                description: 'This 19th March 2026, join us for our second CGS Webinar on “Corporate Governance as a Tool in Ensuring Effective Anti-Money Laundering (AML) and Combating the Financing of Terrorism (CFT) Regulatory Compliance”. Our expert panelist will share practical insights on board oversight, risk management, fostering a culture of compliance, and adopting best practices to strengthen organizations. Don\'t miss this!',
+                event_date: '2026-03-19 15:00:00',
+                location: 'Zoom Meeting',
+                format: 'Online (Zoom)',
+                event_type: 'series',
+                status: 'upcoming',
+                registration_link: 'register-cgs-ii.php'
+            };
+        }
         
         // Function to load current and upcoming events separately
         async function loadCurrentAndUpcomingEvents(type = null) {
@@ -261,6 +274,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     
                     // Separate upcoming events
                     const upcomingEvents = [];
+                    const featuredMarchEvent = getFeaturedMarchEvent();
                     
                     data.events.forEach(event => {
                         if (!event.event_date) {
@@ -279,6 +293,14 @@ if (session_status() === PHP_SESSION_NONE) {
                             upcomingEvents.push(event);
                         }
                     });
+
+                    const hasFeaturedMarchEvent = upcomingEvents.some(event =>
+                        (event.title || '').toLowerCase().includes('aml/cft') ||
+                        (event.title || '').toLowerCase().includes('anti-money laundering')
+                    );
+                    if (!hasFeaturedMarchEvent) {
+                        upcomingEvents.unshift(featuredMarchEvent);
+                    }
                     
                     // Display upcoming events
                     const upcomingContainer = document.getElementById('upcomingSeriesEvents');
@@ -296,14 +318,20 @@ if (session_status() === PHP_SESSION_NONE) {
                     console.error('Error loading events:', data);
                     const upcomingContainer = document.getElementById('upcomingSeriesEvents');
                     if (upcomingContainer) {
-                        upcomingContainer.style.display = 'none';
+                        const featuredEvent = getFeaturedMarchEvent();
+                        upcomingContainer.innerHTML = createEventListItem(featuredEvent, 0, 'upcoming');
+                        window.upcomingEvents = [featuredEvent];
+                        window.allEvents.upcoming = [featuredEvent];
                     }
                 }
             } catch (error) {
                 console.error('Error fetching events:', error);
                 const upcomingContainer = document.getElementById('upcomingSeriesEvents');
                 if (upcomingContainer) {
-                    upcomingContainer.style.display = 'none';
+                    const featuredEvent = getFeaturedMarchEvent();
+                    upcomingContainer.innerHTML = createEventListItem(featuredEvent, 0, 'upcoming');
+                    window.upcomingEvents = [featuredEvent];
+                    window.allEvents.upcoming = [featuredEvent];
                 }
             }
         }
@@ -330,11 +358,12 @@ if (session_status() === PHP_SESSION_NONE) {
             
             const typeClass = eventType.toLowerCase();
             const typeLabel = eventType.charAt(0).toUpperCase() + eventType.slice(1);
+            const isMarchAmlEvent = isFeaturedAmlCftEvent(event);
             
             let html = `
                 <div class="event-list-item" data-event-id="${uniqueId}">
                     <div class="event-list-image-thumbnail-top">
-                        <img src="images/bank-corporate-governance.jpeg" alt="${escapeHtml(event.title)}" class="event-list-thumbnail-img">
+                        <img src="${isMarchAmlEvent ? 'new meeting flyer March 2026.jpeg' : 'images/bank-corporate-governance.jpeg'}" alt="${escapeHtml(event.title)}" class="event-list-thumbnail-img">
                     </div>
                     <div class="event-list-header" onclick="openEventDetails(${index}, '${prefix}')">
                         <div class="event-list-header-content">
@@ -346,7 +375,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             ` : ''}
                         </div>
                         <div class="event-list-actions">
-                            ${event.title && event.title.includes('CGS II') ? `
+                            ${isMarchAmlEvent ? `
                                 <a href="register-cgs-ii.php" class="btn btn-primary" onclick="event.stopPropagation();">Register</a>
                             ` : event.registration_link ? `
                                 <a href="${escapeHtml(event.registration_link)}" target="_blank" class="btn btn-primary" onclick="event.stopPropagation();">Book now</a>
@@ -387,6 +416,7 @@ if (session_status() === PHP_SESSION_NONE) {
             const eventTime = event.event_date ? formatTime(event.event_date) : '';
             const eventType = event.event_type || 'series';
             const typeLabel = eventType.charAt(0).toUpperCase() + eventType.slice(1);
+            const isMarchAmlEvent = isFeaturedAmlCftEvent(event);
             
             let html = `
                 <div class="event-detail-header">
@@ -397,16 +427,16 @@ if (session_status() === PHP_SESSION_NONE) {
                     </div>
                 </div>
                 
-                ${event.title && event.title.includes('CGS II') ? `
+                ${isMarchAmlEvent ? `
                     <div class="event-detail-section" style="margin-top: 0;">
                         <div class="event-image-container">
-                            <img src="images/bank-corporate-governance.jpeg" alt="${escapeHtml(event.title)}" class="event-detail-image" style="width: 100%; height: auto; max-height: none; border-radius: 8px; box-shadow: var(--shadow); object-fit: contain;">
+                            <img src="new meeting flyer March 2026.jpeg" alt="${escapeHtml(event.title)}" class="event-detail-image" style="width: 100%; height: auto; max-height: none; border-radius: 8px; box-shadow: var(--shadow); object-fit: contain;">
                         </div>
                     </div>
                 ` : ''}
                 
                 <div class="event-detail-menu">
-                    ${event.title && event.title.includes('CGS II') ? `
+                    ${isMarchAmlEvent ? `
                         <a href="register-cgs-ii.php" class="btn btn-primary event-book-btn">Register</a>
                     ` : event.registration_link ? `
                         <a href="${escapeHtml(event.registration_link)}" target="_blank" class="btn btn-primary event-book-btn">Book now</a>
@@ -511,7 +541,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         </div>
                     ` : ''}
                     
-                    ${event.title && event.title.includes('CGS II') ? `
+                    ${isMarchAmlEvent ? `
                         <div class="event-detail-cta">
                             <a href="register-cgs-ii.php" class="btn btn-primary btn-large">Register Now</a>
                         </div>
@@ -604,6 +634,12 @@ if (session_status() === PHP_SESSION_NONE) {
                 "'": '&#039;'
             };
             return text.toString().replace(/[&<>"']/g, m => map[m]);
+        }
+
+        function isFeaturedAmlCftEvent(event) {
+            if (!event || !event.title) return false;
+            const title = event.title.toLowerCase();
+            return title.includes('aml/cft') || title.includes('anti-money laundering') || title.includes('corporate governance as a tool in ensuring effective');
         }
         
         // Open past event details

@@ -31,11 +31,11 @@ if (!defined('EMAIL_CONFIG_LOADED')) {
  * @param string $eventDate Formatted event date/time
  * @return array ['success' => bool, 'message' => string]
  */
-function sendZoomLinkEmail($toEmail, $toName, $eventTitle = 'CGS II: Bank Corporate Governance and Financial Stability', $eventDate = 'Thursday, February 12, 2026 at 5:00 PM (Africa/Accra)') {
-    $zoomLink = 'https://us06web.zoom.us/j/88502430789?pwd=e3a79VijbjKZTolGnhZDoaN4s7OIug.1';
-    $meetingId = '885 0243 0789';
-    $passcode = '822412';
-    $joinInstructions = 'https://us06web.zoom.us/meetings/88502430789/invitations?signature=jv3kLZCqPxnGY0kOXjKJ-j_yX8d2Rbww5hhLcVJeOWA';
+function sendZoomLinkEmail($toEmail, $toName, $eventTitle = 'Corporate Governance as a tool in ensuring effective AML/CFT Regulatory Compliance', $eventDate = 'Mar 19, 2026 03:00 PM London') {
+    $zoomLink = 'https://us06web.zoom.us/j/86995408931?pwd=F9a59pGIoE9Kez4dtmrOhgNy7bs1Ka.1';
+    $meetingId = '869 9540 8931';
+    $passcode = '038545';
+    $joinInstructions = 'https://us06web.zoom.us/meetings/86995408931/invitations?signature=WoTv2yAvWEe0kX1YTmxBipUTYWNPFTaHNn84UZ4C0AI';
 
     $subject = 'Your Zoom Link: ' . $eventTitle;
     $bodyHtml = '<!DOCTYPE html><html><head><meta charset="utf-8"><style>body{font-family:Arial,sans-serif;line-height:1.6;color:#333;} .box{background:#f5f5f5;padding:1rem;border-radius:8px;margin:1rem 0;} a.btn{display:inline-block;background:#B8860B;color:#0A2463;padding:12px 24px;text-decoration:none;border-radius:4px;font-weight:600;margin:1rem 0;} h1{color:#0A2463;}</style></head><body>';

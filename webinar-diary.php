@@ -31,67 +31,18 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div class="event-card">
                     <div class="event-header">
                         <div>
-                            <h3 class="event-title">Directors' Duties and Corporate Misconduct: Comparative Insights on Liability Regimes</h3>
-                            <div class="event-date">15th January 2026 | 3:00 PM GMT</div>
+                            <h3 class="event-title">Corporate Governance as a Tool in Ensuring Effective AML/CFT Regulatory Compliance</h3>
+                            <div class="event-date">19th March 2026 | 3:00 PM London</div>
                         </div>
                     </div>
                     <div class="event-description">
-                        <strong>About this event:</strong> This event brings together experts to discuss the role of directors' duties in preventing corporate misconduct and promoting accountability. The discussion is to provide practical insights on directors' duties and corporate misconduct, while exploring liability regimes across different jurisdictions.
+                        <strong>About this event:</strong> This 19th March 2026, join us for our second CGS Webinar on “Corporate Governance as a Tool in Ensuring Effective Anti-Money Laundering (AML) and Combating the Financing of Terrorism (CFT) Regulatory Compliance”. Our expert panelist will share practical insights on board oversight, risk management, fostering a culture of compliance, and adopting best practices to strengthen organizations. Don&apos;t miss this!
                     </div>
-                    <div style="margin: 2rem 0;">
-                        <div style="display: grid; grid-template-columns: 1fr 3fr; gap: 2rem; align-items: start;">
-                            <div>
-                                <strong style="display: block; margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--primary-navy);">Moderator:</strong>
-                                <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                    <div style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 3px solid var(--accent-gold); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center;">
-                                        <img src="images/GERTRUDE AMORKOR AMARH.jpeg" 
-                                             alt="Gertrude Amorkor Amarh" 
-                                             style="width: 100%; height: 100%; object-fit: cover; object-position: center center;"
-                                             onerror="this.style.display='none';">
-                                    </div>
-                                    <p style="font-weight: 600; color: var(--text-charcoal); margin-bottom: 0.25rem;">Gertrude Amorkor Amarh</p>
-                                    <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.4;">Lecturer<br>UPSA Law School</p>
-                                </div>
-                            </div>
-                            <div>
-                                <strong style="display: block; margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--primary-navy);">Panel Members:</strong>
-                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
-                                    <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                        <div style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 3px solid var(--accent-gold); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center;">
-                                            <img src="images/Director, Investment Stewardship and Engagement Federated Hermes Ltd - London, UK and Pittsburgh, PA USA.jpeg" 
-                                                 alt="Michael B. Yamoah" 
-                                                 style="width: 100%; height: 100%; object-fit: cover; object-position: center center;"
-                                                 onerror="this.style.display='none';">
-                                        </div>
-                                        <p style="font-weight: 600; color: var(--text-charcoal); margin-bottom: 0.25rem;">Michael B. Yamoah, PhD</p>
-                                        <p style="font-size: 0.9rem; color: var(--text-light); line-height: 1.4;">Director,<br>Investment Stewardship and Engagement<br>Federated Hermes Ltd<br>London, UK and Pittsburgh, PA USA</p>
-                                    </div>
-                                    <div style="text-align: center;">
-                                        <div style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 3px solid var(--accent-gold); margin: 0 auto 1rem;">
-                                            <img src="images/Kenneth Ghartey, Lecturer, University of Ghana School of Law..jpeg" 
-                                                 alt="Kenneth Ghartey" 
-                                                 style="width: 150px; height: 150px; object-fit: cover; object-position: center top; display: block;"
-                                                 onerror="this.style.display='none';">
-                                        </div>
-                                        <p style="font-weight: 600; color: var(--text-charcoal); margin-bottom: 0.25rem;">Kenneth Ghartey</p>
-                                        <p style="font-size: 0.9rem; color: var(--text-light); line-height: 1.4;">Lecturer<br>University of Ghana School of Law</p>
-                                    </div>
-                                    <div style="text-align: center;">
-                                        <div style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 3px solid var(--accent-gold); margin: 0 auto 1rem;">
-                                            <img src="images/Lecturer in Law Loughborough University, England Dr Priscilla Vitoh.jpeg" 
-                                                 alt="Dr Priscilla Vitoh" 
-                                                 style="width: 150px; height: 150px; object-fit: cover; object-position: 50% 35%; display: block;"
-                                                 onerror="this.style.display='none';">
-                                        </div>
-                                        <p style="font-weight: 600; color: var(--text-charcoal); margin-bottom: 0.25rem;">Dr Priscilla Vitoh</p>
-                                        <p style="font-size: 0.9rem; color: var(--text-light); line-height: 1.4;">Lecturer in Law<br>Loughborough University<br>England</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div style="margin: 2rem 0; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow);">
+                        <img src="new meeting flyer March 2026.jpeg" alt="CGS Webinar March 2026 flyer" style="width: 100%; height: auto; display: block; object-fit: cover;">
                     </div>
                     <div class="event-actions">
-                        <a href="https://us06web.zoom.us/meeting/register/hp6S9ygwQzqLvZFJrhSR8A" target="_blank" class="btn btn-primary">Register Now</a>
+                        <a href="register-cgs-ii.php" class="btn btn-primary">Register Now</a>
                     </div>
                 </div>
                 
