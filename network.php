@@ -295,6 +295,7 @@ require_once 'config.php';
                         <li><a href="blog.php">Blog</a></li>
                         <li><a href="media.php">Media</a></li>
                         <li><a href="network.php">Network</a></li>
+                        <li><a href="https://cstsghana.com" target="_blank" rel="noopener noreferrer">CSTS Website</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">

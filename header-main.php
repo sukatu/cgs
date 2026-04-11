@@ -132,6 +132,7 @@ try {
                 </li>
                 <li><a href="training.php" <?php echo ($activePage === 'training') ? 'class="active"' : ''; ?>>Training</a></li>
                 <li><a href="network.php" <?php echo ($activePage === 'network') ? 'class="active"' : ''; ?>>Network</a></li>
+                <li><a href="https://cstsghana.com" target="_blank" rel="noopener noreferrer">CSTS Website</a></li>
                 <li><a href="contact.php" <?php echo ($activePage === 'contact') ? 'class="active"' : ''; ?>>Contact</a></li>
             </ul>
             <div class="hamburger" id="hamburger">

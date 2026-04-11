@@ -38,7 +38,9 @@ if (session_status() === PHP_SESSION_NONE) {
                                 <h4 style="font-size: 1.2rem; margin-bottom: 0.75rem; color: var(--primary-navy); font-weight: 600;">Accra Branch</h4>
                                 <p style="line-height: 1.8; color: var(--text-charcoal); margin-bottom: 0.5rem;">
                                     15 Netflix Street UPSA Road<br>
-                                    Madina, Accra
+                                    Madina, Accra<br><br>
+                                    No. 57 Kofi Annan St<br>
+                                    Airport Residential Area, Accra
                                 </p>
                             </div>
 
@@ -53,7 +55,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <div style="margin-bottom: 2rem;">
                                 <p style="line-height: 2;">
                                     <strong style="color: var(--primary-navy);">Email:</strong><br>
-                                    <a href="mailto:info@cstghana.com" style="color: var(--accent-gold); text-decoration: none; font-size: 1.05rem;">info@cstghana.com</a>
+                                    <a href="mailto:events@cstsghana.com" style="color: var(--accent-gold); text-decoration: none; font-size: 1.05rem;">events@cstsghana.com</a>
                                 </p>
                                 <p style="line-height: 2; margin-top: 1rem;">
                                     <strong style="color: var(--primary-navy);">Phone:</strong><br>
@@ -221,6 +223,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <li><a href="blog.php">Blog</a></li>
                         <li><a href="media.php">Media</a></li>
                         <li><a href="network.php">Network</a></li>
+                        <li><a href="https://cstsghana.com" target="_blank" rel="noopener noreferrer">CSTS Website</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">

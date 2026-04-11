@@ -189,6 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                         <li><a href="about.php">About CGS</a></li>
                         <li><a href="events.php">Events</a></li>
                         <li><a href="network.php">Network</a></li>
+                        <li><a href="https://cstsghana.com" target="_blank" rel="noopener noreferrer">CSTS Website</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
